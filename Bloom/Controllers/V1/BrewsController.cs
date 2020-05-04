@@ -173,156 +173,154 @@ namespace Capstone.Controllers.V1
 
         ////----------POST----------
 
-        //[HttpPost]
-        //public async Task<IActionResult> Post([FromBody] Brew brew)
-        //{
-        //    using (SqlConnection conn = Connection)
-        //    {
-        //        conn.Open();
-        //        using (SqlCommand cmd = conn.CreateCommand())
-        //        {
-        //            cmd.CommandText = @"
-        //                INSERT INTO Brew (BrewName, RoastLevel, MASL, RoastDate, Quantity, Rating, TastingNotes, Variety, Process, Notes, Origin, Roaster, UserId, RegionId)
-        //                OUTPUT INSERTED.Id
-        //                VALUES (@BrewName, @RoastLevel, @MASL, @RoastDate, @Quantity, @Rating, @TastingNotes, @Variety, @Process, @Notes, @Origin, @Roaster, @UserId, @RegionId)";
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody] Brew brew)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        INSERT INTO Brew (CoffeeDose, WaterDose, WaterTemp, Bloom, BrewTime, Rating, BrewDate, GrindSetting, GrinderId, Notes, BrewMethodId, BeanId, UserId)
+                        OUTPUT INSERTED.Id
+                        VALUES (@CoffeeDose, @WaterDose, @WaterTemp, @Bloom, @BrewTime, @Rating, @BrewDate, @GrindSetting, @GrinderId, @Notes, @BrewMethodId, @BeanId, @UserId)";
 
-        //            cmd.Parameters.Add(new SqlParameter("@BrewName", brew.BrewName));
-        //            cmd.Parameters.Add(new SqlParameter("@RoastLevel", brew.RoastLevel));
-        //            cmd.Parameters.Add(new SqlParameter("@MASL", brew.MASL));
-        //            cmd.Parameters.Add(new SqlParameter("@RoastDate", brew.RoastDate));
-        //            cmd.Parameters.Add(new SqlParameter("@Quantity", brew.Quantity));
-        //            cmd.Parameters.Add(new SqlParameter("@Rating", brew.Rating));
-        //            cmd.Parameters.Add(new SqlParameter("@TastingNotes", brew.TastingNotes));
-        //            cmd.Parameters.Add(new SqlParameter("@Variety", brew.Variety));
-        //            cmd.Parameters.Add(new SqlParameter("@Process", brew.Process));
-        //            cmd.Parameters.Add(new SqlParameter("@Notes", brew.Notes));
-        //            cmd.Parameters.Add(new SqlParameter("@Origin", brew.Origin));
-        //            cmd.Parameters.Add(new SqlParameter("@Roaster", brew.Roaster));
-        //            cmd.Parameters.Add(new SqlParameter("@UserId", brew.UserId));
-        //            cmd.Parameters.Add(new SqlParameter("@RegionId", brew.RegionId));
+                    cmd.Parameters.Add(new SqlParameter("@CoffeeDose", brew.CoffeeDose));
+                    cmd.Parameters.Add(new SqlParameter("@WaterDose", brew.WaterDose));
+                    cmd.Parameters.Add(new SqlParameter("@WaterTemp", brew.WaterTemp));
+                    cmd.Parameters.Add(new SqlParameter("@Bloom", brew.Bloom));
+                    cmd.Parameters.Add(new SqlParameter("@BrewTime", brew.BrewTime));
+                    cmd.Parameters.Add(new SqlParameter("@Rating", brew.Rating));
+                    cmd.Parameters.Add(new SqlParameter("@BrewDate", brew.BrewDate));
+                    cmd.Parameters.Add(new SqlParameter("@GrindSetting", brew.GrindSetting));
+                    cmd.Parameters.Add(new SqlParameter("@GrinderId", brew.GrinderId));
+                    cmd.Parameters.Add(new SqlParameter("@Notes", brew.Notes));
+                    cmd.Parameters.Add(new SqlParameter("@BrewMethodId", brew.BrewMethodId));
+                    cmd.Parameters.Add(new SqlParameter("@BeanId", brew.BeanId));
+                    cmd.Parameters.Add(new SqlParameter("@UserId", brew.UserId));
 
-        //            int id = (int)cmd.ExecuteScalar();
+                    int id = (int)cmd.ExecuteScalar();
 
-        //            brew.Id = id;
-        //            return CreatedAtRoute("GetBrew", new { id = id }, brew);
-        //        }
-        //    }
-        //}
+                    brew.Id = id;
+                    return CreatedAtRoute("GetBrew", new { id = id }, brew);
+                }
+            }
+        }
 
-        //////////----------PUT----------
-        //[HttpPut("{id}")]
-        //public async Task<IActionResult> Put([FromRoute] int id, [FromBody] Brew brew)
-        //{
-        //    try
-        //    {
-        //        using (SqlConnection conn = Connection)
-        //        {
-        //            conn.Open();
-        //            using (SqlCommand cmd = conn.CreateCommand())
-        //            {
-        //                cmd.CommandText = @"UPDATE Brew
-        //                             SET BrewName = @BrewName, RoastLevel = @RoastLevel, MASL = @MASL, RoastDate = @RoastDate, Quantity = @Quantity, 
-        //                             Rating = @Rating, TastingNotes = @TastingNotes, Variety = @Variety, Process = @Process, Notes = @Notes, Origin = @Origin,
-        //                             Roaster = @Roaster, UserId = @UserId, RegionId = @RegionId 
-        //                             WHERE Id = @id";
+        ////////----------PUT----------
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put([FromRoute] int id, [FromBody] Brew brew)
+        {
+            try
+            {
+                using (SqlConnection conn = Connection)
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = conn.CreateCommand())
+                    {
+                        cmd.CommandText = @"UPDATE Brew
+                                     SET CoffeeDose = @CoffeeDose, WaterDose = @WaterDose, WaterTemp = @WaterTemp, Bloom = @Bloom, BrewTime = @BrewTime, 
+                                     Rating = @Rating, BrewDate = @BrewDate, GrindSetting = @GrindSetting, GrinderId = @GrinderId, Notes = @Notes, BrewMethodId = @BrewMethodId,
+                                     BeanId = @BeanId, UserId = @UserId
+                                     WHERE Id = @id";
 
-        //                cmd.Parameters.Add(new SqlParameter("@id", id));
-        //                cmd.Parameters.Add(new SqlParameter("@BrewName", brew.BrewName));
-        //                cmd.Parameters.Add(new SqlParameter("@RoastLevel", brew.RoastLevel));
-        //                cmd.Parameters.Add(new SqlParameter("@MASL", brew.MASL));
-        //                cmd.Parameters.Add(new SqlParameter("@RoastDate", brew.RoastDate));
-        //                cmd.Parameters.Add(new SqlParameter("@Quantity", brew.Quantity));
-        //                cmd.Parameters.Add(new SqlParameter("@Rating", brew.Rating));
-        //                cmd.Parameters.Add(new SqlParameter("@TastingNotes", brew.TastingNotes));
-        //                cmd.Parameters.Add(new SqlParameter("@Variety", brew.Variety));
-        //                cmd.Parameters.Add(new SqlParameter("@Process", brew.Process));
-        //                cmd.Parameters.Add(new SqlParameter("@Notes", brew.Notes));
-        //                cmd.Parameters.Add(new SqlParameter("@Origin", brew.Origin));
-        //                cmd.Parameters.Add(new SqlParameter("@Roaster", brew.Roaster));
-        //                cmd.Parameters.Add(new SqlParameter("@UserId", brew.UserId));
-        //                cmd.Parameters.Add(new SqlParameter("@RegionId", brew.RegionId));
+                        cmd.Parameters.Add(new SqlParameter("@id", id));
+                        cmd.Parameters.Add(new SqlParameter("@CoffeeDose", brew.CoffeeDose));
+                        cmd.Parameters.Add(new SqlParameter("@WaterDose", brew.WaterDose));
+                        cmd.Parameters.Add(new SqlParameter("@WaterTemp", brew.WaterTemp));
+                        cmd.Parameters.Add(new SqlParameter("@Bloom", brew.Bloom));
+                        cmd.Parameters.Add(new SqlParameter("@BrewTime", brew.BrewTime));
+                        cmd.Parameters.Add(new SqlParameter("@Rating", brew.Rating));
+                        cmd.Parameters.Add(new SqlParameter("@BrewDate", brew.BrewDate));
+                        cmd.Parameters.Add(new SqlParameter("@GrindSetting", brew.GrindSetting));
+                        cmd.Parameters.Add(new SqlParameter("@GrinderId", brew.GrinderId));
+                        cmd.Parameters.Add(new SqlParameter("@Notes", brew.Notes));
+                        cmd.Parameters.Add(new SqlParameter("@BrewMethodId", brew.BrewMethodId));
+                        cmd.Parameters.Add(new SqlParameter("@BeanId", brew.BeanId));
+                        cmd.Parameters.Add(new SqlParameter("@UserId", brew.UserId));
 
 
-        //                int rowsAffected = cmd.ExecuteNonQuery();
-        //                if (rowsAffected > 0)
-        //                {
-        //                    return new StatusCodeResult(StatusCodes.Status204NoContent);
-        //                }
-        //                throw new Exception("No rows affected");
-        //            }
-        //        }
-        //    }
-        //    catch (Exception)
-        //    {
-        //        if (!BrewExists(id))
-        //        {
-        //            return NotFound();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
-        //}
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        if (rowsAffected > 0)
+                        {
+                            return new StatusCodeResult(StatusCodes.Status204NoContent);
+                        }
+                        throw new Exception("No rows affected");
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                if (!BrewExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+        }
 
 
-        /////////----------DELETE----------
-        //[HttpDelete("{id}")]
-        //public async Task<IActionResult> Delete([FromRoute] int id)
-        //{
+        ///////----------DELETE----------
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete([FromRoute] int id)
+        {
 
-        //    try
-        //    {
-        //        using (SqlConnection conn = Connection)
-        //        {
-        //            conn.Open();
-        //            using (SqlCommand cmd = conn.CreateCommand())
-        //            {
+            try
+            {
+                using (SqlConnection conn = Connection)
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = conn.CreateCommand())
+                    {
 
-        //                cmd.CommandText = @"DELETE FROM Brew WHERE Id = @id";
-        //                cmd.Parameters.Add(new SqlParameter("@id", id));
+                        cmd.CommandText = @"DELETE FROM Brew WHERE Id = @id";
+                        cmd.Parameters.Add(new SqlParameter("@id", id));
 
-        //                int rowsAffected = cmd.ExecuteNonQuery();
-        //                if (rowsAffected > 0)
-        //                {
-        //                    return new StatusCodeResult(StatusCodes.Status204NoContent);
-        //                }
-        //                throw new Exception("No rows affected");
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        if (rowsAffected > 0)
+                        {
+                            return new StatusCodeResult(StatusCodes.Status204NoContent);
+                        }
+                        throw new Exception("No rows affected");
 
-        //            }
-        //        }
-        //    }
-        //    catch (Exception)
-        //    {
-        //        if (!BrewExists(id))
-        //        {
-        //            return NotFound();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
-        //}
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                if (!BrewExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+        }
 
 
-        //private bool BrewExists(int id)
-        //{
-        //    using (SqlConnection conn = Connection)
-        //    {
-        //        conn.Open();
-        //        using (SqlCommand cmd = conn.CreateCommand())
-        //        {
-        //            cmd.CommandText = @"
-        //                SELECT Id, BrewName
-        //                FROM Brew
-        //                WHERE Id = @id";
-        //            cmd.Parameters.Add(new SqlParameter("@id", id));
+        private bool BrewExists(int id)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        SELECT Id, BrewName
+                        FROM Brew
+                        WHERE Id = @id";
+                    cmd.Parameters.Add(new SqlParameter("@id", id));
 
-        //            SqlDataReader reader = cmd.ExecuteReader();
-        //            return reader.Read();
-        //        }
-        //    }
-        //}
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    return reader.Read();
+                }
+            }
+        }
     }
 }
