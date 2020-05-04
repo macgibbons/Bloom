@@ -81,8 +81,7 @@ namespace Capstone.Services
                 Email = user.Email,
                 UserName = user.Username,
                 FirstName = user.FirstName,
-                LastName = user.LastName,
-                StreetAddress = user.StreetAddress
+                LastName = user.LastName
             };
 
             var createdUser = await _userManager.CreateAsync(newUser, user.Password);
@@ -226,6 +225,8 @@ namespace Capstone.Services
                     new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                     new Claim(JwtRegisteredClaimNames.Email, user.Email),
+                    new Claim("FirstName", user.FirstName),
+                    new Claim("LastName", user.LastName),
                     new Claim("id", user.Id)
                 }),
                 Expires = DateTime.UtcNow.Add(_jwtSettings.TokenLifetime),
