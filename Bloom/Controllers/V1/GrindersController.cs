@@ -114,7 +114,7 @@ namespace Capstone.Controllers.V1
         //----------POST----------
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] Bean bean)
+        public async Task<IActionResult> Post([FromBody] Grinder grinder)
         {
             using (SqlConnection conn = Connection)
             {
@@ -122,36 +122,25 @@ namespace Capstone.Controllers.V1
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        INSERT INTO Bean (BeanName, RoastLevel, MASL, RoastDate, Quantity, Rating, TastingNotes, Variety, Process, Notes, Origin, Roaster, UserId, RegionId)
+                        INSERT INTO Grinder (Brand, Model, UserId)
                         OUTPUT INSERTED.Id
-                        VALUES (@BeanName, @RoastLevel, @MASL, @RoastDate, @Quantity, @Rating, @TastingNotes, @Variety, @Process, @Notes, @Origin, @Roaster, @UserId, @RegionId)";
+                        VALUES (@Brand, @Model, @UserId)";
 
-                    cmd.Parameters.Add(new SqlParameter("@BeanName", bean.BeanName));
-                    cmd.Parameters.Add(new SqlParameter("@RoastLevel", bean.RoastLevel));
-                    cmd.Parameters.Add(new SqlParameter("@MASL", bean.MASL));
-                    cmd.Parameters.Add(new SqlParameter("@RoastDate", bean.RoastDate));
-                    cmd.Parameters.Add(new SqlParameter("@Quantity", bean.Quantity));
-                    cmd.Parameters.Add(new SqlParameter("@Rating", bean.Rating));
-                    cmd.Parameters.Add(new SqlParameter("@TastingNotes", bean.TastingNotes));
-                    cmd.Parameters.Add(new SqlParameter("@Variety", bean.Variety));
-                    cmd.Parameters.Add(new SqlParameter("@Process", bean.Process));
-                    cmd.Parameters.Add(new SqlParameter("@Notes", bean.Notes));
-                    cmd.Parameters.Add(new SqlParameter("@Origin", bean.Origin));
-                    cmd.Parameters.Add(new SqlParameter("@Roaster", bean.Roaster));
-                    cmd.Parameters.Add(new SqlParameter("@UserId", bean.UserId));
-                    cmd.Parameters.Add(new SqlParameter("@RegionId", bean.RegionId));
+                    cmd.Parameters.Add(new SqlParameter("@Brand", grinder.Brand));
+                    cmd.Parameters.Add(new SqlParameter("@Model", grinder.Model));
+                    cmd.Parameters.Add(new SqlParameter("@UserId", grinder.UserId));
 
                     int id = (int)cmd.ExecuteScalar();
 
-                    bean.Id = id;
-                    return CreatedAtRoute("GetGrinder", new { id = id }, bean);
+                    grinder.Id = id;
+                    return CreatedAtRoute("GetGrinder", new { id = id }, grinder);
                 }
             }
         }
 
         ////////----------PUT----------
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put([FromRoute] int id, [FromBody] Bean bean)
+        public async Task<IActionResult> Put([FromRoute] int id, [FromBody] Grinder grinder)
         {
             try
             {
@@ -160,27 +149,14 @@ namespace Capstone.Controllers.V1
                     conn.Open();
                     using (SqlCommand cmd = conn.CreateCommand())
                     {
-                        cmd.CommandText = @"UPDATE Bean
-                                     SET BeanName = @BeanName, RoastLevel = @RoastLevel, MASL = @MASL, RoastDate = @RoastDate, Quantity = @Quantity, 
-                                     Rating = @Rating, TastingNotes = @TastingNotes, Variety = @Variety, Process = @Process, Notes = @Notes, Origin = @Origin,
-                                     Roaster = @Roaster, UserId = @UserId, RegionId = @RegionId 
+                        cmd.CommandText = @"UPDATE Grinder
+                                     SET Brand = @Brand, Model = @Model, UserId = @UserId
                                      WHERE Id = @id";
 
                         cmd.Parameters.Add(new SqlParameter("@id", id));
-                        cmd.Parameters.Add(new SqlParameter("@BeanName", bean.BeanName));
-                        cmd.Parameters.Add(new SqlParameter("@RoastLevel", bean.RoastLevel));
-                        cmd.Parameters.Add(new SqlParameter("@MASL", bean.MASL));
-                        cmd.Parameters.Add(new SqlParameter("@RoastDate", bean.RoastDate));
-                        cmd.Parameters.Add(new SqlParameter("@Quantity", bean.Quantity));
-                        cmd.Parameters.Add(new SqlParameter("@Rating", bean.Rating));
-                        cmd.Parameters.Add(new SqlParameter("@TastingNotes", bean.TastingNotes));
-                        cmd.Parameters.Add(new SqlParameter("@Variety", bean.Variety));
-                        cmd.Parameters.Add(new SqlParameter("@Process", bean.Process));
-                        cmd.Parameters.Add(new SqlParameter("@Notes", bean.Notes));
-                        cmd.Parameters.Add(new SqlParameter("@Origin", bean.Origin));
-                        cmd.Parameters.Add(new SqlParameter("@Roaster", bean.Roaster));
-                        cmd.Parameters.Add(new SqlParameter("@UserId", bean.UserId));
-                        cmd.Parameters.Add(new SqlParameter("@RegionId", bean.RegionId));
+                        cmd.Parameters.Add(new SqlParameter("@Brand", grinder.Brand));
+                        cmd.Parameters.Add(new SqlParameter("@Model", grinder.Model));
+                        cmd.Parameters.Add(new SqlParameter("@UserId", grinder.UserId));
 
 
                         int rowsAffected = cmd.ExecuteNonQuery();
@@ -194,7 +170,7 @@ namespace Capstone.Controllers.V1
             }
             catch (Exception)
             {
-                if (!BeanExists(id))
+                if (!GrinderExists(id))
                 {
                     return NotFound();
                 }
@@ -219,7 +195,7 @@ namespace Capstone.Controllers.V1
                     using (SqlCommand cmd = conn.CreateCommand())
                     {
 
-                        cmd.CommandText = @"DELETE FROM Bean WHERE Id = @id";
+                        cmd.CommandText = @"DELETE FROM Grinder WHERE Id = @id";
                         cmd.Parameters.Add(new SqlParameter("@id", id));
 
                         int rowsAffected = cmd.ExecuteNonQuery();
@@ -234,7 +210,7 @@ namespace Capstone.Controllers.V1
             }
             catch (Exception)
             {
-                if (!BeanExists(id))
+                if (!GrinderExists(id))
                 {
                     return NotFound();
                 }
@@ -246,7 +222,7 @@ namespace Capstone.Controllers.V1
         }
 
 
-        private bool BeanExists(int id)
+        private bool GrinderExists(int id)
         {
             using (SqlConnection conn = Connection)
             {
@@ -254,8 +230,8 @@ namespace Capstone.Controllers.V1
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT Id, BeanName
-                        FROM Bean
+                        SELECT Id
+                        FROM Grinder
                         WHERE Id = @id";
                     cmd.Parameters.Add(new SqlParameter("@id", id));
 
