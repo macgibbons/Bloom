@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Capstone.Models.Data;
+using Capstone.Helpers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
@@ -15,7 +16,7 @@ namespace Capstone.Controllers.V1
     public class BeansController : ControllerBase
     {
         private readonly IConfiguration _config;
-
+        
         public BeansController(IConfiguration config)
         {
             _config = config;
@@ -27,6 +28,7 @@ namespace Capstone.Controllers.V1
                 return new SqlConnection(_config.GetConnectionString("DefaultConnection"));
             }
         }
+        
 
         // ----------Get all----------
         [HttpGet]
