@@ -21,10 +21,10 @@ export default (props) => {
     }
    
     return (
-        <div className="">
+        <div className="coffee--view">
             <div className="">My Coffee</div>
           
-            <div className="">
+            <div className="coffee--container">
 
             {
                 currentUserBeans.map(bean => {

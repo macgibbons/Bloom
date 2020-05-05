@@ -1,0 +1,27 @@
+.coffee--card {
+    display: flex;
+    justify-content: start;
+    align-items: flex-start;
+    flex-direction: column;
+    border: 1px solid black;
+    flex-basis: 25%;
+    margin: 10%;
+    padding: 1em;;
+   
+}
+
+.coffee--content {
+    display: flex;
+    justify-content: start;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.coffee--container{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.coffee--view {
+    padding: 2em 4em;
+}

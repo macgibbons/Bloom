@@ -8,8 +8,8 @@ export default function ApplicationViews() {
   return (
     <>
     <BeanProvider>
-      {/* <Route exact path="/" render={() => <Home />} /> */}
-      <Route exact path="/" render={() => <BeanList />} />
+      <Route exact path="/" render={() => <Home />} />
+      <Route exact path="/Coffee" render={() => <BeanList />} />
 
     </BeanProvider>
      
