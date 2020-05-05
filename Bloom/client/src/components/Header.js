@@ -15,6 +15,10 @@ function Header({ history }) {
       <ul className="nav-items">
         {user ? (
           <>
+          <li  className="nav-item">
+           <Link to="/Coffee">My Coffees</Link>
+          </li>
+            <h1>Bloom</h1>
             <li className="nav-item">Hello {user.username}</li>
             <li className="nav-item" onClick={logout}>
               Log out
