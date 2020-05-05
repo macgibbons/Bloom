@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { createAuthHeaders } from '../API/userManager';
+import BrewMethodList from './equiptment/brewMethods/BrewMethodList';
 
 function Home() {
   const [values, setValues] = useState([]);
@@ -16,12 +17,8 @@ function Home() {
   
     return (
       <>
-        <h1>Welcome to my app</h1>
-        <ul>
-          {
-            values.map((value, index) => <li key={index}>{value}</li>)
-          }
-        </ul>
+        <h1>What are you brewing today?</h1>
+        <BrewMethodList />
       </>
     )
 }
