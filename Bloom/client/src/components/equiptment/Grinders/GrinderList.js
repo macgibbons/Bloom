@@ -3,6 +3,7 @@ import "./Grinders.css"
 import Grinder from "./Grinder";
 import { GrinderContext } from "./GrinderProvider";
 import { getUser } from "../../../API/userManager";
+import BrewMethodList from "../brewMethods/BrewMethodList";
 
 
 export default (props) => {
@@ -20,7 +21,9 @@ export default (props) => {
    
     return (
         <div className="coffee--view">
-            <div className="">My Coffee</div>
+            <div className="">My Gear</div>
+          
+          <BrewMethodList /> 
           
             <div className="coffee--container">
 
