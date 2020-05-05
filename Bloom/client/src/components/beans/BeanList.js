@@ -19,11 +19,30 @@ export default (props) => {
     if(user !== null) {
         document.body.classList.add("user--loggedIn")
     }
+
+    const logInCheck = () => {
+        if(user === ""){
+            window.alert("please log in")
+        } else {
+            console.log("user is logged in");
+            
+            updateApplicationView()
+        
+        }
+    }
+
+    const updateApplicationView = () => {
+        props.history.push("/coffee/create")
+    }
    
     return (
         <div className="coffee--view">
             <div className="">My Coffee</div>
           
+            <a className="btn add--btn"
+                    onClick={() => {logInCheck()}}>
+            add coffee
+            </a>
             <div className="coffee--container">
 
             {
