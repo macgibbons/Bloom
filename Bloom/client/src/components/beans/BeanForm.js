@@ -1,9 +1,11 @@
 import React, { useContext, useState, useEffect } from "react"
 import { BeanContext } from "./BeanProvider";
 import { getUser } from "../../API/userManager";
+import { RegionContext } from "../regions/RegionProvider";
 
 export default props => {
     const { addBean, beans, updateBean, deleteBean} = useContext(BeanContext)
+    const { regions } = useContext(RegionContext)
     const [bean, setBean] = useState({})
 
     
@@ -52,7 +54,7 @@ export default props => {
     )
     
     const constructNewBean = () => {
-
+            
             if (editMode) {
                 updateBean({
                     id: bean.id,
@@ -60,7 +62,7 @@ export default props => {
                     roastLevel: bean.roastLevel,
                     masl: bean.masl,
                     roastDate: "2020-05-04T17:44:22.4066667",
-                    quantity: bean.quantity,
+                    quantity:parseInt(bean.quantity),
                     rating: 4,
                     tastingNotes: bean.tastingNotes,
                     variety: bean.variety,
@@ -68,19 +70,19 @@ export default props => {
                     notes: bean.notes,
                     origin: bean.origin,
                     roaster: bean.roaster,
-                    regionId: 1,
+                    regionId: parseInt(bean.regionId),
                     userId: user.id
                 })
                     .then(() => props.history.push("/coffee"))
             } else {
-                debugger
+              debugger
                 addBean({
                     id: bean.id,
                     beanName: bean.beanName,
                     roastLevel: bean.roastLevel,
                     masl: bean.masl,
                     roastDate: "2020-05-04T17:44:22.4066667",
-                    quantity: bean.quantity,
+                    quantity: parseInt(bean.quantity),
                     rating: 4,
                     tastingNotes: bean.tastingNotes,
                     variety: bean.variety,
@@ -88,7 +90,7 @@ export default props => {
                     notes: bean.notes,
                     origin: bean.origin,
                     roaster: bean.roaster,
-                    regionId: 1,
+                    regionId: parseInt(bean.regionId),
                     userId: user.id
                 })
                     .then(() => props.history.push("/coffee"))
@@ -143,7 +145,7 @@ export default props => {
                         <label htmlFor="tastingNotes">Tasting Notes</label>
                         <input type="text" name="tastingNotes" required autoFocus className="form-control"
                             proptype="varchar"
-                            placeholder="Tzasting Notes.."
+                            placeholder="Tasting Notes.."
                             defaultValue={bean.tastingNotes}
                             onChange={handleControlledInputChange}
                             />
@@ -202,7 +204,7 @@ export default props => {
                     <div className="plant-water-pair">
                         <div className="form-group water">
                             <label htmlFor="Quantity">Quantity</label>
-                            <input type="int" name="Quantity" className="form-control-type1"
+                            <input type="int" name="quantity" className="form-control-type1"
                                 proptype="int"
                                 
                                 value={bean.quantity}
@@ -213,7 +215,24 @@ export default props => {
                     </div>
                 </fieldset>
                
+                <fieldset>
+                    <div className="form-group">
+                        {/* <label htmlFor="roomId">room: </label> */}
+                        <select name="regionId" className="form-control-type1"
+                            proptype="int"
+                            value={bean.regionId}
+                            onChange={handleControlledInputChange}>
 
+                            <option value="0">Select a region</option>
+                            {regions.map(r => (
+                                <option key={r.id} value={r.id}>
+                                    {r.regionName}
+                                </option>
+                            ))}
+                        
+                        </select>
+                    </div>
+                </fieldset>
 
                 <fieldset>
                 <div className="form-group">

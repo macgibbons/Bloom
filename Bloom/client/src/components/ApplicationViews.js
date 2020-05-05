@@ -9,6 +9,7 @@ import BrewMethodList from "./equiptment/brewMethods/BrewMethodList";
 import { BrewMethodProvider } from "./equiptment/brewMethods/BrewMethodProvider";
 import GrinderForm from "./equiptment/Grinders/GrinderForm";
 import BeanForm from "./beans/BeanForm";
+import { RegionProvider } from "./regions/RegionProvider";
 
 export default function ApplicationViews(props  ) {
   return (
@@ -16,17 +17,17 @@ export default function ApplicationViews(props  ) {
     <BrewMethodProvider>
       <BeanProvider>
         <GrinderProvider>
-          <Route exact path="/" render={() => <Home />} />
-          <Route exact path="/Coffee" render={(props) => <BeanList {...props} />} />
-          <Route exact path="/Equiptment" render ={() => <GrinderList />} />
-
-          <Route exact path="/Grinders/create" render = {
-                            props => <GrinderForm {...props} />
-                        } />
-
-          <Route exact path="/coffee/create" render = {
-                            props => <BeanForm {...props} />
-                        } />
+          <RegionProvider>
+            <Route exact path="/" render={() => <Home />} />
+            <Route exact path="/Coffee" render={(props) => <BeanList {...props} />} />
+            <Route exact path="/Equiptment" render ={() => <GrinderList />} />
+            <Route exact path="/Grinders/create" render = {
+                              props => <GrinderForm {...props} />
+                          } />
+            <Route exact path="/coffee/create" render = {
+                              props => <BeanForm {...props} />
+                          } />
+          </RegionProvider>
         </GrinderProvider>
       </BeanProvider>
     </BrewMethodProvider>
