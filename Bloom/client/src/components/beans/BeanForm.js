@@ -2,16 +2,19 @@ import React, { useContext, useState, useEffect } from "react"
 import { BeanContext } from "./BeanProvider";
 import { getUser } from "../../API/userManager";
 import { RegionContext } from "../regions/RegionProvider";
-
+import DateTime from "react-datetime";
+import moment from "moment";
 export default props => {
     const { addBean, beans, updateBean, deleteBean} = useContext(BeanContext)
     const { regions } = useContext(RegionContext)
     const [bean, setBean] = useState({})
+    const [selectedDate, setSelectedDate] = useState()
 
     
     const editMode = props.match.params.hasOwnProperty("beanId")
     const user = getUser();
    
+    
 
     if(user !== null) {
         document.body.classList.add("user--loggedIn")
@@ -34,7 +37,8 @@ export default props => {
             setBean(selectedBean)
         }
     }
-
+    
+    
     useEffect(() => {
         setDefaults()
     }, [beans])
@@ -52,7 +56,8 @@ export default props => {
             </div>
         </>
     )
-    
+
+   
     const constructNewBean = () => {
             
             if (editMode) {
@@ -75,13 +80,13 @@ export default props => {
                 })
                     .then(() => props.history.push("/coffee"))
             } else {
-              debugger
+              
                 addBean({
                     id: bean.id,
                     beanName: bean.beanName,
                     roastLevel: bean.roastLevel,
                     masl: bean.masl,
-                    roastDate: "2020-05-04T17:44:22.4066667",
+                    roastDate: moment(selectedDate).format(),
                     quantity: parseInt(bean.quantity),
                     rating: 4,
                     tastingNotes: bean.tastingNotes,
@@ -103,7 +108,6 @@ export default props => {
             <h2 className="room--formTitle header detail--header">{editMode ? "Update Coffee" : "New Coffee"}</h2>
             <div className="btn delete--btn">{editMode ? deleteButton : ""} </div>
             <div className="wrapper">
-
                 <fieldset>
                     <div className="room-form-group">
                         <label htmlFor="beanName">Name</label>
@@ -113,6 +117,21 @@ export default props => {
                             defaultValue={bean.beanName}
                             onChange={handleControlledInputChange}
                             />
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <div className="room-form-group">
+                        <label htmlFor="roastDate">Roast Date</label>
+                        <DateTime selected={selectedDate}
+                                  onChange={date => setSelectedDate(date)}
+                        />
+                        {/* <input type="text" name="roastDate" required autoFocus className="form-control"
+                            proptype="varchar"
+                            placeholder="Name.."
+                            defaultValue={bean.beanName}
+                            onChange={handleControlledInputChange}
+                            /> */}
+
                     </div>
                 </fieldset>
 
