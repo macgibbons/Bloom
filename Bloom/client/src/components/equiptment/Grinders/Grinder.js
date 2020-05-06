@@ -1,8 +1,17 @@
-import React from "react"
+import React, { useContext } from "react"
 import { Link } from "react-router-dom"
+import { GrinderContext } from "./GrinderProvider"
 
 
-export default ({grinder}) => (
+export default ({grinder}) => {
+  const { deleteGrinder } = useContext(GrinderContext)
+  
+  const deleteConfirm = () => {
+   if(window.confirm(`Are you sure you want to delete ${grinder.brand} ${grinder.model}`))
+     {deleteGrinder(grinder.id)
+     }}
+  
+     return(
     <section className="">
 
         <div className="coffee--card">
@@ -11,6 +20,12 @@ export default ({grinder}) => (
             </div>
             
               {grinder.model}
+              <span   
+                onClick={() => {
+                  deleteConfirm()
+                 // deleteGrinder(grinder.id)
+                }}>delete</span>
+              <span>edit</span>
         </div>
 
 
@@ -18,4 +33,4 @@ export default ({grinder}) => (
     </section>
 )
 
-
+  }
