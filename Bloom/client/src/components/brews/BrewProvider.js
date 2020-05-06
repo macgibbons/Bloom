@@ -16,6 +16,7 @@ export const BrewProvider = (props) => {
     }
 
     const addBrew = brew => { 
+        debugger
         return fetch("https://localhost:5001/api/brews", {
             method: "POST",
             headers: {

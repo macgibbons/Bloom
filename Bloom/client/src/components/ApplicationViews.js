@@ -12,6 +12,7 @@ import BeanForm from "./beans/BeanForm";
 import { RegionProvider } from "./regions/RegionProvider";
 import { BrewProvider } from "./brews/BrewProvider";
 import BrewList from "./brews/BrewList";
+import BrewForm from "./brews/BrewForm";
 
 export default function ApplicationViews(props  ) {
   return (
@@ -30,6 +31,9 @@ export default function ApplicationViews(props  ) {
                             } />
               <Route exact path="/coffee/create" render = {
                                 props => <BeanForm {...props} />
+                            } />
+              <Route exact path="/brews/create" render = {
+                                props => <BrewForm {...props} />
                             } />
             </RegionProvider>
           </GrinderProvider>
