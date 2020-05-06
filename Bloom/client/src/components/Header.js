@@ -21,10 +21,16 @@ function Header({ history }) {
           <li  className="nav-item">
            <Link to="/Equiptment">My Gear</Link>
           </li>
-            <h1>Bloom</h1>
+          <h1 className="nav-item">
+            <Link to="/">Bloom</Link>
+          </h1>
+          <li className="nav-item">
+            <Link to="/brews">My Brews</Link>
+          </li>
             <li className="nav-item">Hello {user.username}</li>
-            <li className="nav-item" onClick={logout}>
-              Log out
+            <li className="nav-item" 
+                onClick={logout}>
+                Log out
             </li>
           </>
         ) : (

@@ -41,10 +41,14 @@ namespace Capstone.Controllers.V1
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT b.Id, b.CoffeeDose, b.WaterDose, b.BrewDate, b.Rating, b.BrewTime, b.UserId, b.BeanId, c.Id, c.BeanName, c.Origin, c.Roaster
+                        SELECT b.Id, b.CoffeeDose, b.WaterDose, b.BrewDate, b.Rating, b.BrewTime, b.UserId, b.BeanId, b.BrewMethodId,
+                               c.Id, c.BeanName, c.Origin, c.Roaster, 
+                               bm.Method, bm.Id 
                         FROM Brew b
                         LEFT JOIN Bean c
                         ON b.BeanId = c.Id
+                        LEFT JOIN BrewMethod bm
+                        ON b.BrewMethodId = bm.Id
                         WHERE 1 = 1 
                         ";
 
@@ -72,6 +76,11 @@ namespace Capstone.Controllers.V1
                                 BeanName = reader.GetString(reader.GetOrdinal("BeanName")),
                                 Origin = reader.GetString(reader.GetOrdinal("Origin")),
                                 Roaster = reader.GetString(reader.GetOrdinal("Roaster"))
+                            },
+                            BrewMethod = new BrewMethod()
+                            {
+                                Id = reader.GetInt32(reader.GetOrdinal("BrewMethodId")),
+                                Method = reader.GetString(reader.GetOrdinal("Method")),
                             }
                         };
                        
