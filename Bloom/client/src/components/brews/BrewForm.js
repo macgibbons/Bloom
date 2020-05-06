@@ -6,23 +6,30 @@ import { BrewContext } from "./BrewProvider";
 import { BrewMethodContext } from "../equiptment/brewMethods/BrewMethodProvider";
 import { BeanContext } from "../beans/BeanProvider";
 import { GrinderContext } from "../equiptment/Grinders/GrinderProvider";
+import { useTimer } from "use-timer";
+import RunningButton from "../RunningButton";
 
 export default props => {
     const user = getUser();
 
+    // ----- CONTEXT -----
     const { addBrew, brews, updateBrew, deleteBrew } = useContext(BrewContext)
     const { brewMethods } = useContext(BrewMethodContext) || {}
     const { beans } = useContext(BeanContext) || {}
     const { grinders } = useContext(GrinderContext) || {}
 
-    
+
+    // ----- User Data -----
     const userGrinders =  grinders.filter(grinder => grinder.userId == user.id)
     const userBeans =  beans.filter(bean => bean.userId == user.id)
 
+    // ----- Other -----
+    const { time, start, pause, reset, isRunning } = useTimer({initialTime: -3});
+
+    // ----- State -----
     const [brew, setBrew] = useState({})
-
-    const [selectedDate, setSelectedDate] = useState()
-
+    const [brewTime, setBrewTime] = useState(time)
+    
     
     const editMode = props.match.params.hasOwnProperty("brewId")
    
@@ -49,7 +56,11 @@ export default props => {
             setBrew(selectedBrew)
         }
     }
-    
+   
+    const updateBrewTime = () => {
+      const newTime = time
+        setBrewTime(newTime)
+    }
     
     useEffect(() => {
         setDefaults()
@@ -97,7 +108,7 @@ export default props => {
                     coffeeDose: parseInt(brew.coffeeDose),
                     waterDose: parseInt(brew.waterDose),
                     waterTemp: parseInt(brew.waterTemp),
-                    brewTime: parseInt(brew.brewTime),
+                    brewTime: parseInt(time),
                     rating: 4,
                     notes: brew.notes,
                     brewDate: moment().format(),
@@ -113,10 +124,49 @@ export default props => {
     }
 
     return (
+
         <form className="room--form container">
             <h2 className="room--formTitle header detail--header">{editMode ? "Update brew" : "New brew"}</h2>
             <div className="btn delete--btn">{editMode ? deleteButton : ""} </div>
             <div className="wrapper">
+    <div className="timer">
+      <h5 className="card-header">Brew Time</h5>
+      <div className="card-footer">
+         <h1> {time < 0 ? time : moment.utc(time * 1000).format('m:ss')}</h1>
+      </div>
+      <div className="card-body">
+        {isRunning ? (
+          <RunningButton />
+         
+        ) : (
+          <button className="btn btn-primary" onClick={start}>
+            Brew
+          </button>
+        )}
+        <button className="btn btn-primary" 
+                onClick={pause}
+                // onClick={ evt => {
+                //     evt.preventDefault()
+                    
+                //     updateBrewTime()
+                // }}
+                >
+          Stop
+        </button>
+        <button className="btn btn-primary" 
+                onClick={reset}
+            >
+          Reset
+        </button>
+        <button className="btn btn-primary" 
+                onClick={evt => {
+                    evt.preventDefault()
+                    updateBrewTime()
+                }}>
+          Use Brew time
+        </button>
+      </div>
+    </div>
                 <fieldset>
                     <div className="room-form-group">
                         <label htmlFor="coffeeDose">Coffee Dose:</label>
@@ -153,17 +203,18 @@ export default props => {
                     </div>
                 </fieldset>
 
-                <fieldset>
+                {/* <fieldset>
                     <div className="room-form-group">
                         <label htmlFor="brewTime">Brew Time:</label>
-                        <input type="number"  name="brewTime" required autoFocus className="form-control"
+                        <input type="text"  name="brewTime" required autoFocus className="form-control"
                             proptype="varchar"
                             placeholder="seconds..."
-                            defaultValue={brew.brewTime}
+                            Value={
+                                brewTime < 0 ? '0:00' : moment.utc(brewTime * 1000).format('m:ss')}
                             onChange={handleControlledInputChange}
                             /> 
                     </div>
-                </fieldset>
+                </fieldset> */}
 
 
                 <fieldset>
