@@ -1,8 +1,18 @@
-import React from "react"
+import React, { useContext } from "react"
 import { Link } from "react-router-dom"
 import moment from 'moment';
+import { BrewContext } from "./BrewProvider";
 
-export default ({ brew }) => (
+export default ({ brew }) => {
+
+    const { deleteBrew } = useContext(BrewContext)
+  
+    const deleteConfirm = () => {
+     if(window.confirm(`Are you sure you want to delete this brew? This action cannot be undone`))
+       {deleteBrew(brew.id)
+       }}
+    
+return (
     <section className="">
         <div className="coffee--card">
             
@@ -22,11 +32,14 @@ export default ({ brew }) => (
                 <div>{ moment.utc(brew.brewTime * 1000).format('m:ss') }</div>
             </div>
         
+        <span className="card--controls"
+              onClick={()=>{ deleteConfirm() }
+              }>delete</span>
         </div>
 
 
-        
     </section>
 )
 
 
+}

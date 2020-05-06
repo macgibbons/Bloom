@@ -1,0 +1,9 @@
+.card--controls {
+    color: gray;
+    font-size: small;
+}
+
+.card--controls:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
