@@ -27,7 +27,7 @@ export const GrinderProvider = (props) => {
     }
 
     const updateGrinder = grinder => {
-        return fetch(`http://localhost:8088/grinders/${grinder.id}`, {
+        return fetch(`https://localhost:5001/api/grinders/${grinder.id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
@@ -38,7 +38,7 @@ export const GrinderProvider = (props) => {
     }
 
     const deleteGrinder = grinderId => {
-        return fetch(`http://localhost:8088/grinders/${grinderId}`, {
+        return fetch(`https://localhost:5001/api/grinders/${grinderId}`, {
             method: "DELETE"
         })
             .then(getGrinders)
