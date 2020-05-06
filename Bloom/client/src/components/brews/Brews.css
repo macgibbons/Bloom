@@ -7,3 +7,13 @@
     cursor: pointer;
     text-decoration: underline;
 }
+
+.timer{
+    text-align: center;
+    padding-bottom: 5%;
+    border: 1px solid black;  
+    max-width:  200px;
+    margin: auto;
+    margin-bottom: 2em;
+}
+
