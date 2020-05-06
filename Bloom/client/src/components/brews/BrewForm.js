@@ -125,81 +125,81 @@ export default props => {
 
     return (
 
-        <form className="room--form container">
-            <h2 className="room--formTitle header detail--header">{editMode ? "Update brew" : "New brew"}</h2>
+        <form className="form container">
+            <h2 className="formTitle">{editMode ? "Update brew" : "New brew"}</h2>
             <div className="btn delete--btn">{editMode ? deleteButton : ""} </div>
-            <div className="wrapper">
-    <div className="timer">
-      <h5 className="card-header">Brew Time</h5>
-      <div className="card-footer">
-         <h1> {time < 0 ? time : moment.utc(time * 1000).format('m:ss')}</h1>
-      </div>
-      <div className="card-body">
-        {isRunning ? (
-          <RunningButton />
-         
-        ) : (
-          <button className="btn btn-primary" onClick={start}>
-            Brew
-          </button>
-        )}
-        <button className="btn btn-primary" 
-                onClick={pause}
-                // onClick={ evt => {
-                //     evt.preventDefault()
+            <div className="timer">
+                <div className="timer-time">
+                    <h1> {time < 0 ? time : moment.utc(time * 1000).format('m:ss')}</h1>
+                </div>
+                <div className="card-body">
+                    {isRunning ? (
+                        <RunningButton />
                     
-                //     updateBrewTime()
-                // }}
-                >
-          Stop
-        </button>
-        <button className="btn btn-primary" 
-                onClick={reset}
-            >
-          Reset
-        </button>
-        <button className="btn btn-primary" 
-                onClick={evt => {
-                    evt.preventDefault()
-                    updateBrewTime()
-                }}>
-          Use Brew time
-        </button>
-      </div>
-    </div>
+                    ) : (
+                        <button className="btn btn-primary" onClick={start}>
+                        Brew
+                    </button>
+                    )}
+                    <button className="btn btn-primary" 
+                            onClick={pause}
+                            // onClick={ evt => {
+                                //     evt.preventDefault()
+                                
+                            //     updateBrewTime()
+                            // }}
+                            >
+                    Stop
+                    </button>
+                    <button className="btn btn-primary" 
+                            onClick={reset}
+                        >
+                    Reset
+                    </button>
+                    <button className="btn btn-primary" 
+                            onClick={evt => {
+                                evt.preventDefault()
+                                updateBrewTime()
+                            }}>
+                    Use Brew time
+                    </button>
+                </div>
+                </div>
+            <div className="wrapper">
                 <fieldset>
                     <div className="room-form-group">
-                        <label htmlFor="coffeeDose">Coffee Dose:</label>
+                        {/* <label htmlFor="coffeeDose">Coffee Dose:</label> */}
                         <input type="number" step="0.1" name="coffeeDose" required autoFocus className="form-control"
                             proptype="varchar"
                             placeholder="Dose..."
                             defaultValue={brew.coffeeDose}
                             onChange={handleControlledInputChange}
-                            /> grams
+                            /> g
                     </div>
                 </fieldset>
 
                 <fieldset>
                     <div className="room-form-group">
-                        <label htmlFor="waterDose">Water Amount: </label>
+                        {/* <label htmlFor="waterDose">Water Amount: </label> */}
                         <input type="number"  name="waterDose" required autoFocus className="form-control"
                             proptype="varchar"
-                            placeholder="Water Amount..."
+                            placeholder="Water..."
                             defaultValue={brew.waterDose}
                             onChange={handleControlledInputChange}
-                            /> grams
+                            /> g
                     </div>
                 </fieldset>
 
                 <fieldset>
                     <div className="room-form-group">
-                        <label htmlFor="waterTemp">Water Temp: </label>
+                        {/* <label htmlFor="waterTemp">Water Temp: </label> */}
                         <input type="number"  name="waterTemp" required autoFocus className="form-control"
                             proptype="varchar"
                             placeholder="Temp.."
                             defaultValue={brew.waterTemp}
                             onChange={handleControlledInputChange}
-                            /> grams
+                            /> 
+                           °F
                     </div>
                 </fieldset>
 
@@ -219,7 +219,6 @@ export default props => {
 
                 <fieldset>
                     <div className="room-form-group">
-                        <label htmlFor="grindSetting">Grind Setting: </label>
                         <input type="number"  name="grindSetting" required autoFocus className="form-control"
                             proptype="varchar"
                             placeholder="Grind setting..."
@@ -231,9 +230,10 @@ export default props => {
 
                 <fieldset>
                     <div className="form-group">
-                        <label htmlFor="notes">Notes: </label>
+                        {/* <label htmlFor="notes">Notes: </label> */}
                         <textarea type="text" name="notes" className="form-control-type1"
                             proptype="varchar"
+                            placeholder="Notes..."
                             value={brew.notes}
                             onChange={handleControlledInputChange}>
                         </textarea>

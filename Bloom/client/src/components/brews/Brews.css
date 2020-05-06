@@ -1,9 +1,14 @@
 .card--controls {
-    color: gray;
-    font-size: small;
+    display: felx;
+    flex-wrap: nowrap;
 }
 
-.card--controls:hover {
+.card--control {
+    color: gray;
+    font-size: small;
+
+}
+.card--control:hover {
     cursor: pointer;
     text-decoration: underline;
 }
@@ -11,9 +16,82 @@
 .timer{
     text-align: center;
     padding-bottom: 5%;
-    border: 1px solid black;  
-    max-width:  200px;
+    max-width: 100%;
     margin: auto;
-    margin-bottom: 2em;
 }
 
+.timer-time {
+    background-color: white;
+    
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.formTitle {
+    text-align: center;
+}
+
+.btn {
+    border: none;
+    background-color: #F6F5F3;
+    font-family: Archivo;
+    color: #522E1F;
+}
+
+.btn:hover {
+    cursor: pointer !important;
+    text-decoration: underline; }
+
+fieldset {
+    border: none;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+}
+
+input {
+    border: none;
+    background-color: #F6F5F3;
+    font-family: Archivo;
+    color: #522E1F !important;
+    border-bottom: 2px solid #522E1F;
+    width: 100%;
+}
+
+input::placeholder{
+    color: #522E1F;
+}
+
+
+textarea {
+    background-color: #F6F5F3;
+    border: none;
+    font-family: Archivo;
+    color: #F6F5F3;
+    border-bottom: 2px solid #522E1F;
+    width: 100%;
+}
+
+textarea::placeholder{
+    color: #522E1F
+
+}
+
+select {
+    border: none;
+    background-color: #F6F5F3;
+    color: #522E1F;
+    font-family: Archivo;
+    border-bottom: 1px solid #522E1F;
+    width: 100%;
+}
+
+option {
+    background-color: white;
+}

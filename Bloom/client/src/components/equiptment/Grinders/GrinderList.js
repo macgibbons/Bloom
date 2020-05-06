@@ -54,7 +54,7 @@ export default (props) => {
 
                 <>
                 <Route render= {props => <GrinderForm {...props} />} /> 
-                <button onClick={ ()=> { setForm(false) } }>Hide</button>
+                <button className="btn" onClick={ ()=> { setForm(false) } }>Hide</button>
                 </> : 
                 <div></div> 
                 }
