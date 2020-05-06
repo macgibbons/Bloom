@@ -1,0 +1,261 @@
+import React, { useContext, useState, useEffect } from "react"
+import { getUser } from "../../API/userManager";
+import DateTime from "react-datetime";
+import moment from "moment";
+import { BrewContext } from "./BrewProvider";
+import { BrewMethodContext } from "../equiptment/brewMethods/BrewMethodProvider";
+import { BeanContext } from "../beans/BeanProvider";
+import { GrinderContext } from "../equiptment/Grinders/GrinderProvider";
+
+export default props => {
+    const user = getUser();
+
+    const { addBrew, brews, updateBrew, deleteBrew } = useContext(BrewContext)
+    const { brewMethods } = useContext(BrewMethodContext) || {}
+    const { beans } = useContext(BeanContext) || {}
+    const { grinders } = useContext(GrinderContext) || {}
+
+    
+    const userGrinders =  grinders.filter(grinder => grinder.userId == user.id)
+    const userBeans =  beans.filter(bean => bean.userId == user.id)
+
+    const [brew, setBrew] = useState({})
+
+    const [selectedDate, setSelectedDate] = useState()
+
+    
+    const editMode = props.match.params.hasOwnProperty("brewId")
+   
+    
+
+    if(user !== null) {
+        document.body.classList.add("user--loggedIn")
+    }
+
+    const handleControlledInputChange = (event) => {
+        /*
+            When changing a state object or array, always create a new one
+            and change state instead of modifying current one
+        */
+        const newBrew = Object.assign({}, brew)
+        newBrew[event.target.name] = event.target.value
+        setBrew(newBrew)
+    }
+
+    const setDefaults = () => {
+        if (editMode) {
+            const brewId = parseInt(props.match.params.brewId)
+            const selectedBrew = beans.find(b => b.id === brewId) || {}
+            setBrew(selectedBrew)
+        }
+    }
+    
+    
+    useEffect(() => {
+        setDefaults()
+    }, [brews])
+
+    const deleteButton = (
+        <>
+            <div className="btn delete--btn"
+            onClick={() => {
+                deleteBrew(brew.id)
+                    .then(() => {
+                        props.history.push("/coffee")
+                    })
+                }}>
+                <div>delete</div>
+            </div>
+        </>
+    )
+
+   
+    const constructNewBrew = () => {
+            
+            if (editMode) {
+                updateBrew({
+                    id: brew.id,
+                    coffeeDose: parseInt(brew.coffeeDose),
+                    waterDose: parseInt(brew.waterDose),
+                    waterTemp: parseInt(brew.waterTemp),
+                    brewTime: parseInt(brew.brewTime),
+                    rating: 4,
+                    notes: brew.notes,
+                    brewDate: moment().format(),
+                    grindSetting: parseInt(brew.grindSetting),
+                    grinderId: parseInt(brew.grinderId),
+                    brewMethodId: parseInt(brew.brewMethodId),
+                    beanId: parseInt(brew.beanId),
+                    userId: user.id
+                })
+                    .then(() => props.history.push("/coffee"))
+            } else {
+              
+                
+                addBrew({
+                    id: brew.id,
+                    coffeeDose: parseInt(brew.coffeeDose),
+                    waterDose: parseInt(brew.waterDose),
+                    waterTemp: parseInt(brew.waterTemp),
+                    brewTime: parseInt(brew.brewTime),
+                    rating: 4,
+                    notes: brew.notes,
+                    brewDate: moment().format(),
+                    grindSetting: parseInt(brew.grindSetting),
+                    grinderId: parseInt(brew.grinderId),
+                    brewMethodId: parseInt(brew.brewMethodId),
+                    beanId: parseInt(brew.beanId),
+                    userId: user.id
+                })
+                    .then(() => props.history.push("/brews"))
+            }
+        
+    }
+
+    return (
+        <form className="room--form container">
+            <h2 className="room--formTitle header detail--header">{editMode ? "Update brew" : "New brew"}</h2>
+            <div className="btn delete--btn">{editMode ? deleteButton : ""} </div>
+            <div className="wrapper">
+                <fieldset>
+                    <div className="room-form-group">
+                        <label htmlFor="coffeeDose">Coffee Dose:</label>
+                        <input type="number" step="0.1" name="coffeeDose" required autoFocus className="form-control"
+                            proptype="varchar"
+                            placeholder="Dose..."
+                            defaultValue={brew.coffeeDose}
+                            onChange={handleControlledInputChange}
+                            /> grams
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <div className="room-form-group">
+                        <label htmlFor="waterDose">Water Amount: </label>
+                        <input type="number"  name="waterDose" required autoFocus className="form-control"
+                            proptype="varchar"
+                            placeholder="Water Amount..."
+                            defaultValue={brew.waterDose}
+                            onChange={handleControlledInputChange}
+                            /> grams
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <div className="room-form-group">
+                        <label htmlFor="waterTemp">Water Temp: </label>
+                        <input type="number"  name="waterTemp" required autoFocus className="form-control"
+                            proptype="varchar"
+                            placeholder="Temp.."
+                            defaultValue={brew.waterTemp}
+                            onChange={handleControlledInputChange}
+                            /> grams
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <div className="room-form-group">
+                        <label htmlFor="brewTime">Brew Time:</label>
+                        <input type="number"  name="brewTime" required autoFocus className="form-control"
+                            proptype="varchar"
+                            placeholder="seconds..."
+                            defaultValue={brew.brewTime}
+                            onChange={handleControlledInputChange}
+                            /> 
+                    </div>
+                </fieldset>
+
+
+                <fieldset>
+                    <div className="room-form-group">
+                        <label htmlFor="grindSetting">Grind Setting: </label>
+                        <input type="number"  name="grindSetting" required autoFocus className="form-control"
+                            proptype="varchar"
+                            placeholder="Grind setting..."
+                            defaultValue={brew.grindSetting}
+                            onChange={handleControlledInputChange}
+                            /> 
+                    </div>
+                </fieldset> 
+
+                <fieldset>
+                    <div className="form-group">
+                        <label htmlFor="notes">Notes: </label>
+                        <textarea type="text" name="notes" className="form-control-type1"
+                            proptype="varchar"
+                            value={brew.notes}
+                            onChange={handleControlledInputChange}>
+                        </textarea>
+                    </div>
+                </fieldset>
+
+                         
+                <fieldset>
+                    <div className="form-group">
+                        <select name="brewMethodId" className="form-control-type1"
+                            proptype="int"
+                            value={brew.brewMethodId}
+                            onChange={handleControlledInputChange}>
+
+                            <option value="0">Select a Brew Method:</option>
+
+                            {brewMethods.map(g => (
+                                <option key={g.id} value={g.id}>
+                                    { g.method } 
+                                </option>
+                            ))}
+                        
+                        </select>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <div className="form-group">
+                        <select name="grinderId" className="form-control-type1"
+                            proptype="int"
+                            value={brew.grinderId}
+                            onChange={handleControlledInputChange}>
+
+                            <option value="0">Select a Grinder:</option>
+
+                            {userGrinders.map(g => (
+                                <option key={g.id} value={g.id}>
+                                    { g.brand } { g.model }
+                                </option>
+                            ))}
+                        
+                        </select>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <div className="form-group">
+                        <select name="beanId" className="form-control-type1"
+                            proptype="int"
+                            value={brew.beanId}
+                            onChange={handleControlledInputChange}>
+
+                            <option value="0">Select a Coffee:</option>
+
+                            {userBeans.map(g => (
+                                <option key={g.id} value={g.id}>
+                                    { g.beanName } -- { g.roaster }
+                                </option>
+                            ))}
+                        
+                        </select>
+                    </div>
+                </fieldset>
+               
+            </div>
+            <button type="submit"
+                onClick={evt => {
+                    evt.preventDefault()
+                    constructNewBrew()
+                }}
+                className="btn btn-primary roomBtn">
+                {editMode ? "Save Updates" : "Add Brew"}
+            </button>
+           
+        </form>
+    )
+}
+

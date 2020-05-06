@@ -5,6 +5,7 @@ import { RegionContext } from "../regions/RegionProvider";
 import DateTime from "react-datetime";
 import moment from "moment";
 export default props => {
+    
     const { addBean, beans, updateBean, deleteBean} = useContext(BeanContext)
     const { regions } = useContext(RegionContext)
     const [bean, setBean] = useState({})
