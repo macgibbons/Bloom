@@ -31,10 +31,12 @@ return (
                 <div>{ brew.waterDose }g</div>
                 <div>{ moment.utc(brew.brewTime * 1000).format('m:ss') }</div>
             </div>
-        
-        <span className="card--controls"
-              onClick={()=>{ deleteConfirm() }
-              }>delete</span>
+            <div className="card--controls">
+                <div className="card--control"
+                    onClick={()=>{ deleteConfirm() }
+                    }>delete</div>
+                <div className="card--control">edit</div>
+            </div>
         </div>
 
 

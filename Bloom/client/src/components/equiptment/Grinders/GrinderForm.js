@@ -74,16 +74,16 @@ export default props => {
     }
 
     return (
-        <form className="room--form container">
-            <h2 className="room--formTitle header detail--header">{editMode ? "Update Grinder" : "New Grinder"}</h2>
+        <form className="form container">
+            <h2 className="formTitle  detail--header">{editMode ? "Update Grinder" : "New Grinder"}</h2>
             <div className="btn delete--btn">{editMode ? deleteButton : ""} </div>
             <div className="wrapper">
                 <fieldset>
                     <div className="room-form-group">
-                        <label htmlFor="brand">Brand </label>
+                        {/* <label htmlFor="brand">Brand </label> */}
                         <input type="text" name="brand" required autoFocus className="form-control"
                             proptype="varchar"
-                            placeholder="Grinder brand.."
+                            placeholder="Brand..."
                             defaultValue={grinder.brand}
                             onChange={handleControlledInputChange}
                             />
@@ -91,10 +91,10 @@ export default props => {
                 </fieldset>
                 <fieldset>
                     <div className="room-form-group">
-                        <label htmlFor="model">Model* </label>
+                        {/* <label htmlFor="model">Model* </label> */}
                         <input type="text" name="model" required autoFocus className="form-control"
                             proptype="varchar"
-                            placeholder="Grinder model.."
+                            placeholder="Model.."
                             defaultValue={grinder.model}
                             onChange={handleControlledInputChange}
                             />

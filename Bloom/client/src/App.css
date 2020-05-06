@@ -1,15 +1,19 @@
 .App {
   /* text-align: center; */
+  color: #522E1F;
+  font-family: Archivo;
 }
+body {
+  background-color: #F6F5F3;
 
+}
 .header {
-  background-color: #282c34;
+  background-color: #C29961;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
   font-size: calc(10px + 1vmin);
-  color: rgba(255, 255, 255, .8);
   padding: 0 20px;;
 }
 
@@ -32,6 +36,7 @@
 
 .nav-item:hover {
   color: rgba(255, 255, 255, 1);
+  cursor: pointer;
 }
 
 .App-link {

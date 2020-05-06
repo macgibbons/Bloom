@@ -15,16 +15,15 @@ export default ({ grinder }) => {
     <section className="">
 
         <div className="coffee--card">
-            <div className="">
-              {grinder.brand} 
+            <div className="">{grinder.brand}</div>
+            <div>{grinder.model}</div>
+            <div className="card--controls">
+              <div className="card--control"
+                  onClick={() => {
+                    deleteConfirm()
+                  }}>delete</div>
+              <div className="card--control">edit</div>
             </div>
-            
-              {grinder.model}
-              <span   
-                onClick={() => {
-                  deleteConfirm()
-                }}>delete</span>
-              <span>edit</span>
         </div>
 
 
