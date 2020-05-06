@@ -27,7 +27,7 @@ export const BrewProvider = (props) => {
     }
 
     const updateBrew = brew => {
-        return fetch(`http://localhost:8088/brews/${brew.id}`, {
+        return fetch(`https://localhost:5001/api/brews/${brew.id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
@@ -38,7 +38,7 @@ export const BrewProvider = (props) => {
     }
 
     const deleteBrew = brewId => {
-        return fetch(`http://localhost:8088/brews/${brewId}`, {
+        return fetch(`https://localhost:5001/api/brews/${brewId}`, {
             method: "DELETE"
         })
             .then(getBrews)

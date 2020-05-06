@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import { GrinderContext } from "./GrinderProvider"
 
 
-export default ({grinder}) => {
+export default ({ grinder }) => {
   const { deleteGrinder } = useContext(GrinderContext)
   
   const deleteConfirm = () => {
@@ -23,7 +23,6 @@ export default ({grinder}) => {
               <span   
                 onClick={() => {
                   deleteConfirm()
-                 // deleteGrinder(grinder.id)
                 }}>delete</span>
               <span>edit</span>
         </div>
