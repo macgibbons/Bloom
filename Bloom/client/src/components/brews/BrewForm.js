@@ -8,6 +8,7 @@ import { BeanContext } from "../beans/BeanProvider";
 import { GrinderContext } from "../equiptment/Grinders/GrinderProvider";
 import { useTimer } from "use-timer";
 import RunningButton from "../RunningButton";
+import StarRating from "../StarRating";
 
 export default props => {
     const user = getUser();
@@ -25,6 +26,7 @@ export default props => {
 
     // ----- Other -----
     const { time, start, pause, reset, isRunning } = useTimer({initialTime: -3});
+    const [rating, setRating] = useState("");
 
     // ----- State -----
     const [brew, setBrew] = useState({})
@@ -52,7 +54,7 @@ export default props => {
     const setDefaults = () => {
         if (editMode) {
             const brewId = parseInt(props.match.params.brewId)
-            const selectedBrew = beans.find(b => b.id === brewId) || {}
+            const selectedBrew = brews.find(b => b.id === brewId) || {}
             setBrew(selectedBrew)
         }
     }
@@ -84,14 +86,15 @@ export default props => {
     const constructNewBrew = () => {
             
             if (editMode) {
+                
                 updateBrew({
                     id: brew.id,
                     coffeeDose: parseInt(brew.coffeeDose),
                     waterDose: parseInt(brew.waterDose),
                     waterTemp: parseInt(brew.waterTemp),
-                    brewTime: parseInt(brew.brewTime),
-                    rating: 4,
-                    notes: brew.notes,
+                    brewTime: moment.duration(brew.brewTime, 'm:ss').asSeconds() / 60,
+                    rating: rating ? rating : 0,
+                    notes: brew.notes ? brew.notes : "",
                     brewDate: moment().format(),
                     grindSetting: parseInt(brew.grindSetting),
                     grinderId: parseInt(brew.grinderId),
@@ -99,7 +102,7 @@ export default props => {
                     beanId: parseInt(brew.beanId),
                     userId: user.id
                 })
-                    .then(() => props.history.push("/coffee"))
+                    .then(() => props.history.push("/brews"))
             } else {
               
                 
@@ -108,9 +111,9 @@ export default props => {
                     coffeeDose: parseInt(brew.coffeeDose),
                     waterDose: parseInt(brew.waterDose),
                     waterTemp: parseInt(brew.waterTemp),
-                    brewTime: parseInt(time),
-                    rating: 4,
-                    notes: brew.notes,
+                    brewTime: parseInt(time), //moment.duration('0:30', 'm:ss').asSeconds() / 60
+                    rating: rating ? rating : 0,
+                    notes: brew.notes ? brew.notes : "",
                     brewDate: moment().format(),
                     grindSetting: parseInt(brew.grindSetting),
                     grinderId: parseInt(brew.grinderId),
@@ -122,13 +125,14 @@ export default props => {
             }
         
     }
-
+console.log(brew)
     return (
-
+      
         <form className="form container">
             <h2 className="formTitle">{editMode ? "Update brew" : "New brew"}</h2>
             <div className="btn delete--btn">{editMode ? deleteButton : ""} </div>
-            <div className="timer">
+            <div className="timer">{editMode ?  "" :
+            <>
                 <div className="timer-time">
                     <h1> {time < 0 ? time : moment.utc(time * 1000).format('m:ss')}</h1>
                 </div>
@@ -143,11 +147,6 @@ export default props => {
                     )}
                     <button className="btn btn-primary" 
                             onClick={pause}
-                            // onClick={ evt => {
-                                //     evt.preventDefault()
-                                
-                            //     updateBrewTime()
-                            // }}
                             >
                     Stop
                     </button>
@@ -164,8 +163,14 @@ export default props => {
                     Use Brew time
                     </button>
                 </div>
+                </>
+             }
                 </div>
             <div className="wrapper">
+                <StarRating className="rating--form" {...props} 
+                    selectedRating={setRating} 
+                    editMode={editMode ? true : false }
+                    editRating={ editMode ? brew.rating : null } />
                 <fieldset>
                     <div className="room-form-group">
                         {/* <label htmlFor="coffeeDose">Coffee Dose:</label> */}
@@ -203,18 +208,18 @@ export default props => {
                     </div>
                 </fieldset>
 
-                {/* <fieldset>
+                <fieldset>
                     <div className="room-form-group">
                         <label htmlFor="brewTime">Brew Time:</label>
                         <input type="text"  name="brewTime" required autoFocus className="form-control"
                             proptype="varchar"
                             placeholder="seconds..."
-                            Value={
+                            Value={ editMode ? moment.utc(brew.brewTime * 1000).format('m:ss') :
                                 brewTime < 0 ? '0:00' : moment.utc(brewTime * 1000).format('m:ss')}
                             onChange={handleControlledInputChange}
                             /> 
                     </div>
-                </fieldset> */}
+                </fieldset>
 
 
                 <fieldset>
@@ -222,7 +227,7 @@ export default props => {
                         <input type="number"  name="grindSetting" required autoFocus className="form-control"
                             proptype="varchar"
                             placeholder="Grind setting..."
-                            defaultValue={brew.grindSetting}
+                            value={brew.grindSetting}
                             onChange={handleControlledInputChange}
                             /> 
                     </div>
@@ -248,7 +253,7 @@ export default props => {
                             value={brew.brewMethodId}
                             onChange={handleControlledInputChange}>
 
-                            <option value="0">Select a Brew Method:</option>
+                            <option value="0" disabled>Select a Brew Method:</option>
 
                             {brewMethods.map(g => (
                                 <option key={g.id} value={g.id}>

@@ -73,7 +73,7 @@ textarea {
     background-color: #F6F5F3;
     border: none;
     font-family: Archivo;
-    color: #F6F5F3;
+    color: #522E1F;
     border-bottom: 2px solid #522E1F;
     width: 100%;
 }
@@ -94,4 +94,13 @@ select {
 
 option {
     background-color: white;
+}
+
+.stars {
+    margin: auto;
+}
+
+.star {
+    cursor: pointer;
+    transition: color 300ms;
 }
