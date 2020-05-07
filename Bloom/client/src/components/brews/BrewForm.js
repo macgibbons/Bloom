@@ -102,7 +102,7 @@ export default props => {
                     beanId: parseInt(brew.beanId),
                     userId: user.id
                 })
-                    .then(() => props.history.push("/coffee"))
+                    .then(() => props.history.push("/brews"))
             } else {
               
                 
