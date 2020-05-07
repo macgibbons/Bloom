@@ -92,7 +92,7 @@ export default props => {
                     coffeeDose: parseInt(brew.coffeeDose),
                     waterDose: parseInt(brew.waterDose),
                     waterTemp: parseInt(brew.waterTemp),
-                    brewTime: parseInt(time),
+                    brewTime: moment.duration(brew.brewTime, 'm:ss').asSeconds() / 60,
                     rating: rating ? rating : 0,
                     notes: brew.notes ? brew.notes : "",
                     brewDate: moment().format(),
@@ -111,7 +111,7 @@ export default props => {
                     coffeeDose: parseInt(brew.coffeeDose),
                     waterDose: parseInt(brew.waterDose),
                     waterTemp: parseInt(brew.waterTemp),
-                    brewTime: parseInt(time),
+                    brewTime: parseInt(time), //moment.duration('0:30', 'm:ss').asSeconds() / 60
                     rating: rating ? rating : 0,
                     notes: brew.notes ? brew.notes : "",
                     brewDate: moment().format(),
@@ -131,7 +131,8 @@ console.log(brew)
         <form className="form container">
             <h2 className="formTitle">{editMode ? "Update brew" : "New brew"}</h2>
             <div className="btn delete--btn">{editMode ? deleteButton : ""} </div>
-            <div className="timer">
+            <div className="timer">{editMode ?  "" :
+            <>
                 <div className="timer-time">
                     <h1> {time < 0 ? time : moment.utc(time * 1000).format('m:ss')}</h1>
                 </div>
@@ -146,11 +147,6 @@ console.log(brew)
                     )}
                     <button className="btn btn-primary" 
                             onClick={pause}
-                            // onClick={ evt => {
-                                //     evt.preventDefault()
-                                
-                            //     updateBrewTime()
-                            // }}
                             >
                     Stop
                     </button>
@@ -167,10 +163,14 @@ console.log(brew)
                     Use Brew time
                     </button>
                 </div>
+                </>
+             }
                 </div>
             <div className="wrapper">
-                <StarRating className="rating--form" {...props} selectedRating={setRating}/>
-                        
+                <StarRating className="rating--form" {...props} 
+                    selectedRating={setRating} 
+                    editMode={editMode ? true : false }
+                    editRating={ editMode ? brew.rating : null } />
                 <fieldset>
                     <div className="room-form-group">
                         {/* <label htmlFor="coffeeDose">Coffee Dose:</label> */}
@@ -214,7 +214,7 @@ console.log(brew)
                         <input type="text"  name="brewTime" required autoFocus className="form-control"
                             proptype="varchar"
                             placeholder="seconds..."
-                            Value={
+                            Value={ editMode ? moment.utc(brew.brewTime * 1000).format('m:ss') :
                                 brewTime < 0 ? '0:00' : moment.utc(brewTime * 1000).format('m:ss')}
                             onChange={handleControlledInputChange}
                             /> 
