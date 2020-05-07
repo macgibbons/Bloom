@@ -41,7 +41,7 @@ namespace Capstone.Controllers.V1
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT b.Id, b.CoffeeDose, b.WaterDose, b.BrewDate, b.Rating, b.BrewTime, b.UserId, b.BeanId, b.BrewMethodId,
+                        SELECT b.Id, b.CoffeeDose, b.WaterDose, b.WaterTemp, b.Notes, b.GrindSetting, b.GrinderId,  b.BrewDate, b.Rating, b.BrewTime, b.UserId, b.BeanId, b.BrewMethodId,
                                c.Id, c.BeanName, c.Origin, c.Roaster, 
                                bm.Method, bm.Id 
                         FROM Brew b
@@ -70,6 +70,10 @@ namespace Capstone.Controllers.V1
                             BrewTime = reader.GetInt32(reader.GetOrdinal("BrewTime")),
                             UserId = reader.GetString(reader.GetOrdinal("UserId")),
                             BeanId = reader.GetInt32(reader.GetOrdinal("BeanId")),
+                            WaterTemp = reader.GetInt32(reader.GetOrdinal("WaterTemp")),
+                            GrindSetting = reader.GetInt32(reader.GetOrdinal("GrindSetting")),
+                            GrinderId = reader.GetInt32(reader.GetOrdinal("GrinderId")),
+                            BrewMethodId = reader.GetInt32(reader.GetOrdinal("BrewMethodId")),
                             Bean = new Bean()
                             {
                                 Id = reader.GetInt32(reader.GetOrdinal("BeanId")),
@@ -83,7 +87,14 @@ namespace Capstone.Controllers.V1
                                 Method = reader.GetString(reader.GetOrdinal("Method")),
                             }
                         };
-                       
+                        if (!reader.IsDBNull(reader.GetOrdinal("Notes")))
+                        {
+                            brew.Notes = reader.GetString(reader.GetOrdinal("Notes"));
+                        }
+                        else
+                        {
+                            brew.Notes = null;
+                        }
 
                         allBrews.Add(brew);
                     }

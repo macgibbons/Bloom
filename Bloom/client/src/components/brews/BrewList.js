@@ -14,7 +14,7 @@ export default (props) => {
     // ***** USER *****
     const user = getUser()
     const currentUserBrews = brews.filter(b => b.userId === user.id)
-
+    
     if(user !== null) {
         document.body.classList.add("user--loggedIn")
     }
@@ -44,8 +44,7 @@ export default (props) => {
 
             {
                 currentUserBrews.map(brew => {
-
-                    return <Brew key={brew.id} brew={brew}  />
+                    return <Brew key={brew.id} brew={brew} {...props} />
                 })                
             }
             

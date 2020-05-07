@@ -54,7 +54,7 @@ export default props => {
     const setDefaults = () => {
         if (editMode) {
             const brewId = parseInt(props.match.params.brewId)
-            const selectedBrew = beans.find(b => b.id === brewId) || {}
+            const selectedBrew = brews.find(b => b.id === brewId) || {}
             setBrew(selectedBrew)
         }
     }
@@ -86,14 +86,15 @@ export default props => {
     const constructNewBrew = () => {
             
             if (editMode) {
+                
                 updateBrew({
                     id: brew.id,
                     coffeeDose: parseInt(brew.coffeeDose),
                     waterDose: parseInt(brew.waterDose),
                     waterTemp: parseInt(brew.waterTemp),
-                    brewTime: parseInt(brew.brewTime),
-                    rating: 4,
-                    notes: brew.notes,
+                    brewTime: parseInt(time),
+                    rating: rating ? rating : 0,
+                    notes: brew.notes ? brew.notes : "",
                     brewDate: moment().format(),
                     grindSetting: parseInt(brew.grindSetting),
                     grinderId: parseInt(brew.grinderId),
@@ -124,9 +125,9 @@ export default props => {
             }
         
     }
-
+console.log(brew)
     return (
-
+      
         <form className="form container">
             <h2 className="formTitle">{editMode ? "Update brew" : "New brew"}</h2>
             <div className="btn delete--btn">{editMode ? deleteButton : ""} </div>
@@ -168,8 +169,8 @@ export default props => {
                 </div>
                 </div>
             <div className="wrapper">
-                <StarRating  {...props} selectedRating={setRating}/>
-                        <div>{rating}</div>
+                <StarRating className="rating--form" {...props} selectedRating={setRating}/>
+                        
                 <fieldset>
                     <div className="room-form-group">
                         {/* <label htmlFor="coffeeDose">Coffee Dose:</label> */}
@@ -207,7 +208,7 @@ export default props => {
                     </div>
                 </fieldset>
 
-                {/* <fieldset>
+                <fieldset>
                     <div className="room-form-group">
                         <label htmlFor="brewTime">Brew Time:</label>
                         <input type="text"  name="brewTime" required autoFocus className="form-control"
@@ -218,7 +219,7 @@ export default props => {
                             onChange={handleControlledInputChange}
                             /> 
                     </div>
-                </fieldset> */}
+                </fieldset>
 
 
                 <fieldset>
@@ -226,7 +227,7 @@ export default props => {
                         <input type="number"  name="grindSetting" required autoFocus className="form-control"
                             proptype="varchar"
                             placeholder="Grind setting..."
-                            defaultValue={brew.grindSetting}
+                            value={brew.grindSetting}
                             onChange={handleControlledInputChange}
                             /> 
                     </div>
@@ -252,7 +253,7 @@ export default props => {
                             value={brew.brewMethodId}
                             onChange={handleControlledInputChange}>
 
-                            <option value="0">Select a Brew Method:</option>
+                            <option value="0" disabled>Select a Brew Method:</option>
 
                             {brewMethods.map(g => (
                                 <option key={g.id} value={g.id}>

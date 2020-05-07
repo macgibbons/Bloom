@@ -35,6 +35,9 @@ export default function ApplicationViews(props  ) {
               <Route exact path="/brews/create" render = {
                                 props => <BrewForm {...props} />
                             } />
+              <Route path="/brews/edit/:brewId(\d+)" render={
+                            props => <BrewForm {...props} />
+                        } />
             </RegionProvider>
           </GrinderProvider>
         </BeanProvider>

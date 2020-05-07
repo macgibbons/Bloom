@@ -16,7 +16,7 @@ const StarRating = (props) => {
 
     return (
 
-        <div>
+        <div className="stars">
             {[...Array(5)].map((star, i) =>{
                 const ratingValue = i + 1;
 
@@ -27,7 +27,7 @@ const StarRating = (props) => {
                         value={ratingValue} 
                         onClick={ () => setRating(ratingValue) }/>
 
-                    <FaStar color={ ratingValue <= (hover || rating) ? "#ffc107" : "#e4e5e9"} 
+                    <FaStar className="star" size={25} color={ ratingValue <= (hover || rating) ? "#ffc107" : "#e4e5e9"} 
                         onMouseEnter={() => setHover(ratingValue)}
                         onMouseLeave={() => setHover(null)}
                         />
