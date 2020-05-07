@@ -27,7 +27,7 @@ export const BeanProvider = (props) => {
     }
 
     const updateBean = bean => {
-        return fetch(`http://localhost:8088/beans/${bean.id}`, {
+        return fetch(`https://localhost:5001/api/beans/${bean.id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"

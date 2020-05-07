@@ -48,7 +48,7 @@ export default (props) => {
             {
                 currentUserBeans.map(bean => {
 
-                    return <Bean key={bean.id} bean={bean}  />
+                    return <Bean key={bean.id} bean={bean} {...props} />
                 })                
             }
             
