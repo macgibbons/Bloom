@@ -13,11 +13,11 @@ export default ({bean, history }) => {
     <section className="">
 
         <div className="coffee--card">
-            <h3 className="">
+            <div className="coffee--title">
                 <Link  className="" to={`/Coffee/${bean.id}`}>
                     { bean.beanName }
                 </Link>
-            </h3>
+            </div>
             <div className="coffee--content">
                 <div className="">
                     { bean.roaster }

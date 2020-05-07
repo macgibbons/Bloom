@@ -46,3 +46,7 @@ body {
 input[type="radio"] {
   display: none
 }
+
+.title {
+  text-align: center;
+}

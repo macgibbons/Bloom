@@ -38,7 +38,7 @@ export const BeanProvider = (props) => {
     }
 
     const deleteBean = beanId => {
-        return fetch(`http://localhost:8088/beans/${beanId}`, {
+        return fetch(`https://localhost:5001/api/beans/${beanId}`, {
             method: "DELETE"
         })
             .then(getBeans)
