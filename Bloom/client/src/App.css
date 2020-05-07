@@ -42,3 +42,7 @@ body {
 .App-link {
   color: #09d3ac;
 }
+
+input[type="radio"] {
+  display: none
+}

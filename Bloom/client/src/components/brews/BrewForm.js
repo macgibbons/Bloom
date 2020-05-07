@@ -8,6 +8,7 @@ import { BeanContext } from "../beans/BeanProvider";
 import { GrinderContext } from "../equiptment/Grinders/GrinderProvider";
 import { useTimer } from "use-timer";
 import RunningButton from "../RunningButton";
+import StarRating from "../StarRating";
 
 export default props => {
     const user = getUser();
@@ -25,6 +26,7 @@ export default props => {
 
     // ----- Other -----
     const { time, start, pause, reset, isRunning } = useTimer({initialTime: -3});
+    const [rating, setRating] = useState("");
 
     // ----- State -----
     const [brew, setBrew] = useState({})
@@ -109,8 +111,8 @@ export default props => {
                     waterDose: parseInt(brew.waterDose),
                     waterTemp: parseInt(brew.waterTemp),
                     brewTime: parseInt(time),
-                    rating: 4,
-                    notes: brew.notes,
+                    rating: rating ? rating : 0,
+                    notes: brew.notes ? brew.notes : "",
                     brewDate: moment().format(),
                     grindSetting: parseInt(brew.grindSetting),
                     grinderId: parseInt(brew.grinderId),
@@ -166,6 +168,8 @@ export default props => {
                 </div>
                 </div>
             <div className="wrapper">
+                <StarRating  {...props} selectedRating={setRating}/>
+                        <div>{rating}</div>
                 <fieldset>
                     <div className="room-form-group">
                         {/* <label htmlFor="coffeeDose">Coffee Dose:</label> */}
