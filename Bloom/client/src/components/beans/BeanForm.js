@@ -4,13 +4,14 @@ import { getUser } from "../../API/userManager";
 import { RegionContext } from "../regions/RegionProvider";
 import DateTime from "react-datetime";
 import moment from "moment";
+import StarRating from "../StarRating";
 export default props => {
     
     const { addBean, beans, updateBean, deleteBean} = useContext(BeanContext)
     const { regions } = useContext(RegionContext)
     const [bean, setBean] = useState({})
     const [selectedDate, setSelectedDate] = useState()
-
+    const [rating, setRating] = useState("");
     
     const editMode = props.match.params.hasOwnProperty("beanId")
     const user = getUser();
@@ -69,11 +70,11 @@ export default props => {
                     masl: bean.masl,
                     roastDate: "2020-05-04T17:44:22.4066667",
                     quantity:parseInt(bean.quantity),
-                    rating: 4,
+                    rating: rating ? rating : 0,
                     tastingNotes: bean.tastingNotes,
                     variety: bean.variety,
                     process: bean.process,
-                    notes: bean.notes,
+                    notes: bean.notes ? bean.notes : "",
                     origin: bean.origin,
                     roaster: bean.roaster,
                     regionId: parseInt(bean.regionId),
@@ -89,7 +90,7 @@ export default props => {
                     masl: bean.masl,
                     roastDate: moment(selectedDate).format(),
                     quantity: parseInt(bean.quantity),
-                    rating: 4,
+                    rating: rating ? rating : 0,
                     tastingNotes: bean.tastingNotes,
                     variety: bean.variety,
                     process: bean.process,
@@ -105,10 +106,14 @@ export default props => {
     }
 
     return (
-        <form className="room--form container">
-            <h2 className="room--formTitle header detail--header">{editMode ? "Update Coffee" : "New Coffee"}</h2>
+        <form className="form container">
+            <h2 className="room--formTitledetail--header">{editMode ? "Update Coffee" : "New Coffee"}</h2>
             <div className="btn delete--btn">{editMode ? deleteButton : ""} </div>
             <div className="wrapper">
+            <StarRating className="rating--form" {...props} 
+                    selectedRating={setRating} 
+                    editMode={editMode ? true : false }
+                    editRating={ editMode ? bean.rating : null } />
                 <fieldset>
                     <div className="room-form-group">
                         <label htmlFor="beanName">Name</label>
@@ -121,9 +126,9 @@ export default props => {
                     </div>
                 </fieldset>
                 <fieldset>
-                    <div className="room-form-group">
+                    <div className="stars room-form-group">
                         <label htmlFor="roastDate">Roast Date</label>
-                        <DateTime selected={selectedDate}
+                        <DateTime margin="auto" selected={selectedDate}
                                   onChange={date => setSelectedDate(date)}
                         />
                         {/* <input type="text" name="roastDate" required autoFocus className="form-control"
@@ -138,7 +143,7 @@ export default props => {
 
                 <fieldset>
                     <div className="room-form-group">
-                        <label htmlFor="origin">Origin</label>
+                        {/* <label htmlFor="origin">Origin</label> */}
                         <input type="text" name="origin" required autoFocus className="form-control"
                             proptype="varchar"
                             placeholder="Origin.."
@@ -150,7 +155,7 @@ export default props => {
 
                 <fieldset>
                     <div className="room-form-group">
-                        <label htmlFor="roaster">roaster</label>
+                        {/* <label htmlFor="roaster">roaster</label> */}
                         <input type="text" name="roaster" required autoFocus className="form-control"
                             proptype="varchar"
                             placeholder="roaster.."
@@ -162,7 +167,7 @@ export default props => {
 
                 <fieldset>
                     <div className="room-form-group">
-                        <label htmlFor="tastingNotes">Tasting Notes</label>
+                        {/* <label htmlFor="tastingNotes">Tasting Notes</label> */}
                         <input type="text" name="tastingNotes" required autoFocus className="form-control"
                             proptype="varchar"
                             placeholder="Tasting Notes.."
@@ -174,7 +179,7 @@ export default props => {
 
                 <fieldset>
                     <div className="room-form-group">
-                        <label htmlFor="variety">variety</label>
+                        {/* <label htmlFor="variety">variety</label> */}
                         <input type="text" name="variety" required autoFocus className="form-control"
                             proptype="varchar"
                             placeholder="variety.."
@@ -186,7 +191,7 @@ export default props => {
 
                 <fieldset>
                     <div className="room-form-group">
-                        <label htmlFor="process">process</label>
+                        {/* <label htmlFor="process">process</label> */}
                         <input type="text" name="process" required autoFocus className="form-control"
                             proptype="varchar"
                             placeholder="process.."
@@ -198,7 +203,7 @@ export default props => {
 
                 <fieldset>
                     <div className="room-form-group">
-                        <label htmlFor="masl">MASL</label>
+                        {/* <label htmlFor="masl">MASL</label> */}
                         <input type="text" name="masl" required autoFocus className="form-control"
                             proptype="varchar"
                             placeholder="masl.."
@@ -210,10 +215,10 @@ export default props => {
 
                 <fieldset>
                     <div className="room-form-group">
-                        <label htmlFor="roastLevel">Roast</label>
+                        {/* <label htmlFor="roastLevel">Roast</label> */}
                         <input type="text" name="roastLevel" required autoFocus className="form-control"
                             proptype="varchar"
-                            placeholder="roastLevel.."
+                            placeholder="roast Level.."
                             defaultValue={bean.roastLevel}
                             onChange={handleControlledInputChange}
                             />
@@ -223,8 +228,8 @@ export default props => {
                 <fieldset>
                     <div className="plant-water-pair">
                         <div className="form-group water">
-                            <label htmlFor="Quantity">Quantity</label>
-                            <input type="int" name="quantity" className="form-control-type1"
+                            {/* <label htmlFor="Quantity">Quantity</label> */}
+                            <input type="int" name="quantity" placeholder="Quantity..." className="form-control-type1"
                                 proptype="int"
                                 
                                 value={bean.quantity}
@@ -243,7 +248,7 @@ export default props => {
                             value={bean.regionId}
                             onChange={handleControlledInputChange}>
 
-                            <option value="0">Select a region</option>
+                            <option value="0" >region</option>
                             {regions.map(r => (
                                 <option key={r.id} value={r.id}>
                                     {r.regionName}
@@ -256,9 +261,10 @@ export default props => {
 
                 <fieldset>
                 <div className="form-group">
-                    <label htmlFor="notes">Notes: </label>
+                    {/* <label htmlFor="notes">Notes: </label> */}
                     <textarea type="text" name="notes" className="form-control-type1"
                         proptype="varchar"
+                        placeholder="notes..."
                         value={bean.notes}
                         onChange={handleControlledInputChange}>
                     </textarea>

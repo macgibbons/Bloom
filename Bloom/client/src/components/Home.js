@@ -18,8 +18,8 @@ function Home() {
   
     return (
       <>
-        <h1>What are you brewing today?</h1>
-        <StarRating />
+        <h1 className="title">What are you brewing today?</h1>
+        
         <BrewMethodList />
       </>
     )
