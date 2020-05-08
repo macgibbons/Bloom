@@ -54,3 +54,11 @@ input[type="radio"] {
 .card--link{
   color: #C29961
 }
+
+.hidden {
+  display: none;
+}
+
+.error{
+  color: red
+}
