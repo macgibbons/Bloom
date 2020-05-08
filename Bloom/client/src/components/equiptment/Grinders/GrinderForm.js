@@ -6,6 +6,7 @@ export default props => {
     const { addGrinder, grinders, updateGrinder, deleteGrinder} = useContext(GrinderContext)
     const [grinder, setGrinder] = useState({})
     const [hide, setHide ] = useState(true)
+    const [error, setError] = useState("")
 
     
 
@@ -69,6 +70,13 @@ export default props => {
     )
     
     const constructNewGrinder = () => {
+        debugger
+        if (grinder.brand === undefined ){
+            setError("Please define a grinder brand")
+        } else if (grinder.model === undefined){
+            setError("Please define a grinder model")
+
+        } else {
 
             if (editMode) {
                 updateGrinder({
@@ -76,7 +84,7 @@ export default props => {
                     brand: grinder.brand,
                     model: grinder.model,
                     userId: user.id
-                })
+                }).then(()=> { setHide(false)})
                     
             } else {
                 addGrinder({
@@ -84,9 +92,10 @@ export default props => {
                     brand: grinder.brand,
                     model: grinder.model,
                     userId: user.id
-                })
+                }).then(()=> { setHide(false)})
                    
             }
+        }
         
     }
 
@@ -95,6 +104,7 @@ export default props => {
             <h2 className="formTitle  detail--header">{editMode ? "Update Grinder" : "New Grinder"}</h2>
             <div className="btn delete--btn">{editMode ? deleteButton : ""} </div>
             <div className="wrapper">
+            <div className= {error === "" ? "hidden" : "error"}>{error}</div>
                 <fieldset>
                     <div className="room-form-group">
                         {/* <label htmlFor="brand">Brand </label> */}
@@ -122,7 +132,7 @@ export default props => {
                 onClick={evt => {
                     evt.preventDefault()
                     constructNewGrinder()
-                    setHide(false)
+                   
                 }}
                 className="btn btn-primary roomBtn">
                 {editMode ? "Save Updates" : "Add Grinder"}
