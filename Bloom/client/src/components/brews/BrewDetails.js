@@ -5,6 +5,7 @@ import { getUser } from "../../API/userManager";
 import { BrewMethodContext } from "../equiptment/brewMethods/BrewMethodProvider";
 import { BeanContext } from "../beans/BeanProvider";
 import StarRating from "../StarRating";
+import StarRatingDisplay from "../StarRatingDisplay";
 
 export default (props) => {
     const { brews, deleteBrew } = useContext(BrewContext)
@@ -52,7 +53,7 @@ console.log("Brew:", brew);
                     </div>
                 </div>
 
-
+                <StarRatingDisplay displayRating={brew.rating} />
                 <div>{brewMethod.method}</div>
                 <div>{bean.beanName}</div>
                 <div>{bean.roaster}</div>

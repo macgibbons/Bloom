@@ -28,6 +28,7 @@ const StarRating = (props) => {
         }
 
         functionHandler(rating)
+
         const editfunctionHandler = (rating) => {
 
             props.editRating(rating);
