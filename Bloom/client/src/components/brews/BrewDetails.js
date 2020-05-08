@@ -7,6 +7,7 @@ import { BeanContext } from "../beans/BeanProvider";
 import StarRating from "../StarRating";
 import StarRatingDisplay from "../StarRatingDisplay";
 
+
 export default (props) => {
     const { brews, deleteBrew } = useContext(BrewContext)
     const { brewMethods } = useContext(BrewMethodContext)
@@ -19,12 +20,18 @@ export default (props) => {
     const brewMethod = brewMethods.find(brewMethod => brewMethod.id === brew.brewMethodId) || {}
     const bean = beans.find(bean => bean.id === brew.beanId) || {}
 
+   
+    var brewRatio = brew.waterDose / brew.coffeeDose 
+   
+  
+
+
     var moment = require('moment')
 
     if(user !== null) {
         document.body.classList.add("user--loggedIn")
     }
-console.log("Brew:", brew);
+
     return (
         <section className="plant--detailCard plant--container">
 
@@ -65,7 +72,8 @@ console.log("Brew:", brew);
                 <div>Grinder setting: {brew.grindSetting}</div>
                 <div>Dose: {brew.coffeeDose}g</div>
                 <div>waterDose: {brew.waterDose}g</div>
-                        <div> brew Ratio: {brew.waterDose / brew.coffeeDose}</div>
+            
+                <div> brew Ratio: 1 : {brewRatio % 1 === 0 ? brewRatio : brewRatio.toFixed(1)}</div>
       
                 <div className="card--detailPair">
                     <div className="card--subTitle">Notes:</div>

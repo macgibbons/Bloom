@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "fractional": "^1.0.0",
     "moment": "^2.25.3",
     "react": "^16.10.2",
     "react-datetime": "^2.16.3",
