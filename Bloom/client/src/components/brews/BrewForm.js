@@ -31,7 +31,7 @@ export default props => {
     // ----- State -----
     const [brew, setBrew] = useState({})
     const [brewTime, setBrewTime] = useState(time)
-    
+    const [error, setError] = useState("")
     
     const editMode = props.match.params.hasOwnProperty("brewId")
    
@@ -84,44 +84,59 @@ export default props => {
 
    
     const constructNewBrew = () => {
-            
-            if (editMode) {
-                
-                updateBrew({
-                    id: brew.id,
-                    coffeeDose: parseInt(brew.coffeeDose),
-                    waterDose: parseInt(brew.waterDose),
-                    waterTemp: parseInt(brew.waterTemp),
-                    brewTime: moment.duration(brew.brewTime, 'm:ss').asSeconds() / 60,
-                    rating: rating ? rating : 0,
-                    notes: brew.notes ? brew.notes : "",
-                    brewDate: moment().format(),
-                    grindSetting: parseInt(brew.grindSetting),
-                    grinderId: parseInt(brew.grinderId),
-                    brewMethodId: parseInt(brew.brewMethodId),
-                    beanId: parseInt(brew.beanId),
-                    userId: user.id
-                })
-                    .then(() => props.history.push("/brews"))
+  
+            if (brew.waterDose === undefined) {
+                setError("Please specify water amount")
+            } else if (brew.coffeeDose === undefined) {
+                setError("Please specify coffee amount")
+            } else if (brew.brewTime === undefined) {
+                setError("Please specify a brew time")
+            } else  if (brew.grinderId === undefined) {
+                setError("Please specify a Grinder")
+            } else if (brew.brewMethodId === undefined){
+                setError("Please Specify a brew method")
+            } else if (brew.beanId === undefined){
+                setError("Please specify a coffee")
             } else {
-              
+                const brewTime = moment.duration(brew.brewTime, 'm:ss').asSeconds() / 60
+
+                if (editMode) {
+
+                    updateBrew({
+                        id: brew.id,
+                        coffeeDose: parseInt(brew.coffeeDose),
+                        waterDose: parseInt(brew.waterDose),
+                        waterTemp: parseInt(brew.waterTemp),
+                        brewTime: moment.duration(brew.brewTime, 'm:ss').asSeconds() / 60,
+                        rating: rating ? rating : 0,
+                        notes: brew.notes ? brew.notes : "",
+                        brewDate: moment().format(),
+                        grindSetting: parseInt(brew.grindSetting),
+                        grinderId: parseInt(brew.grinderId),
+                        brewMethodId: parseInt(brew.brewMethodId),
+                        beanId: parseInt(brew.beanId),
+                        userId: user.id
+                    })
+                        .then(() => props.history.push("/brews"))
+                } else {
                 
-                addBrew({
-                    id: brew.id,
-                    coffeeDose: parseInt(brew.coffeeDose),
-                    waterDose: parseInt(brew.waterDose),
-                    waterTemp: parseInt(brew.waterTemp),
-                    brewTime: parseInt(time), //moment.duration('0:30', 'm:ss').asSeconds() / 60
-                    rating: rating ? rating : 0,
-                    notes: brew.notes ? brew.notes : "",
-                    brewDate: moment().format(),
-                    grindSetting: parseInt(brew.grindSetting),
-                    grinderId: parseInt(brew.grinderId),
-                    brewMethodId: parseInt(brew.brewMethodId),
-                    beanId: parseInt(brew.beanId),
-                    userId: user.id
-                })
-                    .then(() => props.history.push("/brews"))
+                    addBrew({
+                        id: brew.id,
+                        coffeeDose: parseInt(brew.coffeeDose),
+                        waterDose: parseInt(brew.waterDose),
+                        waterTemp: brew.waterTemp === undefined ? 212 : parseInt(brew.WaterTemp),
+                        brewTime: brewTime, //moment.duration('0:30', 'm:ss').asSeconds() / 60
+                        rating: rating ? rating : 0,
+                        notes: brew.notes ? brew.notes : "",
+                        brewDate: moment().format(),
+                        grindSetting: brew.grindSetting === undefined ? 0 : parseInt(brew.grindSetting),
+                        grinderId: parseInt(brew.grinderId),
+                        brewMethodId: parseInt(brew.brewMethodId),
+                        beanId: parseInt(brew.beanId),
+                        userId: user.id
+                    })
+                        .then(() => props.history.push("/brews"))
+                }
             }
         
     }
@@ -131,6 +146,7 @@ export default props => {
         <form className="form container">
             <h2 className="formTitle">{editMode ? "Update brew" : "New brew"}</h2>
             <div className="btn delete--btn">{editMode ? deleteButton : ""} </div>
+            <div className= {error === "" ? "hidden" : "error"}>{error}</div>
             <div className="timer">{editMode ?  "" :
             <>
                 <div className="timer-time">
