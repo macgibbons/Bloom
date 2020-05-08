@@ -104,3 +104,28 @@ option {
     cursor: pointer;
     transition: color 300ms;
 }
+
+.detail--container {
+    display: flex;
+    flex-direction: column;
+    margin: 5% 25%;
+  
+    
+}
+
+
+
+.detail--buttons {
+    display: flex;
+    margin-bottom: 1em;
+    
+    align-items: flex-start;
+}
+
+.detail--btn {
+    margin-left: 1em;
+}
+
+.detail--content {
+    line-height: 2em;
+}

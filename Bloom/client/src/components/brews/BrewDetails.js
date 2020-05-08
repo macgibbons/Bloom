@@ -43,51 +43,50 @@ export default (props) => {
           }}
     // ****************** COMPONENT **********************
     return (
-        <section className="plant--detailCard plant--container">
+        <section className="detail--container">
 
-            <div className="plant--detailHeader">
-                <div className="header--buttons">
-                    <div className="header detail--header plant--detailName"></div>
-                    <div className="btns">
-                        <div className="btn delete--btn"
-                            onClick={() => {
-                               deleteConfirm()
-                                }}>
-                                    <button>delete</button>
-                            {/* <img className="icon" src={require ('./trash.svg')}/> */}
-                        </div>
+            <div className="detail--header">
 
-                        <div className="btn edit--btn"
-                            onClick={() => {
-                                props.history.push(`/brews/edit/${brew.id}`)
-                            }}>
-                                <button>edit</button>
-                            {/* <img className="icon" src={require ('./edit.svg')}/> */}
-                        </div>
+                <div  className="detail--title">{brewMethod.method}</div>
+
+                <div className="detail--buttons">
+
+                    <div className="btn delete--btn"
+                        onClick={ () => { deleteConfirm() } }>
+                        <img className="icon" src={require ('../../icons/trash.svg')}/>
                     </div>
+
+                    <div className="btn edit--btn detail--btn"
+                        onClick={ () => { props.history.push(`/brews/edit/${brew.id}`) } }>
+                        <img className="icon" src={require ('../../icons/edit.svg')}/>
+                    </div>
+                    
                 </div>
 
+            </div>
+
+            <div className="detail--content">
+
                 <StarRatingDisplay displayRating={brew.rating} />
-                <div>{brewMethod.method}</div>
                 <div>{bean.beanName}</div>
                 <div>{bean.roaster}</div>
                 <div>{bean.origin}</div>
                 <div>{moment(brew.brewDate).format('MM | DD | YY')}</div>
                 <div>Bloom Length: {brew.bloom}s</div>
-                <div>BrewTime: { moment.utc(brew.brewTime * 1000).format('m:ss')}</div>
+                <div>Brew Time: { moment.utc(brew.brewTime * 1000).format('m:ss')}</div>
                 <div>Grinder: {grinder.brand} {grinder.model}</div>
                 <div>Grinder setting: {brew.grindSetting}</div>
                 <div>Dose: {brew.coffeeDose}g</div>
-                <div>waterDose: {brew.waterDose}g</div>
-            
-                <div> brew Ratio: 1 : {brewRatio % 1 === 0 ? brewRatio : brewRatio.toFixed(1)}</div> 
+                <div>Water Dose: {brew.waterDose}g</div>
+                <div> Brew Ratio: 1 : {brewRatio % 1 === 0 ? brewRatio : brewRatio.toFixed(1)}</div> 
       
                 <div className="card--detailPair">
-                    <div className="card--subTitle">Notes:</div>
-                    <p>{brew.notes}</p>
+                    <div className="card--subTitle">Notes: {brew.notes}</div>
+                    <p></p>
                 </div>
+            </div>
 
-        </div>
+        
           
             
         </section>

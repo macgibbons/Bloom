@@ -18,7 +18,7 @@ return (
             
             <div>
                 {/* <h1>{ brew.brewMethod.method }</h1> */}
-                <Link  className="header card--header" to={`/brews/${brew.id}`}>
+                <Link  className="card--link" to={`/brews/${brew.id}`}>
                     { brew.brewMethod.method }
                 </Link>
                 <div>{ moment(brew.brewDate).format('MM | DD | YY') }</div>

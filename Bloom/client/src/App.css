@@ -50,3 +50,7 @@ input[type="radio"] {
 .title {
   text-align: center;
 }
+
+.card--link{
+  color: #C29961
+}
