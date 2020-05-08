@@ -13,8 +13,9 @@ import { RegionProvider } from "./regions/RegionProvider";
 import { BrewProvider } from "./brews/BrewProvider";
 import BrewList from "./brews/BrewList";
 import BrewForm from "./brews/BrewForm";
+import BrewDetails from "./brews/BrewDetails";
 
-export default function ApplicationViews(props  ) {
+export default function ApplicationViews(props) {
   return (
     <>
     <BrewProvider>
@@ -32,6 +33,9 @@ export default function ApplicationViews(props  ) {
               <Route exact path="/coffee/create" render = {
                                 props => <BeanForm {...props} />
                             } />
+               <Route path="/brews/:brewId(\d+)" render={
+                            props => <BrewDetails {...props} />
+                        } />
               <Route exact path="/brews/create" render = {
                                 props => <BrewForm {...props} />
                             } />

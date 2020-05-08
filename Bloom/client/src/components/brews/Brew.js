@@ -11,13 +11,16 @@ export default ({ brew, history}) => {
      if(window.confirm(`Are you sure you want to delete this brew? This action cannot be undone`))
        {deleteBrew(brew.id)
        }}
-console.log(brew)
+
 return (
     <section className="">
         <div className="coffee--card">
             
             <div>
-                <h1>{ brew.brewMethod.method }</h1>
+                {/* <h1>{ brew.brewMethod.method }</h1> */}
+                <Link  className="card--link" to={`/brews/${brew.id}`}>
+                    { brew.brewMethod.method }
+                </Link>
                 <div>{ moment(brew.brewDate).format('MM | DD | YY') }</div>
             </div>
 
