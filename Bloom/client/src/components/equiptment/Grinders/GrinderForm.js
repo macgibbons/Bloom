@@ -5,9 +5,11 @@ import { getUser } from "../../../API/userManager";
 export default props => {
     const { addGrinder, grinders, updateGrinder, deleteGrinder} = useContext(GrinderContext)
     const [grinder, setGrinder] = useState({})
+    const [hide, setHide ] = useState(true)
 
     
-    const editMode = props.match.params.hasOwnProperty("grinderId")
+
+    const editMode = props.grinderId >=1
     const user = getUser();
    
 
@@ -25,9 +27,21 @@ export default props => {
         setGrinder(newGrinder)
     }
 
+    
+    const functionHandler = (hide) => {
+        
+        props.isFormShowing(hide)
+        
+    } 
+           
+      
+    
+
+        
+   
     const setDefaults = () => {
         if (editMode) {
-            const grinderId = parseInt(props.match.params.grinderId)
+            const grinderId = props.grinderId
             const selectedGrinder = grinders.find(g => g.id === grinderId) || {}
             setGrinder(selectedGrinder)
         }
@@ -37,14 +51,17 @@ export default props => {
         setDefaults()
     }, [grinders])
 
+    useEffect(() => {
+        functionHandler(hide)
+    }, [hide])
+
+    
     const deleteButton = (
         <>
             <div className="btn delete--btn"
             onClick={() => {
                 deleteGrinder(grinder.id)
-                    .then(() => {
-                        props.history.push("/equiptment")
-                    })
+                  
                 }}>
                 <div>delete</div>
             </div>
@@ -60,7 +77,7 @@ export default props => {
                     model: grinder.model,
                     userId: user.id
                 })
-                    .then(() => props.history.push("/equiptment"))
+                    
             } else {
                 addGrinder({
                     id: grinder.id,
@@ -68,7 +85,7 @@ export default props => {
                     model: grinder.model,
                     userId: user.id
                 })
-                    .then(() => props.history.push("/equiptment"))
+                   
             }
         
     }
@@ -105,6 +122,7 @@ export default props => {
                 onClick={evt => {
                     evt.preventDefault()
                     constructNewGrinder()
+                    setHide(false)
                 }}
                 className="btn btn-primary roomBtn">
                 {editMode ? "Save Updates" : "Add Grinder"}

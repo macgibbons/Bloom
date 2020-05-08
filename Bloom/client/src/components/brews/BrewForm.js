@@ -125,7 +125,7 @@ export default props => {
             }
         
     }
-console.log(brew)
+
     return (
       
         <form className="form container">
