@@ -11,7 +11,8 @@ export default props => {
     const { regions } = useContext(RegionContext)
     const [bean, setBean] = useState({})
     const [selectedDate, setSelectedDate] = useState()
-    const [rating, setRating] = useState("");
+    const [rating, setRating] = useState("")
+    const [error, setError] = useState("")
     
     const editMode = props.match.params.hasOwnProperty("beanId")
     const user = getUser();
@@ -61,7 +62,18 @@ export default props => {
 
    
     const constructNewBean = () => {
-            
+        if (bean.beanName === undefined) {
+            setError("Please specify a Coffee")
+        } else if (bean.roastLevel === undefined) {
+            setError("Please specify a roast level")
+        } else if (bean.regionId === undefined) {
+            setError("Please specify a region")
+        } else  if (bean.roaster === undefined) {
+            setError("Please specify a roaster")
+        }  else if (selectedDate === undefined) {
+            setError("Please specify a roast date")
+        } else {
+
             if (editMode) {
                 updateBean({
                     id: bean.id,
@@ -87,27 +99,29 @@ export default props => {
                     id: bean.id,
                     beanName: bean.beanName,
                     roastLevel: bean.roastLevel,
-                    masl: bean.masl,
-                    roastDate: moment(selectedDate).format(),
-                    quantity: parseInt(bean.quantity),
+                    masl: bean.masl ? bean.masl : "",
+                    roastDate:  moment(selectedDate).format(),
+                    quantity: bean.quantity ? parseInt(bean.quantity) : 340, 
                     rating: rating ? rating : 0,
-                    tastingNotes: bean.tastingNotes,
-                    variety: bean.variety,
-                    process: bean.process,
-                    notes: bean.notes,
-                    origin: bean.origin,
+                    tastingNotes: bean.tastingNotes ? bean.tastingNotes : "",
+                    variety: bean.variety ? bean.variety : "",
+                    process: bean.process ? bean.process : "",
+                    notes: bean.notes ? bean.notes : "",
+                    origin: bean.origin ? bean.origin : "",
                     roaster: bean.roaster,
                     regionId: parseInt(bean.regionId),
                     userId: user.id
                 })
                     .then(() => props.history.push("/coffee"))
             }
+        }
         
     }
 
     return (
         <form className="form container">
             <h2 className="room--formTitledetail--header">{editMode ? "Update Coffee" : "New Coffee"}</h2>
+            <div className= {error === "" ? "hidden" : "error"}>{error}</div>
             <div className="btn delete--btn">{editMode ? deleteButton : ""} </div>
             <div className="wrapper">
             <StarRating className="rating--form" {...props} 

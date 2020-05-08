@@ -14,8 +14,8 @@ export const BeanProvider = (props) => {
             .then(res => res.json())
             .then(setBeans)
     }
-
     const addBean = bean => { 
+        debugger
         return fetch("https://localhost:5001/api/beans", {
             method: "POST",
             headers: {
