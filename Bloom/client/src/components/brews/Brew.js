@@ -11,7 +11,7 @@ export default ({ brew, history}) => {
      if(window.confirm(`Are you sure you want to delete this brew? This action cannot be undone`))
        {deleteBrew(brew.id)
        }}
-console.log(brew)
+
 return (
     <section className="">
         <div className="coffee--card">
