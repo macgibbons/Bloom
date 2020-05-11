@@ -6,6 +6,7 @@ import "./BrewMethods.css"
 export default ({brewMethod, history}) => {
 
     const updateApplicationView = () => {
+        
         history.push("/brews/create")
     }
    
@@ -15,7 +16,7 @@ export default ({brewMethod, history}) => {
         <div className="brewMethod" 
         onClick={()=> {
             updateApplicationView()
-        }}>
+        }} brewMethod={brewMethod.id}>
             {
                 brewMethod.imagePath ? <img src={require (`../../../images/${brewMethod.imagePath}`)} className="method-image"/> :
                  <>
