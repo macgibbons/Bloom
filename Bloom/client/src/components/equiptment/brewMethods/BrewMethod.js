@@ -7,7 +7,7 @@ export default ({brewMethod, history}) => {
 
     const updateApplicationView = () => {
         
-        history.push("/brews/create")
+        history.push(`/brews/quick/${brewMethod.id}`)
     }
    
     return (
