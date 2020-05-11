@@ -21,14 +21,10 @@ export default (props) => {
 
     // ****************** USER DATA **********************
     const chosenBeanId = parseInt(props.match.params.beanId, 10)
-    // const brewMethod = brewMethods.find(brewMethod => brewMethod.id === brew.brewMethodId) || {}
     const bean = beans.find(bean => bean.id === chosenBeanId) || {}
     const Beansbrews = brews.filter(brew => brew.beanId === bean.id) || {}
-   // const grinder = grinders.find(grinder => grinder.id === brew.grinderId) || {}
    
     // ****************** OTHER **********************
-    //var brewRatio = brew.waterDose / brew.coffeeDose //this returns the water ratio as a decimal
-
     var moment = require('moment')
 
     if(user !== null) {
@@ -36,19 +32,22 @@ export default (props) => {
     }
 
     const deleteConfirm = () => {
-        if(window.confirm(`Are you sure you want to delete this brew? This action cannot be undone`))
-        debugger
-          { Beansbrews.length >= 1 ?
+        if(window.confirm(`Are you sure you want to delete this coffee and it's brews? This action cannot be undone`))
+      
+        // check if selected coffee has any related brews. if so delete coffee and related brews else just delete the coffee
+        
+        { Beansbrews.length >= 1 ?
             deleteBean(bean.id).then( () => {
-
                 Beansbrews.forEach( b => {  deleteBrew(b.id) } )  
             }).then(() => {
                 props.history.push("/coffee")
             })
-             : deleteBean(bean.id).then(() => {
+             : deleteBean(bean.id).then( () => {
             props.history.push("/coffee")
         })
           }}
+
+
     // ****************** COMPONENT **********************
     return (
         <section className="detail--container">

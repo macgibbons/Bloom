@@ -1,14 +1,31 @@
 import React, { useContext } from "react"
 import { Link } from "react-router-dom"
 import { BeanContext } from "./BeanProvider"
+import { BrewContext } from "../brews/BrewProvider"
 
 
 export default ({bean, history }) => {
     const { deleteBean } = useContext(BeanContext)
+    const { brews, deleteBrew } = useContext(BrewContext)
+    // const deleteConfirm = () => {
+    //     if(window.confirm(`Are you sure you want to delete this coffee? This action cannot be undone`))
+    //       { deleteBean(bean.id)
+    //       }}
+    
+    const Beansbrews = brews.filter(brew => brew.beanId === bean.id) || {}
     const deleteConfirm = () => {
-        if(window.confirm(`Are you sure you want to delete this brew? This action cannot be undone`))
-          {deleteBean(bean.id)
-          }}
+        if(window.confirm(`Are you sure you want to delete this coffee and it's brews? This action cannot be undone`))
+        
+        // check if selected coffee has any related brews. if so delete coffee and related brews else just delete the coffee
+        
+        { 
+            Beansbrews.length >= 1 ?
+            deleteBean(bean.id).then( () => {
+                Beansbrews.forEach( b => {  deleteBrew(b.id) } )  
+            })
+                : deleteBean(bean.id)
+        }
+     }
     return(
     <section className="">
 
