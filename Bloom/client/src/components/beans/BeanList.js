@@ -1,9 +1,9 @@
-import React, { useContext } from "react"
+import React, { useContext, Suspense } from "react"
 import "./Beans.css"
 import { BeanContext } from "./BeanProvider";
-import Bean from "./Bean";
+// import Bean from "./Bean";
 import { getUser } from "../../API/userManager";
-
+const Bean = React.lazy(() => import("./Bean"))
 
 export default (props) => {
     // ***** CONTEXT *****
@@ -37,18 +37,25 @@ export default (props) => {
    
     return (
         <div className="coffee--view">
-            <div className="">My Coffee</div>
-          
-            <a className="btn add--btn"
-                    onClick={() => {logInCheck()}}>
-            add coffee
-            </a>
+            <div>
+
+                <div className="">My Coffee</div>
+            
+                <a className="btn add--btn"
+                        onClick={() => {logInCheck()}}>
+                add coffee
+                </a>
+            </div>
+
             <div className="coffee--container">
 
             {
                 currentUserBeans.map(bean => {
 
-                    return <Bean key={bean.id} bean={bean} {...props} />
+                    return <Suspense fallback='loading...'>
+
+                        <Bean key={bean.id} bean={bean} {...props} />
+                        </Suspense>
                 })                
             }
             

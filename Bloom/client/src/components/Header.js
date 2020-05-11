@@ -1,6 +1,7 @@
 import React from "react";
-import { Link, withRouter } from "react-router-dom";
+import { Link, withRouter, NavLink } from "react-router-dom";
 import { getUser, removeUser } from "../API/userManager";
+import { FaUnderline } from "react-icons/fa";
 
 function Header({ history }) {
   const user = getUser();
@@ -16,13 +17,19 @@ function Header({ history }) {
         {user ? (
           <>
           <li  className="nav-item">
-           <Link to="/Coffee">My Coffees</Link>
+          <NavLink to='/Coffee' exact activeStyle={{textDecorationLine: 'underline', color: '#fff'}}>
+              My Coffees
+            </NavLink>
+           {/* <Link to="/Coffee" >My Coffees</Link> */}
           </li>
           <li  className="nav-item">
            <Link to="/Equiptment">My Gear</Link>
           </li>
           <h1 className="nav-item">
-            <Link to="/">Bloom</Link>
+            <NavLink to='/' exact activeStyle={{color: '#fff'}}>
+              Bloom
+            </NavLink>
+            {/* <Link to="/">Bloom</Link> */}
           </h1>
           <li className="nav-item">
             <Link to="/brews">My Brews</Link>

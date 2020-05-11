@@ -1,6 +1,7 @@
-import React, { useContext, useState, useEffect } from "react"
+import React, { useContext, useState, useEffect, useRef } from "react"
 import { GrinderContext } from "./GrinderProvider";
 import { getUser } from "../../../API/userManager";
+import gsap from "gsap";
 
 export default props => {
     const { addGrinder, grinders, updateGrinder, deleteGrinder} = useContext(GrinderContext)
@@ -8,7 +9,6 @@ export default props => {
     const [hide, setHide ] = useState(true)
     const [error, setError] = useState("")
 
-    
 
     const editMode = props.grinderId >=1
     const user = getUser();
@@ -100,7 +100,7 @@ export default props => {
     }
 
     return (
-        <form className="form container">
+        <form  className="form container transition">
             <h2 className="formTitle  detail--header">{editMode ? "Update Grinder" : "New Grinder"}</h2>
             <div className="btn delete--btn">{editMode ? deleteButton : ""} </div>
             <div className="wrapper">

@@ -62,3 +62,9 @@ input[type="radio"] {
 .error{
   color: red
 }
+
+.transition {
+  transition: ease-in;
+  transition-duration: 2s;
+  transition-delay: 2s;
+}

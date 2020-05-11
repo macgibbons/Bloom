@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react"
+import React, { useContext, useState, lazy, Suspense } from "react"
 import "./Grinders.css"
 import Grinder from "./Grinder";
 import { GrinderContext } from "./GrinderProvider";
@@ -41,7 +41,7 @@ export default (props) => {
         <div className="coffee--view">
           <div className="">My Gear</div>
           
-          <BrewMethodList /> 
+         
 
           <div className="btn add--btn"
                onClick={() => {
@@ -60,7 +60,7 @@ export default (props) => {
                 }
             </div>
 
-            <div className="coffee--container">
+            <div className="transition coffee--container">
              {
                 currentUserGrinders.map(grinder => {
                     return <Grinder key={grinder.id} grinder={grinder}  />})                
