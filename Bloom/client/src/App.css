@@ -62,3 +62,8 @@ input[type="radio"] {
 .error{
   color: red
 }
+
+.container--title {
+  text-align: center;
+  font-size: 20pt;
+}

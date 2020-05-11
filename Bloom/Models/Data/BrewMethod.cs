@@ -11,7 +11,7 @@ namespace Capstone.Models.Data
         public string Method { get; set; }
         public Boolean PaperFilter { get; set; }
         public string BrewType { get; set; }
-
+        public string ImagePath { get; set; }
 
     }
 }

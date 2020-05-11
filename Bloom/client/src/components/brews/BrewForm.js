@@ -34,8 +34,8 @@ export default props => {
     const [error, setError] = useState("")
     
     const editMode = props.match.params.hasOwnProperty("brewId")
-   
-    
+    const quickMode = props.match.params.hasOwnProperty("brewMethodId")
+    console.log(props)
 
     if(user !== null) {
         document.body.classList.add("user--loggedIn")
@@ -82,6 +82,9 @@ export default props => {
         </>
     )
 
+    if(quickMode === true){
+        console.log("you are in quick mode")
+    }
    
     const constructNewBrew = () => {
   

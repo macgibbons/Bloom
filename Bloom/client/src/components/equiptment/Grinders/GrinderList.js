@@ -40,9 +40,7 @@ export default (props) => {
     return (
         <div className="coffee--view">
           <div className="">My Gear</div>
-          
-          <BrewMethodList /> 
-
+        
           <div className="btn add--btn"
                onClick={() => {
                logInCheck()}}>

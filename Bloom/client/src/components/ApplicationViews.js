@@ -24,7 +24,7 @@ export default function ApplicationViews(props) {
         <BeanProvider>
           <GrinderProvider>
             <RegionProvider>
-              <Route exact path="/" render={() => <Home />} />
+              <Route exact path="/" render={ props => <BrewMethodList {...props} />} />
               <Route exact path="/Coffee" render={(props) => <BeanList {...props} />} />
               <Route exact path="/Brews" render={(props) => <BrewList {...props} />} />
               <Route exact path="/Equiptment" render ={() => <GrinderList />} />

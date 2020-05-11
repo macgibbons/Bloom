@@ -1,0 +1,37 @@
+.method-image{
+    max-height: 200px;
+    max-width: 200px;
+    opacity: .85;
+}
+
+.method--container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: baseline;
+    align-content: flex-end;
+}
+
+.brewMethod {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    margin: 10% 20px;
+    width: 15em;
+    padding:  1em;;
+}
+
+.method-image:hover{
+    cursor: pointer;
+    opacity: 1;
+}
+
+.other--method {
+    display: flex;
+    margin: auto;
+}
+
+.other {
+    margin-right: .5em;
+}

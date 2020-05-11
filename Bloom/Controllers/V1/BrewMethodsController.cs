@@ -58,8 +58,16 @@ namespace Capstone.Controllers.V1
                             Id = reader.GetInt32(reader.GetOrdinal("Id")),
                             Method = reader.GetString(reader.GetOrdinal("Method")),
                             PaperFilter = reader.GetBoolean(reader.GetOrdinal("PaperFilter")),
-                            BrewType = reader.GetString(reader.GetOrdinal("BrewType"))
+                            BrewType = reader.GetString(reader.GetOrdinal("BrewType")),
                         };
+                        if (!reader.IsDBNull(reader.GetOrdinal("ImagePath")))
+                        {
+                            brewMethod.ImagePath = reader.GetString(reader.GetOrdinal("ImagePath"));
+                        }
+                        else
+                        {
+                            brewMethod.ImagePath = null;
+                        }
 
                         allBrewMethods.Add(brewMethod);
                     }

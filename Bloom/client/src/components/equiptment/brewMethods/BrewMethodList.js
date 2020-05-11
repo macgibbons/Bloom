@@ -8,17 +8,16 @@ export default (props) => {
     // ***** CONTEXT *****
     const { brewMethods } = useContext(BrewMethodContext)
 
-  
    
     return (
         <div className="coffee--view">
+            <div className="container--title">What are you brewing today?</div>
           
-            <div className="coffee--container">
-
+            <div className="method--container">
             {
                 brewMethods.map(brewMethod => {
 
-                    return <BrewMethod key={brewMethod.id} brewMethod={brewMethod}  />
+                    return <BrewMethod key={brewMethod.id} brewMethod={brewMethod} {...props}  />
                 })                
             }
             
