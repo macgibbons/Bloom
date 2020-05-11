@@ -21,6 +21,9 @@ function Header({ history }) {
           <li  className="nav-item">
            <Link to="/Equiptment">My Gear</Link>
           </li>
+          <li  className="nav-item">
+           <Link to="/Explore">Explore</Link>
+          </li>
           <h1 className="nav-item">
             <Link to="/">Bloom</Link>
           </h1>

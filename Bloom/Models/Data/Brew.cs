@@ -25,6 +25,7 @@ namespace Capstone.Models.Data
         public Bean Bean { get; set; }
         public string UserId { get; set; }
         public ApplicationUser User { get; set; }
-    
+        public bool Shared { get; set; }
+
     }
 }

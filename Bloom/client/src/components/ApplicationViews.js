@@ -16,6 +16,7 @@ import BrewForm from "./brews/BrewForm";
 import BrewDetails from "./brews/BrewDetails";
 import BeanDetails from "./beans/BeanDetails";
 import BrewQuickForm from "./brews/BrewQuickForm";
+import Explore from "./shared/Explore";
 
 export default function ApplicationViews(props) {
   return (
@@ -29,6 +30,7 @@ export default function ApplicationViews(props) {
               <Route exact path="/Coffee" render={(props) => <BeanList {...props} />} />
               <Route exact path="/Brews" render={(props) => <BrewList {...props} />} />
               <Route exact path="/Equiptment" render ={() => <GrinderList />} />
+              <Route exact path="/Explore" render ={() => <Explore />} />
               <Route exact path="/Grinders/create" render = {
                                 props => <GrinderForm {...props} />
                             } />
