@@ -15,6 +15,7 @@ import BrewList from "./brews/BrewList";
 import BrewForm from "./brews/BrewForm";
 import BrewDetails from "./brews/BrewDetails";
 import BeanDetails from "./beans/BeanDetails";
+import BrewQuickForm from "./brews/BrewQuickForm";
 
 export default function ApplicationViews(props) {
   return (
@@ -39,6 +40,9 @@ export default function ApplicationViews(props) {
                         } />
               <Route exact path="/brews/create" render = {
                                 props => <BrewForm {...props} />
+                            } />
+              <Route exact path="/brews/quick/:brewMethodId(\d+)" render = {
+                                props => <BrewQuickForm {...props} />
                             } />
               <Route path="/brews/edit/:brewId(\d+)" render={
                             props => <BrewForm {...props} />
