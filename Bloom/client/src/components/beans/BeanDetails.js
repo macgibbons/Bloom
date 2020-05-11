@@ -37,7 +37,15 @@ export default (props) => {
 
     const deleteConfirm = () => {
         if(window.confirm(`Are you sure you want to delete this brew? This action cannot be undone`))
-          {deleteBean(bean.id).then(() => {
+        debugger
+          { Beansbrews.length >= 1 ?
+            deleteBean(bean.id).then( () => {
+
+                Beansbrews.forEach( b => {  deleteBrew(b.id) } )  
+            }).then(() => {
+                props.history.push("/coffee")
+            })
+             : deleteBean(bean.id).then(() => {
             props.history.push("/coffee")
         })
           }}
