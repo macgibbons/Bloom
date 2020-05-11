@@ -12,7 +12,6 @@ export default ({brewMethod, history}) => {
    
     return (
     <section className="">
-
         <div className="brewMethod" 
         onClick={()=> {
             updateApplicationView()
