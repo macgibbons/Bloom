@@ -14,6 +14,7 @@ import { BrewProvider } from "./brews/BrewProvider";
 import BrewList from "./brews/BrewList";
 import BrewForm from "./brews/BrewForm";
 import BrewDetails from "./brews/BrewDetails";
+import BeanDetails from "./beans/BeanDetails";
 
 export default function ApplicationViews(props) {
   return (
@@ -45,6 +46,10 @@ export default function ApplicationViews(props) {
               <Route path="/coffee/edit/:beanId(\d+)" render={
                             props => <BeanForm {...props} />
                         } />
+
+              <Route path ="/coffee/:beanId(\d+)" render= {
+                            props => <BeanDetails {...props} />
+              } />
             </RegionProvider>
           </GrinderProvider>
         </BeanProvider>

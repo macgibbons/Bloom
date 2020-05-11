@@ -119,12 +119,12 @@ export default props => {
                     })
                         .then(() => props.history.push("/brews"))
                 } else {
-                
+                debugger
                     addBrew({
                         id: brew.id,
                         coffeeDose: parseInt(brew.coffeeDose),
                         waterDose: parseInt(brew.waterDose),
-                        waterTemp: brew.waterTemp === undefined ? 212 : parseInt(brew.WaterTemp),
+                        waterTemp: brew.waterTemp === undefined ? 212 : parseInt(brew.waterTemp),
                         brewTime: brewTime, //moment.duration('0:30', 'm:ss').asSeconds() / 60
                         rating: rating ? rating : 0,
                         notes: brew.notes ? brew.notes : "",
