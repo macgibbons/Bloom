@@ -14,7 +14,7 @@ export default ({bean, history }) => {
 
         <div className="coffee--card">
             <div className="coffee--title">
-                <Link  className="" to={`/Coffee/${bean.id}`}>
+                <Link  className="card--link" to={`/Coffee/${bean.id}`}>
                     { bean.beanName }
                 </Link>
             </div>
