@@ -41,14 +41,17 @@ namespace Capstone.Controllers.V1
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT b.Id, b.CoffeeDose, b.WaterDose, b.WaterTemp, b.Notes, b.GrindSetting, b.GrinderId,  b.BrewDate, b.Rating, b.BrewTime, b.UserId, b.BeanId, b.BrewMethodId,
+                        SELECT b.Id, b.CoffeeDose, b.WaterDose, b.WaterTemp, b.Notes, b.GrindSetting, b.GrinderId,  b.BrewDate, b.Rating, b.BrewTime, b.UserId, b.BeanId, b.BrewMethodId, b.Shared,
                                c.Id, c.BeanName, c.Origin, c.Roaster, 
-                               bm.Method, bm.Id 
+                               bm.Method, bm.Id,
+                               u.Id, u.FirstName, u.LastName
                         FROM Brew b
                         LEFT JOIN Bean c
                         ON b.BeanId = c.Id
                         LEFT JOIN BrewMethod bm
                         ON b.BrewMethodId = bm.Id
+                        LEFT JOIN AspNetUsers u
+                        ON b.UserId = u.Id
                         WHERE 1 = 1 
                         ";
 
@@ -73,7 +76,13 @@ namespace Capstone.Controllers.V1
                             WaterTemp = reader.GetInt32(reader.GetOrdinal("WaterTemp")),
                             GrindSetting = reader.GetInt32(reader.GetOrdinal("GrindSetting")),
                             GrinderId = reader.GetInt32(reader.GetOrdinal("GrinderId")),
+                            Shared = reader.GetBoolean(reader.GetOrdinal("Shared")),
                             BrewMethodId = reader.GetInt32(reader.GetOrdinal("BrewMethodId")),
+                            User = new ApplicationUser()
+                            {
+                                FirstName = reader.GetString(reader.GetOrdinal("FirstName")),
+                                LastName = reader.GetString(reader.GetOrdinal("LastName"))
+                            },
                             Bean = new Bean()
                             {
                                 Id = reader.GetInt32(reader.GetOrdinal("BeanId")),
