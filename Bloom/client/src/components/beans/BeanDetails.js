@@ -20,10 +20,10 @@ export default (props) => {
     const user = getUser()
 
     // ****************** USER DATA **********************
-    const choseBeanId = parseInt(props.match.params.beanId, 10)
-    //const brew = brews.find(brew => brew.id === chosenBrewId) || {}
-   // const brewMethod = brewMethods.find(brewMethod => brewMethod.id === brew.brewMethodId) || {}
-    const bean = beans.find(bean => bean.id === choseBeanId) || {}
+    const chosenBeanId = parseInt(props.match.params.beanId, 10)
+    // const brewMethod = brewMethods.find(brewMethod => brewMethod.id === brew.brewMethodId) || {}
+    const bean = beans.find(bean => bean.id === chosenBeanId) || {}
+    const Beansbrews = brews.filter(brew => brew.beanId === bean.id) || {}
    // const grinder = grinders.find(grinder => grinder.id === brew.grinderId) || {}
    
     // ****************** OTHER **********************
@@ -37,7 +37,7 @@ export default (props) => {
 
     const deleteConfirm = () => {
         if(window.confirm(`Are you sure you want to delete this brew? This action cannot be undone`))
-          {deleteBrew(bean.id).then(() => {
+          {deleteBean(bean.id).then(() => {
             props.history.push("/coffee")
         })
           }}
@@ -47,7 +47,6 @@ export default (props) => {
 
             <div className="detail--header">
 
-                {/* <div  className="detail--title">{brewMethod.method}</div> */}
 
                 <div className="detail--buttons">
 
@@ -57,7 +56,7 @@ export default (props) => {
                     </div>
 
                     <div className="btn edit--btn detail--btn"
-                        onClick={ () => { props.history.push(`/brews/edit/${bean.id}`) } }>
+                        onClick={ () => { props.history.push(`/coffee/edit/${bean.id}`) } }>
                         <img className="icon" src={require ('../../icons/edit.svg')}/>
                     </div>
                     
@@ -71,18 +70,31 @@ export default (props) => {
                 <div>{bean.beanName}</div>
                 <div>{bean.roaster}</div>
                 <div>{bean.origin}</div>
-                {/* <div>{moment(brew.brewDate).format('MM | DD | YY')}</div>
-                <div>Bloom Length: {brew.bloom}s</div>
-                <div>Brew Time: { moment.utc(brew.brewTime * 1000).format('m:ss')}</div>
-                <div>Grinder: {grinder.brand} {grinder.model}</div>
-                <div>Grinder setting: {brew.grindSetting}</div>
-                <div>Dose: {brew.coffeeDose}g</div>
-                <div>Water Dose: {brew.waterDose}g</div>
-                <div> Brew Ratio: 1 : {brewRatio % 1 === 0 ? brewRatio : brewRatio.toFixed(1)}</div> 
-       */}
+                <div>{bean.quantity}g</div>
+                <div>{bean.roastLevel} roast</div>
+                <div>Roast Date: {moment(bean.roastDate).format('MM | DD | YY')}</div>
+                <div>{bean.masl} MASL</div>
+                <div>process: {bean.process}</div>
+                <div>{bean.tastingNotes}</div>
                 <div className="card--detailPair">
                     <div className="card--subTitle">Notes: {bean.notes}</div>
-                    <p></p>
+            
+                </div>
+                <div>{
+                    Beansbrews.length >= 1 ?
+                    <>
+                    <div>Brews:</div>
+                        <ul>
+                            {
+                                Beansbrews.map(
+                                    b => <li>{b.coffeeDose}g {b.waterDose}g {b.brewMethod.method} { moment.utc(b.brewTime * 1000).format('m:ss')}</li>
+                                    
+                                )
+                            }
+                        </ul>
+                    </> : <div>No Brews Yet</div>
+
+                    }
                 </div>
             </div>
 
