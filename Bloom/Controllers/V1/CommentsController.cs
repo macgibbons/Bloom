@@ -72,7 +72,48 @@ namespace Capstone.Controllers.V1
             }
         }
 
-     
+
+        //----------GET by Id----------
+        [HttpGet("{id}", Name = "GetComment")]
+        public async Task<IActionResult> Get([FromRoute] int id)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        SELECT * FROM Comment
+                        WHERE Id = @id";
+                    cmd.Parameters.Add(new SqlParameter("@id", id));
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    Comment comment = null;
+
+                    if (reader.Read())
+                    {
+                        comment = new Comment()
+                        {
+                            Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                            DatePosted = reader.GetDateTime(reader.GetOrdinal("DatePosted")),
+                            Text = reader.GetString(reader.GetOrdinal("Text")),
+                            UserId = reader.GetString(reader.GetOrdinal("UserId")),
+                            BrewId = reader.GetInt32(reader.GetOrdinal("BrewId")),
+                        };
+
+
+                        reader.Close();
+
+                        return Ok(comment);
+                    }
+                    else
+                    {
+                        return NotFound();
+                    }
+                }
+            }
+        }
+
         //----------POST----------
 
         [HttpPost]
