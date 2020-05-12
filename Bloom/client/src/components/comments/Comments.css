@@ -46,3 +46,10 @@
     color: black;
     text-align: end;
 }
+
+.comment--input {
+    background-color: white;
+    border: none;
+    border-radius: 8px;
+    padding: .25em;
+}

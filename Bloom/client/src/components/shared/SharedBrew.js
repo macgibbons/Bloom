@@ -79,7 +79,7 @@ return (
             </div>
             <input className="comment--input" type='text' placeholder="comment..." onChange={evt => setComment(evt.target.value)}/>
             
-            <button className="submit-btn" onClick={evt => {
+            <button className="submit--btn" onClick={evt => {
                     evt.preventDefault()
                     constructNewComment()}}>submit</button>
             <div className="card--controls">
@@ -95,7 +95,7 @@ return (
                     }} >edit</div> 
                 </>:
                 <>
-                <div>comment:</div>
+                <div></div>
                 </>
                 }
                 
