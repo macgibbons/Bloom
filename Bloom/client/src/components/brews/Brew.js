@@ -9,6 +9,7 @@ export default ({ brew, history}) => {
     const user = getUser()
     const { deleteBrew, updateBrew } = useContext(BrewContext)
     const [share, setShare] = useState(false)
+    const [unshare, setUnshare ] = useState(false)
   
     const deleteConfirm = () => {
      if(window.confirm(`Are you sure you want to delete this brew? This action cannot be undone`))
@@ -16,7 +17,7 @@ export default ({ brew, history}) => {
        }}
 
        const shareConfirm = () => {
-           if(window.confirm(`are you sure you want to share your brew of ${brew.bean.beanName}?`))
+           if(window.confirm(`Are you sure you want to share your brew of ${brew.bean.beanName}?`))
            {
             updateBrew({
             id: brew.id,
@@ -35,7 +36,26 @@ export default ({ brew, history}) => {
             userId: user.id
            }).then(setShare(true))}
        }
-
+       const unshareConfirm = () => {
+        if(window.confirm(`Are you sure you want to remove your post from the explore page?`))
+        {
+         updateBrew({
+         id: brew.id,
+         coffeeDose:brew.coffeeDose,
+         waterDose: brew.waterDose,
+         waterTemp: brew.waterTemp,
+         brewTime: brew.brewTime,
+         rating: brew.rating,
+         notes: brew.notes,
+         brewDate: brew.brewDate,
+         grindSetting: brew.grindSetting,
+         grinderId:brew.grinderId,
+         brewMethodId: brew.brewMethodId,
+         beanId: brew.beanId,
+         shared: false,
+         userId: user.id
+        }).then(setUnshare(true))}
+    }
     
 return (
     <section className="">
@@ -63,7 +83,9 @@ return (
             <div className="card--controls">
                 { 
                     brew.shared ? 
-                        <div></div>
+                    <div className="card--control"
+                    onClick={()=>{ unshareConfirm() }
+                    }>unshare</div>
                         :
                         <div className="card--control"
                             onClick={()=>{ shareConfirm() }
@@ -78,6 +100,7 @@ return (
                 }} >edit</div>
             </div>
             <div> {share ? `successfully shared` : ""}</div>
+            <div> {unshare ? `successfully removed` : ""}</div>
         </div>
 
 
