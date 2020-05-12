@@ -20,6 +20,7 @@ namespace Capstone.Data
         public DbSet<Region> Region { get; set; }
         public DbSet<BrewMethod> BrewMethod { get; set; }
         public DbSet<Brew> Brew { get; set; }
+        public DbSet<Comment> Comment { get; set; }
 
 
         public DbSet<RefreshToken> RefreshToken { get; set; }
@@ -161,7 +162,15 @@ namespace Capstone.Data
                     BrewType = "Other"
                 }
             );
-
+            modelBuilder.Entity<Comment>().HasData(
+                new Comment()
+                {
+                    Id = 1,
+                    DatePosted = DateTime.Now,
+                    UserId = "00000000-ffff-ffff-ffff-ffffffffffff",
+                    BrewId = 1010,
+                    Text = "looks so good!"
+                });
             modelBuilder.Entity<Brew>().HasData(
             new Brew()
             {

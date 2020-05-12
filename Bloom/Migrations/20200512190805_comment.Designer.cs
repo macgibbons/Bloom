@@ -4,14 +4,16 @@ using Capstone.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Capstone.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200512190805_comment")]
+    partial class comment
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -94,7 +96,7 @@ namespace Capstone.Migrations
                         {
                             Id = "00000000-ffff-ffff-ffff-ffffffffffff",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "89e0fa12-2cfe-4092-a262-55ac18ee50d2",
+                            ConcurrencyStamp = "9a7407d0-3fc4-4c2e-819b-f81d75ec3135",
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             FirstName = "admin",
@@ -102,7 +104,7 @@ namespace Capstone.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEL14asUvFcSZ9+dIztG8shSD4hX/gogyEct/R50VOUhuhg78ThHiLotSHIQbUzRBAQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEOvUhBv0+TDjs9TZErSK4AY4oYjXncM903658kJGZnuWwAMF6PbdIDM9uVHo0deTWg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "7f434309-a4d9-48e9-9ebb-8803db794577",
                             TwoFactorEnabled = false,
@@ -269,7 +271,7 @@ namespace Capstone.Migrations
                             Id = 1,
                             BeanId = 1,
                             Bloom = 30,
-                            BrewDate = new DateTime(2020, 5, 12, 14, 13, 37, 54, DateTimeKind.Local).AddTicks(4135),
+                            BrewDate = new DateTime(2020, 5, 12, 14, 8, 5, 259, DateTimeKind.Local).AddTicks(9565),
                             BrewMethodId = 1,
                             BrewTime = 120,
                             CoffeeDose = 25.0,
@@ -286,7 +288,7 @@ namespace Capstone.Migrations
                             Id = 2,
                             BeanId = 1,
                             Bloom = 30,
-                            BrewDate = new DateTime(2020, 5, 12, 14, 13, 37, 54, DateTimeKind.Local).AddTicks(6795),
+                            BrewDate = new DateTime(2020, 5, 12, 14, 8, 5, 262, DateTimeKind.Local).AddTicks(2472),
                             BrewMethodId = 3,
                             BrewTime = 90,
                             CoffeeDose = 22.300000000000001,
@@ -303,7 +305,7 @@ namespace Capstone.Migrations
                             Id = 3,
                             BeanId = 2,
                             Bloom = 0,
-                            BrewDate = new DateTime(2020, 5, 12, 14, 13, 37, 54, DateTimeKind.Local).AddTicks(6865),
+                            BrewDate = new DateTime(2020, 5, 12, 14, 8, 5, 262, DateTimeKind.Local).AddTicks(2563),
                             BrewMethodId = 2,
                             BrewTime = 240,
                             CoffeeDose = 40.0,
@@ -321,7 +323,7 @@ namespace Capstone.Migrations
                             Id = 4,
                             BeanId = 2,
                             Bloom = 10,
-                            BrewDate = new DateTime(2020, 5, 12, 14, 13, 37, 54, DateTimeKind.Local).AddTicks(7281),
+                            BrewDate = new DateTime(2020, 5, 12, 14, 8, 5, 262, DateTimeKind.Local).AddTicks(3128),
                             BrewMethodId = 5,
                             BrewTime = 75,
                             CoffeeDose = 18.0,
@@ -400,44 +402,6 @@ namespace Capstone.Migrations
                             BrewType = "Other",
                             Method = "Other",
                             PaperFilter = true
-                        });
-                });
-
-            modelBuilder.Entity("Capstone.Models.Data.Comment", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("BrewId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("DatePosted")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Text")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BrewId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Comment");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            BrewId = 1010,
-                            DatePosted = new DateTime(2020, 5, 12, 14, 13, 37, 51, DateTimeKind.Local).AddTicks(9738),
-                            Text = "looks so good!",
-                            UserId = "00000000-ffff-ffff-ffff-ffffffffffff"
                         });
                 });
 
@@ -706,19 +670,6 @@ namespace Capstone.Migrations
                     b.HasOne("Capstone.Models.Data.Grinder", "Grinder")
                         .WithMany()
                         .HasForeignKey("GrinderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Capstone.Models.Data.ApplicationUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("Capstone.Models.Data.Comment", b =>
-                {
-                    b.HasOne("Capstone.Models.Data.Brew", "Brew")
-                        .WithMany()
-                        .HasForeignKey("BrewId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
