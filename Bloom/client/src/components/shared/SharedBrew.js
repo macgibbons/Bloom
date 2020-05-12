@@ -3,11 +3,18 @@ import { Link } from "react-router-dom"
 import moment from 'moment';
 import { BrewContext } from "../brews/BrewProvider";
 import { getUser } from "../../API/userManager";
+import { CommentContext } from "../comments/CommentProvider";
+import { BeanContext } from "../beans/BeanProvider";
+import Comment from "../comments/Comment";
 
 export default ({ brew, history}) => {
     const user = getUser()
-    const { deleteBrew } = useContext(BrewContext)
+
+    const { comments } = useContext(CommentContext)
+    const { deleteBrew, brews } = useContext(BrewContext)
   
+    const brewComments = comments.filter(comment => comment.brewId === brew.id)
+    console.log(brewComments)
     const deleteConfirm = () => {
      if(window.confirm(`Are you sure you want to delete this brew? This action cannot be undone`))
        {deleteBrew(brew.id)
@@ -36,6 +43,15 @@ return (
                 <div>{ brew.coffeeDose }g</div>
                 <div>{ brew.waterDose }g</div>
                 <div>{ moment.utc(brew.brewTime * 1000).format('m:ss') }</div>
+            </div>
+            <div>
+                { brewComments.length > 0 ? 
+                    brewComments.map(comment => {
+
+                        return <Comment key={comment.id} comment={comment} />})
+                    :
+                    "be the first to comment"
+                }
             </div>
             <div className="card--controls">
                 {
