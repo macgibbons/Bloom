@@ -18,6 +18,10 @@
     display: flex;
 
 }
+
+.comment--user {
+    font-family: Archivo;
+}
 .comment--date {
     font-size: x-small;
     color: black;

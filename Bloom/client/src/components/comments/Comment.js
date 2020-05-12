@@ -8,8 +8,9 @@ import { FaRegUserCircle } from "react-icons/fa"
 export default ({ comment }) => {
   const { deleteComment } = useContext(CommentContext)
   var moment = require('moment')
-
-
+  var timestamp = moment(comment.datePosted)
+  var timePassed = timestamp.from(moment())
+console.log(moment().from(timestamp))
   const deleteConfirm = () => {
    if(window.confirm(`Are you sure you want to delete this comment`))
      {deleteComment (comment.id)
@@ -21,12 +22,12 @@ export default ({ comment }) => {
         <div className="comment--content">
             <FaRegUserCircle size={20}/>
             <div className="comment--text">
-                <div className="comment--date">{comment.user.firstName} {comment.user.lastName}</div>
+                <div className="comment--user">{comment.user.firstName} {comment.user.lastName}</div>
                 <div>{comment.text}</div>
             </div>
         </div>
-        
-        <div className="comment--date">{ moment(comment.datePosted).format('MMMM DD YYYY') }</div>
+
+        <div className="comment--date">{timePassed}</div>
 
 
         
