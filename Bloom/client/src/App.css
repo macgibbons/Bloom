@@ -47,6 +47,16 @@ input[type="radio"] {
   display: none
 }
 
+.filter{
+  width: 20%;
+}
+
+input.filter {
+  background-color: white;
+  border-radius: 8px;
+  border: none;
+  margin-left: 10px;
+}
 .title {
   text-align: center;
 }
@@ -66,4 +76,12 @@ input[type="radio"] {
 .container--title {
   text-align: center;
   font-size: 20pt;
+}
+
+.empty--state {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto
 }
