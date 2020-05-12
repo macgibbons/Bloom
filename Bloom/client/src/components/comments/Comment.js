@@ -10,6 +10,7 @@ export default ({ comment }) => {
   var moment = require('moment')
   var timestamp = moment(comment.datePosted)
   var timePassed = timestamp.from(moment())
+  
 console.log(moment().from(timestamp))
   const deleteConfirm = () => {
    if(window.confirm(`Are you sure you want to delete this comment`))
@@ -27,7 +28,7 @@ console.log(moment().from(timestamp))
             </div>
         </div>
 
-        <div className="comment--date">{timePassed}</div>
+        <div className="comment--date" >{timePassed}</div>
 
 
         

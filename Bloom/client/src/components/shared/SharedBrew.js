@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React, { useContext, useState } from "react"
 import { Link } from "react-router-dom"
 import moment from 'moment';
 import { BrewContext } from "../brews/BrewProvider";
@@ -10,15 +10,34 @@ import Comment from "../comments/Comment";
 export default ({ brew, history}) => {
     const user = getUser()
 
-    const { comments } = useContext(CommentContext)
+    const { comments, addComment } = useContext(CommentContext)
     const { deleteBrew, brews } = useContext(BrewContext)
   
+    const [comment, setComment] = useState(null)
+
     const brewComments = comments.filter(comment => comment.brewId === brew.id)
     console.log(brewComments)
     const deleteConfirm = () => {
      if(window.confirm(`Are you sure you want to delete this brew? This action cannot be undone`))
        {deleteBrew(brew.id)
        }}
+
+       const constructNewComment = () => {
+        debugger
+
+        
+                addComment({
+                   
+                    text: comment,
+                    brewId: brew.id,
+                    datePosted: moment().format(),
+                    userId: user.id
+                })
+                   
+            
+        
+        
+    }
 
 return (
     <section className="">
@@ -53,6 +72,11 @@ return (
                     "be the first to comment"
                 }
             </div>
+            <input className="comment--input" type='text' placeholder="comment..." onChange={evt => setComment(evt.target.value)}/>
+            
+            <button className="submit-btn" onClick={evt => {
+                    evt.preventDefault()
+                    constructNewComment()}}>submit</button>
             <div className="card--controls">
                 {
                     user.id === brew.userId ?

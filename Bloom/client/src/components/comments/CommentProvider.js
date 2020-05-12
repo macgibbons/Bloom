@@ -16,6 +16,7 @@ export const CommentProvider = (props) => {
     }
 
     const addComment = comment => { 
+        debugger
         return fetch("https://localhost:5001/api/comments", {
             method: "POST",
             headers: {
