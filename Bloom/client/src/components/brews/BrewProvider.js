@@ -28,6 +28,7 @@ export const BrewProvider = (props) => {
     }
 
     const updateBrew = brew => {
+        debugger
         return fetch(`https://localhost:5001/api/brews/${brew.id}`, {
             method: "PUT",
             headers: {
