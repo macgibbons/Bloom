@@ -8,37 +8,42 @@ import { BeanContext } from "../beans/BeanProvider";
 import Comment from "../comments/Comment";
 
 export default ({ brew, history}) => {
+    // ***** USER *****
     const user = getUser()
 
+     // ***** CONTEXT *****
     const { comments, addComment } = useContext(CommentContext)
     const { deleteBrew, brews } = useContext(BrewContext)
   
+     // ***** STATE *****
     const [comment, setComment] = useState(null)
 
+     // ***** DATA *****
     const brewComments = comments.filter(comment => comment.brewId === brew.id)
-    console.log(brewComments)
+
+     // ***** API *****
     const deleteConfirm = () => {
+
      if(window.confirm(`Are you sure you want to delete this brew? This action cannot be undone`))
        {deleteBrew(brew.id)
        }}
 
-       const constructNewComment = () => {
-        debugger
+    const constructNewComment = () => {
 
-        
-                addComment({
-                   
-                    text: comment,
-                    brewId: brew.id,
-                    datePosted: moment().format(),
-                    userId: user.id
-                })
-                   
-            
-        
-        
+       if(comment === ''){
+
+       } else {
+           addComment({
+              
+               text: comment,
+               brewId: brew.id,
+               datePosted: moment().format(),
+               userId: user.id
+           })
+       }
     }
 
+     // ***** COMPONENT *****
 return (
     <section className="">
         <div className="coffee--card">

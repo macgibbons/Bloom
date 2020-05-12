@@ -7,11 +7,22 @@
 .comment--content{
     display:flex;
     align-items: center;
+    font-size: x-small;
+}
+
+.userComment--content{
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
     font-size: small;
+    justify-content: flex-start;
 }
 
 .comment--text {
-    margin-left: .5em;
+    display: flex;
+    justify-content: space-evenly;
+    /* margin-left: .5em;
+    margin-right: .5em; */
     border-radius: 20px;
     background-color: rgb(226, 217, 205);
     padding: .5em;
