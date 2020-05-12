@@ -17,50 +17,53 @@ import BrewDetails from "./brews/BrewDetails";
 import BeanDetails from "./beans/BeanDetails";
 import BrewQuickForm from "./brews/BrewQuickForm";
 import Explore from "./shared/Explore";
+import { CommentProvider } from "./comments/CommentProvider";
 
 export default function ApplicationViews(props) {
   return (
     <>
-    <BrewProvider>
-      <BrewMethodProvider>
-        <BeanProvider>
-          <GrinderProvider>
-            <RegionProvider>
-              <Route exact path="/" render={ props => <BrewMethodList {...props} />} />
-              <Route exact path="/Coffee" render={(props) => <BeanList {...props} />} />
-              <Route exact path="/Brews" render={(props) => <BrewList {...props} />} />
-              <Route exact path="/Equiptment" render ={() => <GrinderList />} />
-              <Route exact path="/Explore" render ={() => <Explore />} />
-              <Route exact path="/Grinders/create" render = {
-                                props => <GrinderForm {...props} />
-                            } />
-              <Route exact path="/coffee/create" render = {
-                                props => <BeanForm {...props} />
-                            } />
-               <Route path="/brews/:brewId(\d+)" render={
-                            props => <BrewDetails {...props} />
-                        } />
-              <Route exact path="/brews/create" render = {
-                                props => <BrewForm {...props} />
-                            } />
-              <Route exact path="/brews/quick/:brewMethodId(\d+)" render = {
-                                props => <BrewQuickForm {...props} />
-                            } />
-              <Route path="/brews/edit/:brewId(\d+)" render={
-                            props => <BrewForm {...props} />
-                        } />
-              <Route path="/coffee/edit/:beanId(\d+)" render={
-                            props => <BeanForm {...props} />
-                        } />
+    <CommentProvider>
+      <BrewProvider>
+        <BrewMethodProvider>
+          <BeanProvider>
+            <GrinderProvider>
+              <RegionProvider>
+                <Route exact path="/" render={ props => <BrewMethodList {...props} />} />
+                <Route exact path="/Coffee" render={(props) => <BeanList {...props} />} />
+                <Route exact path="/Brews" render={(props) => <BrewList {...props} />} />
+                <Route exact path="/Equiptment" render ={() => <GrinderList />} />
+                <Route exact path="/Explore" render ={() => <Explore />} />
+                <Route exact path="/Grinders/create" render = {
+                                  props => <GrinderForm {...props} />
+                              } />
+                <Route exact path="/coffee/create" render = {
+                                  props => <BeanForm {...props} />
+                              } />
+                <Route path="/brews/:brewId(\d+)" render={
+                              props => <BrewDetails {...props} />
+                          } />
+                <Route exact path="/brews/create" render = {
+                                  props => <BrewForm {...props} />
+                              } />
+                <Route exact path="/brews/quick/:brewMethodId(\d+)" render = {
+                                  props => <BrewQuickForm {...props} />
+                              } />
+                <Route path="/brews/edit/:brewId(\d+)" render={
+                              props => <BrewForm {...props} />
+                          } />
+                <Route path="/coffee/edit/:beanId(\d+)" render={
+                              props => <BeanForm {...props} />
+                          } />
 
-              <Route path ="/coffee/:beanId(\d+)" render= {
-                            props => <BeanDetails {...props} />
-              } />
-            </RegionProvider>
-          </GrinderProvider>
-        </BeanProvider>
-      </BrewMethodProvider>
-    </BrewProvider>
+                <Route path ="/coffee/:beanId(\d+)" render= {
+                              props => <BeanDetails {...props} />
+                } />
+              </RegionProvider>
+            </GrinderProvider>
+          </BeanProvider>
+        </BrewMethodProvider>
+      </BrewProvider>
+    </CommentProvider>
 
     </>
   );
