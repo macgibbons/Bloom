@@ -5,6 +5,8 @@ import { register } from "../API/userManager";
 function Register({ history }) {
   const [username, setUsername] = useState();
   const [email, setEmail] = useState();
+  const [firstName, setFirstName] = useState();
+  const [lastName, setLastName] = useState();
   const [password, setPassword] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
   const [errors, setErrors] = useState([]);
@@ -14,6 +16,8 @@ function Register({ history }) {
     register({
       username,
       email,
+      firstName, 
+      lastName,
       password,
       confirmPassword,
     })
@@ -48,6 +52,28 @@ function Register({ history }) {
           required
           placeholder="example@email.com"
           onChange={(e) => setEmail(e.target.value)}
+        />
+      </div>
+      <div>
+        <label htmlFor="firstName">First Name</label>
+        <input
+          id="firstName"
+          name="firstName"
+          type="firstName"
+          required
+          placeholder="First Name..."
+          onChange={(e) => setFirstName(e.target.value)}
+        />
+      </div>
+      <div>
+        <label htmlFor="lastName">Last Name</label>
+        <input
+          id="lastName"
+          name="lastName"
+          type="lastName"
+          required
+          placeholder="Last Name..."
+          onChange={(e) => setLastName(e.target.value)}
         />
       </div>
       <div>
