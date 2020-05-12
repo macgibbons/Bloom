@@ -39,8 +39,10 @@ namespace Capstone.Controllers.V1
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT *
-                        FROM Comment 
+                        SELECT c.Id, c.DatePosted, c.Text, c.UserId, C.BrewId, u.Id, u.UserName, u.FirstName, u.LastName
+                        FROM Comment c
+                        LEFT JOIN ASPNetUsers u
+                        ON c.UserId = u.Id
                         WHERE 1 = 1 
                         ";
 
@@ -59,6 +61,13 @@ namespace Capstone.Controllers.V1
                             Text = reader.GetString(reader.GetOrdinal("Text")),
                             UserId = reader.GetString(reader.GetOrdinal("UserId")),
                             BrewId = reader.GetInt32(reader.GetOrdinal("BrewId")),
+                            User = new ApplicationUser()
+                            {
+                                Id = reader.GetString(reader.GetOrdinal("UserId")),
+                                UserName = reader.GetString(reader.GetOrdinal("UserName")),
+                                FirstName = reader.GetString(reader.GetOrdinal("FirstName")),
+                                LastName = reader.GetString(reader.GetOrdinal("LastName"))
+                            }
 
                         };
 
@@ -98,7 +107,8 @@ namespace Capstone.Controllers.V1
                             DatePosted = reader.GetDateTime(reader.GetOrdinal("DatePosted")),
                             Text = reader.GetString(reader.GetOrdinal("Text")),
                             UserId = reader.GetString(reader.GetOrdinal("UserId")),
-                            BrewId = reader.GetInt32(reader.GetOrdinal("BrewId")),
+                            BrewId = reader.GetInt32(reader.GetOrdinal("BrewId"))
+                            
                         };
 
 
