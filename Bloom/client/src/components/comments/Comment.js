@@ -34,10 +34,11 @@ return(
         <FaRegUserCircle size={20}/>
         <div className="comment--text">
         
-            <div className="comment--user">{comment.user.firstName} {comment.user.lastName}</div>
+            <div className="comment--user">{user.id === comment.userId ? "" : comment.user.firstName + ": " }</div>
             <div>{comment.text}</div>
         </div>
 </div>
+<div className={user.id === comment.userId ? "userComment--date":"comment--date"} >{timePassed}</div>
 {/* 
         {user.id === comment.userId ?
         
@@ -66,7 +67,6 @@ return(
     } */}
 
 
-        <div className="comment--date" >{timePassed}</div>
 
 
         
