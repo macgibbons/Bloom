@@ -249,7 +249,7 @@ namespace Capstone.Controllers.V1
                     using (SqlCommand cmd = conn.CreateCommand())
                     {
                         cmd.CommandText = @"UPDATE Brew
-                                     SET CoffeeDose = @CoffeeDose, WaterDose = @WaterDose, WaterTemp = @WaterTemp, Bloom = @Bloom, BrewTime = @BrewTime, 
+                                     SET CoffeeDose = @CoffeeDose, WaterDose = @WaterDose, WaterTemp = @WaterTemp, Bloom = @Bloom, BrewTime = @BrewTime, Shared = @Shared,
                                      Rating = @Rating, BrewDate = @BrewDate, GrindSetting = @GrindSetting, GrinderId = @GrinderId, Notes = @Notes, BrewMethodId = @BrewMethodId,
                                      BeanId = @BeanId, UserId = @UserId
                                      WHERE Id = @id";
@@ -264,6 +264,7 @@ namespace Capstone.Controllers.V1
                         cmd.Parameters.Add(new SqlParameter("@BrewDate", brew.BrewDate));
                         cmd.Parameters.Add(new SqlParameter("@GrindSetting", brew.GrindSetting));
                         cmd.Parameters.Add(new SqlParameter("@GrinderId", brew.GrinderId));
+                        cmd.Parameters.Add(new SqlParameter("@Shared", brew.Shared));
                         cmd.Parameters.Add(new SqlParameter("@Notes", brew.Notes));
                         cmd.Parameters.Add(new SqlParameter("@BrewMethodId", brew.BrewMethodId));
                         cmd.Parameters.Add(new SqlParameter("@BeanId", brew.BeanId));
