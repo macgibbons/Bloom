@@ -7,7 +7,7 @@
 .comment--content{
     display:flex;
     align-items: center;
-    font-size: x-small;
+    font-size: small;
 }
 
 .userComment--content{
@@ -21,19 +21,28 @@
 .comment--text {
     display: flex;
     justify-content: space-evenly;
-    /* margin-left: .5em;
-    margin-right: .5em; */
+    margin-left: .5em;
+    margin-right: .5em; 
     border-radius: 20px;
     background-color: rgb(226, 217, 205);
     padding: .5em;
     display: flex;
+    align-items: center;
+    margin-bottom: .5em;
 
 }
 
 .comment--user {
     font-family: Archivo;
+    margin-right: .5em;
 }
 .comment--date {
-    font-size: x-small;
+    font-size: xx-small;
     color: black;
+}
+
+.userComment--date {
+    font-size: xx-small;
+    color: black;
+    text-align: end;
 }
