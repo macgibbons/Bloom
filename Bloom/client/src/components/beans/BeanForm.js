@@ -13,6 +13,7 @@ export default props => {
     const [selectedDate, setSelectedDate] = useState()
     const [rating, setRating] = useState("")
     const [error, setError] = useState("")
+    const [date, setDate ] = useState(bean.roastDate)
     
     const editMode = props.match.params.hasOwnProperty("beanId")
     const user = getUser();
@@ -70,17 +71,21 @@ export default props => {
             setError("Please specify a region")
         } else  if (bean.roaster === undefined) {
             setError("Please specify a roaster")
-        }  else if (selectedDate === undefined) {
-            setError("Please specify a roast date")
-        } else {
+        }  //else if (selectedDate || date === undefined) {
+           // setError("Please specify a roast date")
+      //  } 
+        else {
 
             if (editMode) {
-                updateBean({
+                debugger
+                updateBean(
+                    {
+                    
                     id: bean.id,
                     beanName: bean.beanName,
                     roastLevel: bean.roastLevel,
                     masl: bean.masl,
-                    roastDate: "2020-05-04T17:44:22.4066667",
+                    roastDate: selectedDate ? selectedDate : date,
                     quantity:parseInt(bean.quantity),
                     rating: rating ? rating : 0,
                     tastingNotes: bean.tastingNotes,
@@ -142,15 +147,10 @@ export default props => {
                 <fieldset>
                     <div className="stars room-form-group">
                         <label htmlFor="roastDate">Roast Date</label>
-                        <DateTime margin="auto" selected={selectedDate}
-                                  onChange={date => setSelectedDate(date)}
+                        <DateTime margin="auto" selected={selectedDate} defaultValue={date}
+                                  onChange={date => setSelectedDate(date) }
                         />
-                        {/* <input type="text" name="roastDate" required autoFocus className="form-control"
-                            proptype="varchar"
-                            placeholder="Name.."
-                            defaultValue={bean.beanName}
-                            onChange={handleControlledInputChange}
-                            /> */}
+                       
 
                     </div>
                 </fieldset>
