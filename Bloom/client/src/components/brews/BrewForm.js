@@ -101,6 +101,7 @@ export default props => {
             } else if (brew.beanId === undefined){
                 setError("Please specify a coffee")
             } else {
+                debugger
                 const brewTime = moment.duration(brew.brewTime, 'm:ss').asSeconds() / 60
 
                 if (editMode) {
@@ -110,7 +111,7 @@ export default props => {
                         coffeeDose: parseInt(brew.coffeeDose),
                         waterDose: parseInt(brew.waterDose),
                         waterTemp: parseInt(brew.waterTemp),
-                        brewTime: moment.duration(brew.brewTime, 'm:ss').asSeconds() / 60,
+                        brewTime: brewTime === 0 ? brew.brewTime : moment.duration(brew.brewTime, 'm:ss').asSeconds() / 60,
                         rating: rating ? rating : 0,
                         notes: brew.notes ? brew.notes : "",
                         brewDate: moment().format(),
@@ -118,7 +119,8 @@ export default props => {
                         grinderId: parseInt(brew.grinderId),
                         brewMethodId: parseInt(brew.brewMethodId),
                         beanId: parseInt(brew.beanId),
-                        userId: user.id
+                        userId: user.id,
+                        shared: brew.shared
                     })
                         .then(() => props.history.push("/brews"))
                 } else {
