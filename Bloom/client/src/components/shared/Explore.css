@@ -94,6 +94,7 @@ select.filter{
     align-items: flex-end;
     font-size: small;
     font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.5;
 }
 
 .EC--ratingForm {
@@ -107,4 +108,15 @@ select.filter{
 
 .EC--arrow:hover {
    cursor: pointer;
+}
+
+.EC--sort {
+    display: flex;
+    justify-content: space-between;
+    /* width: 25%; */
+}
+
+ .EC--sortDD {
+   width: 15%;
+   border: none;
 }
