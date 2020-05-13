@@ -4,6 +4,7 @@ import { getUser } from "../../API/userManager";
 import { BrewMethodContext } from "../equiptment/brewMethods/BrewMethodProvider";
 import SharedBrew from "./SharedBrew";
 import EmptyState from "../EmptyState";
+import './Explore.css'
 
 
 
@@ -37,19 +38,26 @@ export default (props) => {
     }
    
     return (
-        <div className="coffee--view">
-            <div className="">My Brews</div>
-          
-            <select className="filter" onChange={handleSelectChange} value={option}>
-                <option value={0}>please select a filter</option>
-                {
-                    brewMethods.map( b => <option value={b.id} > {b.method}</option>)
-                }
-          </select>
+        <div className="explore--view">
 
-          <input className="filter" type='text' placeholder="Search..." onChange={evt => setSearch(evt.target.value)}/>
-        
-            <div className="coffee--container">
+            <div className="explore--filters">
+
+               
+
+                    <select className="filter" onChange={handleSelectChange} value={option}>
+                        <option value={0}>please select a filter</option>
+                        {
+                            brewMethods.map( b => <option value={b.id} > {b.method}</option>)
+                        }
+                    </select>
+
+                    <input className="filter" type='text' placeholder="Search..." onChange={evt => setSearch(evt.target.value)}/>
+            
+            </div>
+         
+
+            <div className="explore--container">
+                        <div className="">explore</div>
               
             { 
                   option === '0' ? search === ''  ?  

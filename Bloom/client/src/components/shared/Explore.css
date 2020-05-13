@@ -1,0 +1,78 @@
+.explore--view {
+    display: flex;
+}
+.explore--filters{
+    display:flex;
+    flex-direction: column;
+    align-items: flex-end;
+    flex-basis: 20%;
+    margin: 5% 0;
+    position: sticky;
+}
+
+.filter{
+    width: 50% !important;
+    margin: 1em;
+
+}
+
+select.filter{
+    background-color: white;
+    border: none;
+    border-radius: 8px;
+}
+.explore--container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 5% 0;
+    flex-basis: 50%;
+    padding: .5em;
+}
+
+.explore--card {
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+    background-color: white;
+    border-radius: 4px;
+    margin: 1em 0;
+}
+
+.EC--header {
+    display: flex;
+    padding: 1.5%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    
+}
+
+.EC--User {
+    margin-left: .5em;
+}
+
+.EC--subheader {
+    font-size: small;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.EC--controls {
+    display: flex;
+    font-size: small;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 75%;
+    justify-content:  space-between;
+}
+
+.EC--content {
+    padding: 1.5%;
+    border-bottom: 1px solid  rgba(0, 0, 0, 0.2);
+}
+
+.EC--notes {
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.5;
+    border-bottom: 1px solid  rgba(0, 0, 0, 0.2);
+    padding-bottom: 1.5%;
+}
+
+.comment--section {
+    padding: 1.5%
+}
