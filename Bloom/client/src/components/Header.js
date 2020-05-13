@@ -30,7 +30,8 @@ function Header({ history }) {
           <li className="nav-item">
             <Link to="/brews">My Brews</Link>
           </li>
-            <li className="nav-item">Hello {user.username}</li>
+            <li className="nav-item">
+            <Link to={`/profile/${user.id}`}>Hello {user.username}</Link></li>
             <li className="nav-item" 
                 onClick={logout}>
                 Log out
