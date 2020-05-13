@@ -41,11 +41,16 @@ select.filter{
     display: flex;
     padding: 1.5%;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-    
+    justify-content: space-between;
+  
 }
 
 .EC--User {
     margin-left: .5em;
+}
+
+.EC--UserHeader{
+    display: flex;
 }
 
 .EC--subheader {
@@ -75,4 +80,31 @@ select.filter{
 
 .comment--section {
     padding: 1.5%
+}
+
+.EC--rating {
+    display: flex;
+    justify-content: flex-end;
+    width: 50%;
+}
+
+.EC--ratingDisplay {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: flex-end;
+    font-size: small;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.EC--ratingForm {
+    display: flex;
+    align-items: center;
+}
+
+.EC--arrow {
+    margin-left: .5em;
+}
+
+.EC--arrow:hover {
+   cursor: pointer;
 }

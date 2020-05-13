@@ -93,6 +93,14 @@ namespace Capstone.Data
                UserId = "00000000-ffff-ffff-ffff-ffffffffffff"
            });
 
+         modelBuilder.Entity<UserRating>().HasData(
+         new UserRating()
+         {
+             Id = 1,
+             Rating = 4,
+             BrewId = 1012,
+             UserId = "00000000-ffff-ffff-ffff-ffffffffffff"
+         });
 
             modelBuilder.Entity<Region>().HasData(
             new Region()
