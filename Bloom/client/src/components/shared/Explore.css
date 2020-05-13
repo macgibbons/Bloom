@@ -120,3 +120,8 @@ select.filter{
    width: 15%;
    border: none;
 }
+
+.comment--pair {
+    display: flex;
+    align-items: center;
+}

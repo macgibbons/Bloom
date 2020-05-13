@@ -3,6 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 using Capstone.Interfaces;
 using Capstone.Models.ViewModels;
 using Capstone.Routes.V1;
+using Microsoft.Data.SqlClient;
+using Capstone.Models.Data;
+using System.Collections.Generic;
+using Microsoft.Extensions.Configuration;
 
 namespace Capstone.Controllers.V1
 {
@@ -15,6 +19,8 @@ namespace Capstone.Controllers.V1
         {
             _userSerice = userService;
         }
+
+        
 
         [HttpPost(Api.User.Register)]
         public async Task<IActionResult> Register([FromBody] UserRegistrationViewModel user)
@@ -52,5 +58,8 @@ namespace Capstone.Controllers.V1
 
             return Ok(authResponse);
         }
+
+     
+        
     }
 }
