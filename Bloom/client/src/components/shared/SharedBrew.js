@@ -125,6 +125,9 @@ return (
                     {
                         userRatings.length === 0 ?
                         <>
+                        <div className="EC--ratingDisplay">
+
+                            <div>{ratingAmount === 0 ? `be the first to review` : `${averageRating}  (${ratingAmount})`}</div>
                         <div className="EC--ratingForm">
                             <StarRating className="rating--form" {...props} 
                                 selectedRating={setRating} 
@@ -134,6 +137,7 @@ return (
                             <img    className="EC--arrow" src={require ("../../icons/right.svg")} onClick={evt => {
                                     evt.preventDefault()
                                     constructNewRating()}} />
+                        </div>
                         </div>
                         </> : 
                         <>
