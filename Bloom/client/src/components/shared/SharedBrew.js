@@ -38,8 +38,9 @@ export default ({ brew, history}) => {
                text: comment,
                brewId: brew.id,
                datePosted: moment().format(),
-               userId: user.id
-           })
+               userId: user.id,
+               edited: false
+           }).then(setComment(null))
        }
     }
 
@@ -77,9 +78,11 @@ return (
                     "be the first to comment"
                 }
             </div>
-            <input className="comment--input" type='text' placeholder="comment..." onChange={evt => setComment(evt.target.value)}/>
+            <input className="comment--input" type='text' placeholder="comment..." onChange={evt => setComment(evt.target.value)} onKeyDown={evt => {
+                    
+                    evt.keyCode === 13 ? constructNewComment() : console.log(evt.keyCode)}}/>
             
-            <button className="submit--btn" onClick={evt => {
+            <button type="submt" className="submit--btn" onClick={evt => {
                     evt.preventDefault()
                     constructNewComment()}}>submit</button>
             <div className="card--controls">

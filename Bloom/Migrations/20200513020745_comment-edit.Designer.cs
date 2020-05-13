@@ -4,14 +4,16 @@ using Capstone.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Capstone.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200513020745_comment-edit")]
+    partial class commentedit
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -94,7 +96,7 @@ namespace Capstone.Migrations
                         {
                             Id = "00000000-ffff-ffff-ffff-ffffffffffff",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ab967b03-56b1-40ad-bab6-299baa4c5f9d",
+                            ConcurrencyStamp = "07d7c0ca-edfc-4a69-9680-eeffef4ce3d6",
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             FirstName = "admin",
@@ -102,7 +104,7 @@ namespace Capstone.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEHNvJWrYjbYU+X1wryLy6SRHIpu2CJLfvE6NP4xdyC11VM6oX5XMnNV+ZGV5k5aa0g==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFtfzfA36jjmqqM5b3ktHF+A475jwMl0iRz0elMTW9ZFAn6KdX1yYmqfLTnpcG9VdQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "7f434309-a4d9-48e9-9ebb-8803db794577",
                             TwoFactorEnabled = false,
@@ -269,7 +271,7 @@ namespace Capstone.Migrations
                             Id = 1,
                             BeanId = 1,
                             Bloom = 30,
-                            BrewDate = new DateTime(2020, 5, 12, 21, 10, 27, 304, DateTimeKind.Local).AddTicks(3836),
+                            BrewDate = new DateTime(2020, 5, 12, 21, 7, 45, 228, DateTimeKind.Local).AddTicks(8471),
                             BrewMethodId = 1,
                             BrewTime = 120,
                             CoffeeDose = 25.0,
@@ -286,7 +288,7 @@ namespace Capstone.Migrations
                             Id = 2,
                             BeanId = 1,
                             Bloom = 30,
-                            BrewDate = new DateTime(2020, 5, 12, 21, 10, 27, 304, DateTimeKind.Local).AddTicks(6315),
+                            BrewDate = new DateTime(2020, 5, 12, 21, 7, 45, 229, DateTimeKind.Local).AddTicks(878),
                             BrewMethodId = 3,
                             BrewTime = 90,
                             CoffeeDose = 22.300000000000001,
@@ -303,7 +305,7 @@ namespace Capstone.Migrations
                             Id = 3,
                             BeanId = 2,
                             Bloom = 0,
-                            BrewDate = new DateTime(2020, 5, 12, 21, 10, 27, 304, DateTimeKind.Local).AddTicks(6381),
+                            BrewDate = new DateTime(2020, 5, 12, 21, 7, 45, 229, DateTimeKind.Local).AddTicks(950),
                             BrewMethodId = 2,
                             BrewTime = 240,
                             CoffeeDose = 40.0,
@@ -321,7 +323,7 @@ namespace Capstone.Migrations
                             Id = 4,
                             BeanId = 2,
                             Bloom = 10,
-                            BrewDate = new DateTime(2020, 5, 12, 21, 10, 27, 304, DateTimeKind.Local).AddTicks(6816),
+                            BrewDate = new DateTime(2020, 5, 12, 21, 7, 45, 229, DateTimeKind.Local).AddTicks(1371),
                             BrewMethodId = 5,
                             BrewTime = 75,
                             CoffeeDose = 18.0,
@@ -438,8 +440,8 @@ namespace Capstone.Migrations
                         {
                             Id = 1,
                             BrewId = 1010,
-                            DatePosted = new DateTime(2020, 5, 12, 21, 10, 27, 301, DateTimeKind.Local).AddTicks(9413),
-                            Edited = true,
+                            DatePosted = new DateTime(2020, 5, 12, 21, 7, 45, 226, DateTimeKind.Local).AddTicks(4705),
+                            Edited = false,
                             Text = "looks so good!",
                             UserId = "00000000-ffff-ffff-ffff-ffffffffffff"
                         });

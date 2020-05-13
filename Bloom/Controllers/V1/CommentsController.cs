@@ -39,7 +39,7 @@ namespace Capstone.Controllers.V1
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT c.Id, c.DatePosted, c.Text, c.UserId, C.BrewId, u.Id, u.UserName, u.FirstName, u.LastName
+                        SELECT c.Id, c.DatePosted, c.Text, c.UserId, C.BrewId, c.Edited, u.Id, u.UserName, u.FirstName, u.LastName
                         FROM Comment c
                         LEFT JOIN ASPNetUsers u
                         ON c.UserId = u.Id
@@ -61,6 +61,7 @@ namespace Capstone.Controllers.V1
                             Text = reader.GetString(reader.GetOrdinal("Text")),
                             UserId = reader.GetString(reader.GetOrdinal("UserId")),
                             BrewId = reader.GetInt32(reader.GetOrdinal("BrewId")),
+                            Edited = reader.GetBoolean(reader.GetOrdinal("Edited")),
                             User = new ApplicationUser()
                             {
                                 Id = reader.GetString(reader.GetOrdinal("UserId")),
@@ -135,14 +136,16 @@ namespace Capstone.Controllers.V1
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        INSERT INTO Comment (Text, DatePosted, UserId, BrewId)
+                        INSERT INTO Comment (Text, DatePosted, UserId, BrewId, Edited)
                         OUTPUT INSERTED.Id
-                        VALUES (@Text, @DatePosted,  @UserId, @BrewId)";
+                        VALUES (@Text, @DatePosted,  @UserId, @BrewId, @Edited)";
 
                     cmd.Parameters.Add(new SqlParameter("@Text", comment.Text));
                     cmd.Parameters.Add(new SqlParameter("@DatePosted", comment.DatePosted));
                     cmd.Parameters.Add(new SqlParameter("@UserId", comment.UserId));
                     cmd.Parameters.Add(new SqlParameter("@BrewId", comment.BrewId));
+                    cmd.Parameters.Add(new SqlParameter("@Edited", comment.Edited));
+
 
                     int id = (int)cmd.ExecuteScalar();
 
@@ -164,7 +167,7 @@ namespace Capstone.Controllers.V1
                     using (SqlCommand cmd = conn.CreateCommand())
                     {
                         cmd.CommandText = @"UPDATE Comment
-                                     SET Text = @Text, DatePosted = @DatePosted, BrewId = @BrewId, UserId = @UserId
+                                     SET Text = @Text, DatePosted = @DatePosted, BrewId = @BrewId, UserId = @UserId, Edited = @Edited
                                      WHERE Id = @id";
 
                         cmd.Parameters.Add(new SqlParameter("@id", id));
@@ -172,6 +175,7 @@ namespace Capstone.Controllers.V1
                         cmd.Parameters.Add(new SqlParameter("@DatePosted", comment.DatePosted));
                         cmd.Parameters.Add(new SqlParameter("@UserId", comment.UserId));
                         cmd.Parameters.Add(new SqlParameter("@BrewId", comment.BrewId));
+                        cmd.Parameters.Add(new SqlParameter("@Edited", comment.Edited));
 
 
 

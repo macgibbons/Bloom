@@ -15,6 +15,7 @@ namespace Capstone.Models.Data
         public Brew Brew { get; set; }
         public DateTime DatePosted { get; set; }
         public string Text { get; set; }
+        public bool Edited { get; set; }
 
     }
 }

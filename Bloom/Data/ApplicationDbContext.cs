@@ -169,7 +169,9 @@ namespace Capstone.Data
                     DatePosted = DateTime.Now,
                     UserId = "00000000-ffff-ffff-ffff-ffffffffffff",
                     BrewId = 1010,
-                    Text = "looks so good!"
+                    Text = "looks so good!",
+                    Edited = true
+                   
                 });
             modelBuilder.Entity<Brew>().HasData(
             new Brew()
