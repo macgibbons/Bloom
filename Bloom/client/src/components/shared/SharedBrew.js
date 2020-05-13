@@ -7,8 +7,9 @@ import { CommentContext } from "../comments/CommentProvider";
 import { BeanContext } from "../beans/BeanProvider";
 import Comment from "../comments/Comment";
 import { FaRegUserCircle } from "react-icons/fa";
+import StarRating from "../StarRating";
 
-export default ({ brew, history}) => {
+export default ({ brew, history, props}) => {
     // ***** USER *****
     const user = getUser()
 
@@ -18,6 +19,7 @@ export default ({ brew, history}) => {
   
      // ***** STATE *****
     const [comment, setComment] = useState(null)
+    const [ rating, setRating ] = useState(0)
 
      // ***** DATA *****
     const brewComments = comments.filter(comment => comment.brewId === brew.id)
@@ -75,8 +77,13 @@ return (
                     }
                     
                 </div>
+                
                 </div>
-
+                <StarRating className="rating--form" {...props} 
+                    selectedRating={setRating} 
+                    // editMode={editMode ? true : false }
+                    // editRating={ editMode ? bean.rating : null }
+                     />
             </div>
 
             <div className="EC--content">
