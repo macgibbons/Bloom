@@ -1,6 +1,7 @@
 .comment {
     font-family: Arial, Helvetica, sans-serif;
-    margin: .5em 0;
+    margin: .75em 0;
+    min-width: 100%;
    
 }
 
@@ -45,6 +46,7 @@
     font-size: xx-small;
     color: black;
     text-align: end;
+    margin-left: .5em;
 }
 
 .comment--input {
@@ -52,4 +54,25 @@
     border: none;
     border-radius: 8px;
     padding: .25em;
+}
+
+.comment--controls{
+    display:flex;
+    padding-left: 12%;
+   
+    /* justify-content: space-evenly; */
+    width: 50%;
+    align-items: flex-end;
+    font-size: xx-small;
+}
+
+.comment--footer {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+}
+
+.comment--control:hover {
+    text-decoration: underline;
+    cursor: pointer;
 }
