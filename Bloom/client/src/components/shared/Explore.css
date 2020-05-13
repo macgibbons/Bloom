@@ -94,6 +94,7 @@ select.filter{
     align-items: flex-end;
     font-size: small;
     font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.5;
 }
 
 .EC--ratingForm {
