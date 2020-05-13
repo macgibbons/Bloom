@@ -10,6 +10,7 @@ import { FaRegUserCircle } from "react-icons/fa";
 import StarRating from "../StarRating";
 import StarRatingDisplay from "../StarRatingDisplay";
 import { RatingContext } from "../UserRating/RatingProvider";
+import { MdVerifiedUser } from "react-icons/md";
 
 export default ({ brew, history, props}) => {
     // ***** USER *****
@@ -97,7 +98,7 @@ return (
             <div className="EC--UserHeader">
                 <FaRegUserCircle size={50}/>
                 <div className="EC--User">
-                    <div> {brew.user.firstName} {brew.user.lastName}</div>
+<div> {brew.user.firstName} {brew.user.lastName}<span>{brew.user.lastName.toLowerCase() === "coffee" ? <MdVerifiedUser size={15} /> : "" }</span></div>
                     <div className="EC--subheader">{ timePassed }</div>
                 <div className="EC--controls">
                     {
