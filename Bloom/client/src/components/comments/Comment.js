@@ -35,19 +35,21 @@ export default ({ comment }) => {
             text: updatedComment,
             userId: user.id,
             datePosted: moment().format(),
-            brewId: comment.brewId
+            brewId: comment.brewId,
+            edited: true
         }).then(()=>{setForm(false)})
     }
 
     // ***** COMPONENT *****
     return(
 
-    <section className="comment" onClick={ form ? ()=>setForm(false) : "" }>
+    <section className="comment" >
         {
             form ?
             <>
-            <input className="comment--input" type='text' defaultValue={comment.text}  onChange={evt => setUpdatedComment(evt.target.value)} /> 
-            <button className="submit--btn" type="submit" onClick={evt => {evt.preventDefault(); editComment()}}>submit</button>
+            <input className="comment--input" type='text' defaultValue={comment.text}  onChange={evt => setUpdatedComment(evt.target.value)} onKeyDown={evt => {
+                    
+                    evt.keyCode === 13 ? editComment() : console.log(evt.keyCode)}} /> 
             </> :
             <>
                 <div className="comment--content">
@@ -55,7 +57,7 @@ export default ({ comment }) => {
                     <div className="comment--text">
                     
                         <div className="comment--user">{user.id === comment.userId ? "" : comment.user.firstName + ": " }</div>
-                        <div>{comment.text}</div>
+                        <div>{comment.text}<span>{comment.edited ? "*" : ""}</span></div>
                     </div>
                 </div>
 
