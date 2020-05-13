@@ -72,7 +72,7 @@ export default ({ brew, history, props}) => {
     }
 
     const brewRatings = ratings.filter(r => r.brewId === brew.id)
-   
+    
     const findAverage = () =>
     {
         let ratings = 0
@@ -89,7 +89,6 @@ export default ({ brew, history, props}) => {
 
         findAverage()
     })
-    
      // ***** COMPONENT *****
 return (
     <section className="explore--card">
@@ -98,7 +97,11 @@ return (
             <div className="EC--UserHeader">
                 <FaRegUserCircle size={50}/>
                 <div className="EC--User">
-<div> {brew.user.firstName} {brew.user.lastName}<span>{brew.user.lastName.toLowerCase() === "coffee" ? <MdVerifiedUser size={15} /> : "" }</span></div>
+                <div> 
+                     <Link  className="card--link" to={`/profile/${brew.userId}`}>
+                        {brew.user.firstName} {brew.user.lastName}<span>{brew.user.lastName.toLowerCase() === "coffee" ? <MdVerifiedUser size={15} /> : "" }</span>
+                    </Link>
+                    </div>
                     <div className="EC--subheader">{ timePassed }</div>
                 <div className="EC--controls">
                     {
@@ -175,14 +178,15 @@ return (
             </div>
 
             <section className="comment--section">
-
-                <input className="comment--input" type='text' placeholder="comment..." onChange={evt => setComment(evt.target.value)} onKeyDown={evt => {
-                        
-                        evt.keyCode === 13 ? constructNewComment() : console.log(evt.keyCode)}}/>
-                
-                <button type="submt" className="submit--btn" onClick={evt => {
-                        evt.preventDefault()
-                        constructNewComment()}}>submit</button>
+                <div className="comment--pair">
+                    <input className="comment--input" type='text' placeholder="comment..." onChange={evt => setComment(evt.target.value)} onKeyDown={evt => {
+                            
+                            evt.keyCode === 13 ? constructNewComment() : console.log(evt.keyCode)}}/>
+                    
+                    <button type="submt" className="submit--btn" onClick={evt => {
+                            evt.preventDefault()
+                            constructNewComment()}}>submit</button>
+                </div>
             <div>
                 { brewComments.length > 0 ? 
                     brewComments.map(comment => {

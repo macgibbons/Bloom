@@ -19,6 +19,8 @@ import BrewQuickForm from "./brews/BrewQuickForm";
 import Explore from "./shared/Explore";
 import { CommentProvider } from "./comments/CommentProvider";
 import { RatingProvider } from "./UserRating/RatingProvider";
+import { UserProvider} from "../API/UserProvider";
+import UserProfile from "./shared/UserProfile";
 
 export default function ApplicationViews(props) {
   return (
@@ -30,6 +32,8 @@ export default function ApplicationViews(props) {
             <GrinderProvider>
               <RegionProvider>
                 <RatingProvider>
+                  <UserProvider>
+
                   <Route exact path="/" render={ props => <BrewMethodList {...props} />} />
                   <Route exact path="/Coffee" render={(props) => <BeanList {...props} />} />
                   <Route exact path="/Brews" render={(props) => <BrewList {...props} />} />
@@ -60,6 +64,11 @@ export default function ApplicationViews(props) {
                   <Route path ="/coffee/:beanId(\d+)" render= {
                                 props => <BeanDetails {...props} />
                   } />
+
+                  <Route path ="/profile/:userId" render= {
+                                props => <UserProfile {...props} />
+                  } />
+                  </UserProvider>
                 </RatingProvider>
               </RegionProvider>
             </GrinderProvider>
