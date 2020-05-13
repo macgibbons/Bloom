@@ -2,6 +2,7 @@
     font-family: Arial, Helvetica, sans-serif;
     margin: .75em 0;
     min-width: 100%;
+    
    
 }
 
@@ -50,15 +51,16 @@
 }
 
 .comment--input {
-    background-color: white;
+    background-color: rgba(240, 240, 240, 0.664);
     border: none;
-    border-radius: 8px;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
     padding: .25em;
+    width: 90%;
 }
 
 .comment--controls{
     display:flex;
-    padding-left: 12%;
    
     /* justify-content: space-evenly; */
     width: 50%;

@@ -47,9 +47,7 @@ input[type="radio"] {
   display: none
 }
 
-.filter{
-  width: 20%;
-}
+
 
 input.filter {
   background-color: white;
@@ -92,7 +90,12 @@ input.filter {
   color: #F6F5F3;
   font-size: x-small;
   font-family: archivo;
-  border-radius: 10px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
   padding: .5em 1em;
   margin: 1em 0;
+}
+
+.submit--btn:hover{
+  background-color: #C29961;
 }
