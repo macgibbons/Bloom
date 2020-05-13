@@ -31,7 +31,8 @@ export default (props) => {
     // ***** Filters *****
     const sharedBrews = reverse ? brews.filter(b => b.shared === true).reverse() : brews.filter(b => b.shared === true)
     const filteredBrews = sharedBrews.filter(b => b.brewMethodId === parseInt(option) )
-    const searchedBrews = sharedBrews.filter ( b => b.brewMethod.method.toLowerCase().includes( search.toLocaleLowerCase()))
+    const searchedBrews = sharedBrews.filter( b => b.user.firstName.toLowerCase().includes(search.toLocaleLowerCase())) || sharedBrews.filter(  b => b.brewMethod.method.toLowerCase().includes( search.toLocaleLowerCase())) 
+    
   
 
     const handleSelectChange = (e) => {
