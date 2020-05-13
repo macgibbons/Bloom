@@ -108,3 +108,14 @@ select.filter{
 .EC--arrow:hover {
    cursor: pointer;
 }
+
+.EC--sort {
+    display: flex;
+    justify-content: space-between;
+    /* width: 25%; */
+}
+
+ .EC--sortDD {
+   width: 15%;
+   border: none;
+}
