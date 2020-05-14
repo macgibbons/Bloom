@@ -15,21 +15,24 @@ function Header({ history }) {
       <ul className="nav-items">
         {user ? (
           <>
-          <h1 className="nav-item">
+          <div className="nav-item">
             <Link to="/">Bloom</Link>
-          </h1>
-          <li  className="nav-item">
-           <Link to="/Coffee">My Coffees</Link>
-          </li>
-          <li  className="nav-item">
-           <Link to="/Equiptment">My Gear</Link>
-          </li>
-          <li  className="nav-item">
-           <Link to="/Explore">Explore</Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/brews">My Brews</Link>
-          </li>
+          </div>
+          <div className="nav--links">
+
+            <li  className="nav-item">
+            <Link to="/Coffee">My Coffees</Link>
+            </li>
+            <li  className="nav-item">
+            <Link to="/Equiptment">My Gear</Link>
+            </li>
+            <li  className="nav-item">
+            <Link to="/Explore">Explore</Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/brews">My Brews</Link>
+            </li>
+          </div>
             <li className="nav-item">
             <Link to={`/profile/${user.id}`}>Hello {user.username}</Link></li>
             <li className="nav-item" 
