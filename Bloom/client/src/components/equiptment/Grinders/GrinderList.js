@@ -39,30 +39,40 @@ export default (props) => {
     }
     return (
         <div className="coffee--view">
-          <div className="">My Gear</div>
-        
-          <div className="btn add--btn"
-               onClick={() => {
-               logInCheck()}}>
-               <a>Add Grinder</a>
-          </div>
 
-            <div>
-                { form ? 
-
-                <>
-                <Route render= {props => <GrinderForm isFormShowing={setForm} {...props} />} /> 
-                <button className="btn" onClick={ ()=> { setForm(false) } }>Hide</button>
-                </> : 
-                <div></div> 
-                }
+            <div className="title--pair">
+                <div className="page--title">My Gear</div>
             </div>
-
+            
             <div className="coffee--container">
              {
                 currentUserGrinders.map(grinder => {
                     return <Grinder key={grinder.id} grinder={grinder}  />})                
              }
+
+                <div>
+                    { form ? 
+
+                    <>
+                        <div className="coffee--card add--grinder">
+                            <div className="center">
+
+                                <Route render= {props => <GrinderForm isFormShowing={setForm} {...props} />} /> 
+                                <button className="btn" onClick={ ()=> { setForm(false) } }>Hide</button>
+                            </div>
+                        </div>
+                    </> 
+                    : 
+                    <div>
+
+                        <a  className="coffee--card add--grinder"
+                                    onClick={() => {logInCheck()}}>
+                            <img className="add--icon" src={require ("../../../icons/add.svg")}/>
+                        </a>
+                    </div> 
+                    }
+                </div>
+
             </div>
         </div>
     )

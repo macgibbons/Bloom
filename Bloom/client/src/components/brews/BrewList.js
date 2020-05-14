@@ -4,6 +4,7 @@ import { BrewContext } from "./BrewProvider";
 import Brew from "./Brew";
 import { getUser } from "../../API/userManager";
 import { BrewMethodContext } from "../equiptment/brewMethods/BrewMethodProvider";
+import EmptyState from "../EmptyState";
 
 
 
@@ -45,33 +46,40 @@ export default (props) => {
    
     return (
         <div className="coffee--view">
-            <div className="">My Brews</div>
-          
-          <select onChange={handleSelectChange} value={option}>
-              <option value={0}>please select a filter</option>
-              {
-                  brewMethods.map( b => <option value={b.id} > {b.method}</option>)
-              }
-          </select>
-            <button className="btn add--btn"
-                    onClick={() => {logInCheck()}}>
-            add brew
-            </button>
-            <div className="coffee--container">
-              
-            {
-               option === '0' ? 
-                currentUserBrews.map(brew => {
-                    return <Brew key={brew.id} brew={brew} {...props} />
-                })  : filteredBrews.length === 0 ?
-                'no brews' :
-                filteredBrews.map(brew => {
-                    return <Brew key={brew.id} brew={brew} {...props} />
-                })
-                              
-            }
             
-            </div>
+       
+
+                <div className="title--pair">
+                    <div className="page--title">My Brews</div>
+                    
+                    <select className="EC--sortDD" onChange={handleSelectChange} value={option}>
+                        <option value={0}>brew method...</option>
+                        {
+                            brewMethods.map( b => <option value={b.id} > {b.method}</option>)
+                        }
+                    </select>
+                </div>
+            
+                <div className="coffee--container">
+                    
+                    {
+                    option === '0' ? 
+                        currentUserBrews.map(brew => {
+                            return <Brew key={brew.id} brew={brew} {...props} />
+                        })  : filteredBrews.length === 0 ?
+                        <div className="coffee--card add--bean"><EmptyState /> </div>:
+                        filteredBrews.map(brew => {
+                            return <Brew key={brew.id} brew={brew} {...props} />
+                        })
+                                    
+                    }
+                    <a  className="coffee--card add--bean"
+                        onClick={() => {logInCheck()}}>
+
+                        <img className="add--icon" src={require ("../../icons/add.svg")}/>
+                    </a>
+                </div>
+           
         </div>
     )
 }

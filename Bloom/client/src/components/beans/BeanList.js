@@ -39,12 +39,9 @@ export default (props) => {
         <div className="coffee--view">
 
             <div className="title--pair">
-                <div className="">Coffee</div>
+                <div className="page--title">Coffee</div>
             
-                <a className="btn add--btn"
-                        onClick={() => {logInCheck()}}>
-                <img src={require ("../../icons/add.svg")}/>
-                </a>
+                
             </div>
 
             <div className="coffee--container">

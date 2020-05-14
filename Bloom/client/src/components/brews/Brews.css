@@ -35,10 +35,9 @@
 }
 
 .btn {
+    background-color: white;
     border: none;
-    background-color: #F6F5F3;
     font-family: Archivo;
-    color: #522E1F;
 }
 
 .btn:hover {
@@ -57,11 +56,13 @@ fieldset {
 
 input {
     border: none;
-    background-color: #F6F5F3;
     font-family: Archivo;
     color: black !important;
-    border-bottom: 1px solid black;
-    width: 100%;
+    border-radius: 8px;
+    padding: .4em;
+    width: 20vw;
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+
 }
 
 input::placeholder{
@@ -76,6 +77,9 @@ textarea {
     border-radius: 8px;
     font-family: Arial, Helvetica, sans-serif;
     width: 100%;
+    padding: .4em;
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+
 }
 
 textarea::placeholder{
@@ -90,10 +94,13 @@ select {
     color: black;
     padding:.5em;
     width: 100%;
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+
 }
 
 option {
     background-color: white;
+
 }
 
 .stars {
@@ -134,16 +141,21 @@ option {
 
 .title--pair {
     display: flex;
-    
-    justify-content: flex-start;
+    justify-content: space-between;
+    width: 55vw
 }
 
 
 
 .add--bean{
-    min-width: 30vw !important;
-    min-height: 30vh;
+    min-width: 25vw !important;
+    min-height: 20vh;
     background-color: #F6F5F3;
+    transition-duration: .5s;
+}
+.add--bean:hover{
+    background-color: white;
+    transition-duration: .5s;
 }
 
 .add--icon {
@@ -156,4 +168,20 @@ option {
    height: 2em;
    transform: rotate(90deg);
    transition-duration: .5s;
+}
+
+.brew--container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 5% 5%;
+    flex-basis: 50%;
+    padding: .5em;
+    width: 65vw;
+}
+
+@media(max-width: 600px){
+    .title--pair{
+        flex-direction: column;
+    }
 }

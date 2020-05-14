@@ -78,7 +78,7 @@ export default (props) => {
          
 
             <div className="explore--container">
-                        <div className="">explore</div> 
+                        <div className="page--title">explore</div> 
                         <div className="EC--sort">
                             <div> {reverse ? "Newest" : "Oldest"}</div>
                             <select className="EC--sortDD" onChange={handleSortChange}  >

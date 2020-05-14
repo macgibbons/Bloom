@@ -43,7 +43,7 @@ export default ({bean, history }) => {
             </div>
             <div className="coffee--content">
                 <div className="tasting--notes">
-                    { bean.tastingNotes.split(',' || '|') }
+                    { bean.tastingNotes}
                 </div>
 
 <div className="coffee--info">

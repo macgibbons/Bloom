@@ -1,0 +1,15 @@
+.center {
+    margin: auto
+}
+
+.add--grinder{
+    margin: auto;
+    min-width: 53vw;
+    min-height: 0vh;
+    background-color: whtie;
+    transition-duration: .5s;
+}
+.add--grinder:hover{
+    background-color: white;
+    transition-duration: .5s;
+}

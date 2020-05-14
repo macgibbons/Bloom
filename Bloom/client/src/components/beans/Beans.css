@@ -8,8 +8,9 @@
     border-radius: 8px;
     flex-basis: 15%;
     margin:.25em .25em;
-    width: 30vw;
-    padding:  1em;;
+    width: 25vw;
+    padding:  1em;
+    transition-duration: .5s;
    
 }
 
@@ -31,6 +32,8 @@
 
 .coffee--view {
     padding: 2em 4em;
+    /* margin: 0 5vw */
+    
 }
 
 .info--pair{
@@ -42,4 +45,18 @@
 
 .tasting--notes {
     margin: 2em 0;
+}
+
+.form--pair{
+    display: flex;
+    justify-content: space-between;
+    /* margin: auto; */
+}
+
+.date--picker{
+    display:flex;
+    flex-direction: column;
+    
+    justify-content: space-evenly;
+    border: 1px solid black;
 }
