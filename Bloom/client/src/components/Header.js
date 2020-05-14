@@ -15,6 +15,9 @@ function Header({ history }) {
       <ul className="nav-items">
         {user ? (
           <>
+          <h1 className="nav-item">
+            <Link to="/">Bloom</Link>
+          </h1>
           <li  className="nav-item">
            <Link to="/Coffee">My Coffees</Link>
           </li>
@@ -24,9 +27,6 @@ function Header({ history }) {
           <li  className="nav-item">
            <Link to="/Explore">Explore</Link>
           </li>
-          <h1 className="nav-item">
-            <Link to="/">Bloom</Link>
-          </h1>
           <li className="nav-item">
             <Link to="/brews">My Brews</Link>
           </li>

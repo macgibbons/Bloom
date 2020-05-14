@@ -30,21 +30,50 @@ export default ({bean, history }) => {
     <section className="">
 
         <div className="coffee--card">
-            <div className="coffee--title">
-                <Link  className="card--link" to={`/Coffee/${bean.id}`}>
+            <div className="coffee--title" >
+                <Link  className="card--link" className={bean.regionId === 1 ? "africa" : bean.regionId === 2 ? "central" : bean.regionId === 3 ? "south" : "asia"}to={`/Coffee/${bean.id}`}>
                     { bean.beanName }
+                {/* <div>
+                    { bean.origin}
+                </div> */}
                 </Link>
-            </div>
-            <div className="coffee--content">
-                <div className="">
+                <div className="roaster">
                     { bean.roaster }
                 </div>
+            </div>
+            <div className="coffee--content">
                 <div>
-                    { bean.origin}
+                    { bean.tastingNotes.split(',' || '|') }
                 </div>
-                <div>
-                    { bean.tastingNotes}
+
+<div className="coffee--info">
+
+                <div className="info--pair">
+                    <div className="pair--item">
+                        Altitude
+                    </div>
+                     <div className="pair--item"> 
+                        {bean.masl} m
+                     </div>
                 </div>
+                <div className="info--pair">
+                    Region <span>{bean.origin}</span>
+                </div>
+                <div className="info--pair">
+                   <div> Process </div> 
+                   <div>
+                       {bean.process}
+                    </div>
+                </div>
+                <div className="info--pair">
+                    <div>
+                        Varietals 
+                    </div> 
+                    <div>
+                        {bean.variety}
+                    </div>
+                </div>
+</div>
 
             </div>
             <div className="card--controls">

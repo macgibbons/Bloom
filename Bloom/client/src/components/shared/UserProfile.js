@@ -40,17 +40,18 @@ export default (props) => {
                  <div className="explore--filters">
 
                
-                <FaRegUserCircle size={100}/>
+                <button className="profile--filter" onClick={()=>setView("brews")}>
+                    brews
+                </button>
+                <button className="profile--filter" onClick={()=>setView("coffee")}>
+                    coffee
+                </button>
+
                 <div>
                 {user.firstName} {user.lastName}
 
                 </div>
-                <button onClick={()=>setView("brews")}>
-                    brews
-                </button>
-                <button onClick={()=>setView("coffee")}>
-                    coffee
-                </button>
+                <FaRegUserCircle size={100}/>
                 
                    
 
