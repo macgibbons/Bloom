@@ -42,7 +42,7 @@ export default ({bean, history }) => {
                 </div>
             </div>
             <div className="coffee--content">
-                <div>
+                <div className="tasting--notes">
                     { bean.tastingNotes.split(',' || '|') }
                 </div>
 
@@ -76,7 +76,7 @@ export default ({bean, history }) => {
 </div>
 
             </div>
-            <div className="card--controls">
+            <div className="EC--controls">
                 <div className="card--control"
                     onClick={()=>{ deleteConfirm() }
                     }>delete</div>

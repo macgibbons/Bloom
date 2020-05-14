@@ -24,7 +24,7 @@ namespace Capstone.Models.Data
         public ApplicationUser User { get; set; }
         public int RegionId { get; set; }
         public Region Region { get; set; }
-
+        
 
     }
 }

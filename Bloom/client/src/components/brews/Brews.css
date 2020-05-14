@@ -108,7 +108,7 @@ option {
 .detail--container {
     display: flex;
     flex-direction: column;
-    margin: 5% 25%;
+    margin: 5% 5%;
   
     
 }
@@ -128,4 +128,32 @@ option {
 
 .detail--content {
     line-height: 2em;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.title--pair {
+    display: flex;
+    
+    justify-content: flex-start;
+}
+
+
+
+.add--bean{
+    min-width: 30vw !important;
+    min-height: 30vh;
+    background-color: #F6F5F3;
+}
+
+.add--icon {
+    transition-duration: .5s;
+    margin: auto;
+    
+}
+
+.add--icon:hover{
+   height: 2em;
+   transform: rotate(90deg);
+   transition-duration: .5s;
 }

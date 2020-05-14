@@ -11,7 +11,7 @@ export default props => {
     const { regions } = useContext(RegionContext)
     const [bean, setBean] = useState({})
     const [selectedDate, setSelectedDate] = useState()
-    const [rating, setRating] = useState("")
+    const [rating, setRating] = useState(0)
     const [error, setError] = useState("")
     const [date, setDate ] = useState(bean.roastDate)
     
@@ -46,6 +46,7 @@ export default props => {
     useEffect(() => {
         setDefaults()
     }, [beans])
+
 
     const deleteButton = (
         <>
@@ -85,7 +86,7 @@ export default props => {
                     beanName: bean.beanName,
                     roastLevel: bean.roastLevel,
                     masl: bean.masl,
-                    roastDate: selectedDate ? selectedDate : date,
+                    roastDate: selectedDate === undefined ?  bean.roastDate : selectedDate,
                     quantity:parseInt(bean.quantity),
                     rating: rating ? rating : 0,
                     tastingNotes: bean.tastingNotes,
@@ -129,10 +130,12 @@ export default props => {
             <div className= {error === "" ? "hidden" : "error"}>{error}</div>
             <div className="btn delete--btn">{editMode ? deleteButton : ""} </div>
             <div className="wrapper">
+
             <StarRating className="rating--form" {...props} 
                     selectedRating={setRating} 
                     editMode={editMode ? true : false }
                     editRating={ editMode ? bean.rating : null } />
+
                 <fieldset>
                     <div className="room-form-group">
                         <label htmlFor="beanName">Name</label>

@@ -143,7 +143,9 @@ input.filter {
 }
 
 .asia {
-  color: red;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: rgb(255, 102, 0);
 }
 
 .africa {

@@ -37,12 +37,16 @@ export default (props) => {
    
     return (
         <div className="coffee--view">
-            <div className="">My Coffee</div>
-          
-            <a className="btn add--btn"
-                    onClick={() => {logInCheck()}}>
-            add coffee
-            </a>
+
+            <div className="title--pair">
+                <div className="">Coffee</div>
+            
+                <a className="btn add--btn"
+                        onClick={() => {logInCheck()}}>
+                <img src={require ("../../icons/add.svg")}/>
+                </a>
+            </div>
+
             <div className="coffee--container">
 
             {
@@ -52,6 +56,10 @@ export default (props) => {
                 })                
             }
             
+            <a  className="coffee--card add--bean"
+                        onClick={() => {logInCheck()}}>
+                <img className="add--icon" src={require ("../../icons/add.svg")}/>
+                </a>
             </div>
         </div>
     )
