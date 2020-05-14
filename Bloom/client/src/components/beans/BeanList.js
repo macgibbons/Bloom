@@ -13,7 +13,6 @@ export default (props) => {
     // ***** USER *****
    const user = getUser()
     const currentUserBeans = beans.filter(b => b.userId === user.id)
-    console.log(user.id);
     
 
     if(user !== null) {
@@ -24,7 +23,6 @@ export default (props) => {
         if(user === ""){
             window.alert("please log in")
         } else {
-            console.log("user is logged in");
             
             updateApplicationView()
         

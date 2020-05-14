@@ -78,7 +78,7 @@ export default props => {
         else {
 
             if (editMode) {
-                debugger
+                
                 updateBean(
                     {
                     

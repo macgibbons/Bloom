@@ -1,5 +1,4 @@
 import React, { useContext, useState } from "react"
-// import Bean from "./Bean";
 import { getUser } from "../../API/userManager";
 import { UserContext } from "../../API/UserProvider";
 import { BeanContext } from "../beans/BeanProvider";
@@ -10,6 +9,8 @@ import { FaRegUserCircle } from "react-icons/fa";
 
 
 export default (props) => {
+
+
     // ***** CONTEXT *****
     const { beans } = useContext(BeanContext)
     const { users } = useContext(UserContext)
@@ -18,29 +19,27 @@ export default (props) => {
 
     // ***** STATE *****
     const [view, setView] = useState("brews")
+
+
     // ***** USER *****
    const currentUser = getUser()
-
    const chosenUserId = props.match.params.userId
    const user = users.find(user => user.id === chosenUserId) || {}
    const userBeans = beans.filter(bean => bean.userId === chosenUserId)
    const userBrews = brews.filter(brew => brew.userId === user.id)
    const userSharedBrews = userBrews.filter(brew => brew.shared === true)
-    // const currentUserBeans = beans.filter(b => b.userId === user.id)
-    // console.log(user.id);
-    console.log(chosenUserId);
+   
 
     
 
-
+    // ***** COMPONENT *****
    
     return (
         <div className="explore--view">
 
-                 <div className="explore--filters">
+            <div className="explore--filters">
 
-               
-                <button className="profile--filter" onClick={()=>setView("brews")}>
+                <button  className="profile--filter" onClick={()=>setView("brews")}>
                     brews
                 </button>
                 <button className="profile--filter" onClick={()=>setView("coffee")}>
@@ -48,34 +47,35 @@ export default (props) => {
                 </button>
 
                 <div>
-                {user.firstName} {user.lastName}
-
+                    {user.firstName} {user.lastName}
                 </div>
+
                 <FaRegUserCircle size={100}/>
                 
-                   
-
-            
             </div>
+
             <div className="explore--container">
+
                 {
                     view === "coffee" ?
-                <div>
+                    <div>
+                        {
+                            userBeans.map(bean => {
+                                return <Bean key={bean.id} bean={bean} {...props} />
+                            })
+                        }
+                    </div> : 
+                    <div>
+                        {
+                            userSharedBrews.map(brew => {
+                                return <SharedBrew key={brew.id} brew={brew} {...props} />
+                            })
+                        }
+                    </div>
+                }
 
-                {
-                    userBeans.map(bean => {
-                        return <Bean key={bean.id} bean={bean} {...props} />
-                    })
-                }
-                </div> : 
-                <div>
-
-                {
-                    userSharedBrews.map(brew => {return <SharedBrew key={brew.id} brew={brew} {...props} />})
-                }
-                </div>
-                }
             </div>
+
         </div>
     )
 }

@@ -31,6 +31,7 @@ export default (props) => {
         document.body.classList.add("user--loggedIn")
     }
 
+    // ****************** API **********************
     const deleteConfirm = () => {
         if(window.confirm(`Are you sure you want to delete this coffee and it's brews? This action cannot be undone`))
       
@@ -49,46 +50,50 @@ export default (props) => {
 
 
     // ****************** COMPONENT **********************
-    return (
-        <section className="detail--container">
+return (
+    <section className="detail--container">
 
-            <div className="detail--header">
+        <div className="detail--header">
 
+            <div className="detail--buttons">
 
-                <div className="detail--buttons">
-
-                    <div className="btn delete--btn"
-                        onClick={ () => { deleteConfirm() } }>
-                        <img className="icon" src={require ('../../icons/trash.svg')}/>
-                    </div>
-
-                    <div className="btn edit--btn detail--btn"
-                        onClick={ () => { props.history.push(`/coffee/edit/${bean.id}`) } }>
-                        <img className="icon" src={require ('../../icons/edit.svg')}/>
-                    </div>
-                    
+                <div className="btn delete--btn"
+                    onClick={ () => { deleteConfirm() } }>
+                    <img className="icon" src={require ('../../icons/trash.svg')}/>
                 </div>
 
+                <div className="btn edit--btn detail--btn"
+                    onClick={ () => { props.history.push(`/coffee/edit/${bean.id}`) } }>
+                    <img className="icon" src={require ('../../icons/edit.svg')}/>
+                </div>
+                    
             </div>
 
-            <div className="detail--content">
+        </div>
 
-                <StarRatingDisplay displayRating={bean.rating} />
-                <div>{bean.beanName}</div>
-                <div>{bean.roaster}</div>
-                <div>{bean.origin}</div>
-                <div>{bean.quantity}g</div>
-                <div>{bean.roastLevel} roast</div>
-                <div>Roast Date: {moment(bean.roastDate).format('MM | DD | YY')}</div>
-                <div>{bean.masl} MASL</div>
-                <div>process: {bean.process}</div>
-                <div>{bean.tastingNotes}</div>
-                <div className="card--detailPair">
-                    <div className="card--subTitle">Notes: {bean.notes}</div>
+        <div className="detail--content">
+
+            <StarRatingDisplay displayRating={bean.rating} />
+            <div>{bean.beanName}</div>
+            <div>{bean.roaster}</div>
+            <div>{bean.origin}</div>
+            <div>{bean.quantity}g</div>
+            <div>{bean.roastLevel} roast</div>
+            <div>Roast Date: {moment(bean.roastDate).format('MM | DD | YY')}</div>
+            <div>{bean.masl} MASL</div>
+            <div>process: {bean.process}</div>
+            <div>{bean.tastingNotes}</div>
+
+            <div className="card--detailPair">
+
+                <div className="card--subTitle">Notes: {bean.notes}</div>
             
-                </div>
-                <div>{
+            </div>
+
+            <div>
+                {
                     Beansbrews.length >= 1 ?
+
                     <>
                     <div>Brews:</div>
                         <ul>
@@ -99,16 +104,14 @@ export default (props) => {
                                 )
                             }
                         </ul>
-                    </> : <div>No Brews Yet</div>
-
+                    </>
+                    :
+                     <div>No Brews Yet</div>
                     }
-                </div>
             </div>
-
+        </div>
         
-          
-            
-        </section>
+    </section>
     )
 
 }
