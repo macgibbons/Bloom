@@ -13,7 +13,6 @@ export default (props) => {
     // ***** USER *****
    const user = getUser()
     const currentUserBeans = beans.filter(b => b.userId === user.id)
-    console.log(user.id);
     
 
     if(user !== null) {
@@ -24,7 +23,6 @@ export default (props) => {
         if(user === ""){
             window.alert("please log in")
         } else {
-            console.log("user is logged in");
             
             updateApplicationView()
         
@@ -37,12 +35,13 @@ export default (props) => {
    
     return (
         <div className="coffee--view">
-            <div className="">My Coffee</div>
-          
-            <a className="btn add--btn"
-                    onClick={() => {logInCheck()}}>
-            add coffee
-            </a>
+
+            <div className="title--pair">
+                <div className="page--title">Coffee</div>
+            
+                
+            </div>
+
             <div className="coffee--container">
 
             {
@@ -52,6 +51,10 @@ export default (props) => {
                 })                
             }
             
+            <a  className="coffee--card add--bean"
+                        onClick={() => {logInCheck()}}>
+                <img className="add--icon" src={require ("../../icons/add.svg")}/>
+                </a>
             </div>
         </div>
     )

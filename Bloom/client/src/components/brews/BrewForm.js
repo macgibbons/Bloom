@@ -148,6 +148,8 @@ export default props => {
 
     return (
       
+        <div className="coffee--view">
+
         <form className="form container">
             <h2 className="formTitle">{editMode ? "Update brew" : "New brew"}</h2>
             <div className="btn delete--btn">{editMode ? deleteButton : ""} </div>
@@ -192,9 +194,11 @@ export default props => {
                     selectedRating={setRating} 
                     editMode={editMode ? true : false }
                     editRating={ editMode ? brew.rating : null } />
+
+               <div className="form--pair">
                 <fieldset>
                     <div className="room-form-group">
-                        {/* <label htmlFor="coffeeDose">Coffee Dose:</label> */}
+                        <label htmlFor="coffeeDose">Coffee Dose</label>
                         <input type="number" step="0.1" name="coffeeDose" required autoFocus className="form-control"
                             proptype="varchar"
                             placeholder="Dose..."
@@ -206,7 +210,7 @@ export default props => {
 
                 <fieldset>
                     <div className="room-form-group">
-                        {/* <label htmlFor="waterDose">Water Amount: </label> */}
+                        <label htmlFor="waterDose">Water Dose: </label>
                         <input type="number"  name="waterDose" required autoFocus className="form-control"
                             proptype="varchar"
                             placeholder="Water..."
@@ -215,19 +219,9 @@ export default props => {
                             /> g
                     </div>
                 </fieldset>
+                </div>     
 
-                <fieldset>
-                    <div className="room-form-group">
-                        {/* <label htmlFor="waterTemp">Water Temp: </label> */}
-                        <input type="number"  name="waterTemp" required autoFocus className="form-control"
-                            proptype="varchar"
-                            placeholder="Temp.."
-                            defaultValue={brew.waterTemp}
-                            onChange={handleControlledInputChange}
-                            /> 
-                           °F
-                    </div>
-                </fieldset>
+             <div className="form--pair">
 
                 <fieldset>
                     <div className="room-form-group">
@@ -242,49 +236,21 @@ export default props => {
                     </div>
                 </fieldset>
 
-
                 <fieldset>
                     <div className="room-form-group">
-                        <input type="number"  name="grindSetting" required autoFocus className="form-control"
+                        <label htmlFor="waterTemp">Water Temp: </label>
+                        <input type="number"  name="waterTemp" required autoFocus className="form-control"
                             proptype="varchar"
-                            placeholder="Grind setting..."
-                            value={brew.grindSetting}
+                            placeholder="Temp.."
+                            defaultValue={brew.waterTemp}
                             onChange={handleControlledInputChange}
                             /> 
-                    </div>
-                </fieldset> 
-
-                <fieldset>
-                    <div className="form-group">
-                        {/* <label htmlFor="notes">Notes: </label> */}
-                        <textarea type="text" name="notes" className="form-control-type1"
-                            proptype="varchar"
-                            placeholder="Notes..."
-                            value={brew.notes}
-                            onChange={handleControlledInputChange}>
-                        </textarea>
+                           °F
                     </div>
                 </fieldset>
+             </div>
 
-                         
-                <fieldset>
-                    <div className="form-group">
-                        <select name="brewMethodId" className="form-control-type1"
-                            proptype="int"
-                            value={brew.brewMethodId}
-                            onChange={handleControlledInputChange}>
-
-                            <option value="0" disabled>Select a Brew Method:</option>
-
-                            {brewMethods.map(g => (
-                                <option key={g.id} value={g.id}>
-                                    { g.method } 
-                                </option>
-                            ))}
-                        
-                        </select>
-                    </div>
-                </fieldset>
+            <div className="form--pair">
                 <fieldset>
                     <div className="form-group">
                         <select name="grinderId" className="form-control-type1"
@@ -297,6 +263,40 @@ export default props => {
                             {userGrinders.map(g => (
                                 <option key={g.id} value={g.id}>
                                     { g.brand } { g.model }
+                                </option>
+                            ))}
+                        
+                        </select>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <div className="room-form-group">
+                        <input type="number"  name="grindSetting" required autoFocus className="form-control"
+                            proptype="varchar"
+                            placeholder="Grind setting..."
+                            value={brew.grindSetting}
+                            onChange={handleControlledInputChange}
+                            /> 
+                    </div>
+                </fieldset> 
+
+            </div>
+
+                         
+            <div className="form--pair">
+                <fieldset>
+                    <div className="form-group">
+                        <select name="brewMethodId" className="form-control-type1"
+                            proptype="int"
+                            value={brew.brewMethodId}
+                            onChange={handleControlledInputChange}>
+
+                            <option value="0" disabled>Select a Brew Method:</option>
+
+                            {brewMethods.map(g => (
+                                <option key={g.id} value={g.id}>
+                                    { g.method } 
                                 </option>
                             ))}
                         
@@ -321,6 +321,21 @@ export default props => {
                         </select>
                     </div>
                 </fieldset>
+
+            </div>
+
+               
+                <fieldset>
+                    <div className="form-group">
+                        {/* <label htmlFor="notes">Notes: </label> */}
+                        <textarea rows="4" cols="50" type="text" name="notes" className="form-control-type1"
+                            proptype="varchar"
+                            placeholder="Notes..."
+                            value={brew.notes}
+                            onChange={handleControlledInputChange}>
+                        </textarea>
+                    </div>
+                </fieldset> 
                
             </div>
             <button type="submit"
@@ -333,6 +348,8 @@ export default props => {
             </button>
            
         </form>
+        
+</div>
     )
 }
 

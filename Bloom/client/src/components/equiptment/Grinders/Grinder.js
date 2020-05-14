@@ -28,8 +28,10 @@ export default ({ grinder}) => {
                 { form ? 
 
                 <>
-                <Route render= {props => <GrinderForm  isFormShowing={setForm} grinderId={grinder.id} {...props} />} /> 
-                <button className="btn" onClick={ ()=> { setForm(false) } }>Hide</button>
+                <div className="center">
+                  <Route render= {props => <GrinderForm  isFormShowing={setForm} grinderId={grinder.id} {...props} />} /> 
+                  <button className="btn" onClick={ ()=> { setForm(false) } }>Hide</button>
+                </div>
                 </> : 
                 <div>
                   

@@ -19,7 +19,7 @@ function Login({ history }) {
   };
 
   return (
-    <form onSubmit={submit}>
+    <form className="login--container" onSubmit={submit}>
       <h1>Login</h1>
       <ul>
         {errors && errors.map((message, i) => <li key={i}>{message}</li>)}
@@ -43,7 +43,7 @@ function Login({ history }) {
           onChange={(e) => setPassword(e.target.value)}
         />
       </div>
-      <button type="submit">Log in</button>
+      <button className="submit--btn" type="submit">Log in</button>
       <p>
         Not yet a user? <Link to="/register">Sign up</Link>
       </p>
