@@ -53,10 +53,10 @@ export default ({ comment }) => {
             </> :
             <>
                 <div className="comment--content">
-                    <FaRegUserCircle size={20}/>
+                    <FaRegUserCircle className="gradient" size={20}/>
                     <div className="comment--text">
                     
-                        <div className="comment--user">{user.id === comment.userId ? "" : comment.user.firstName + ": " }</div>
+                        <div className="comment--user">{user.id === comment.userId ? "You:" : comment.user.firstName + " " + comment.user.lastName + ": " }</div>
                         <div>{comment.text}<span>{comment.edited ? "*" : ""}</span></div>
                     </div>
                 </div>

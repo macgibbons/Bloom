@@ -6,6 +6,7 @@ import { BrewContext } from "../brews/BrewProvider";
 import SharedBrew from "./SharedBrew";
 import Bean from "../beans/Bean";
 import { FaRegUserCircle } from "react-icons/fa";
+import { MdVerifiedUser } from "react-icons/md";
 
 
 export default (props) => {
@@ -46,11 +47,11 @@ export default (props) => {
                     coffee
                 </button>
 
-                <div>
-                    {user.firstName} {user.lastName}
+                <div className=" profile--username">
+                    {user.firstName} {user.lastName} <span>{ user.lastName === "Coffee"  ? <MdVerifiedUser className="gradient" size={20} /> : "" }</span>
                 </div>
-
-                <FaRegUserCircle size={100}/>
+                
+                <FaRegUserCircle className="gradient" size={100}/>
                 
             </div>
 

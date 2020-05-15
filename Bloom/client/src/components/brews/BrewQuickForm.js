@@ -104,7 +104,8 @@ export default props => {
     }
 
     return (
-      
+      <div className="coffee--view">
+
         <form className="form container">
             <h2 className="formTitle">{ `New ${brew.method} Brew` }</h2>
             <div className= {error === "" ? "hidden" : "error"}>{error}</div>
@@ -116,9 +117,9 @@ export default props => {
                 <div className="card-body">
                     {isRunning ? (
                         <RunningButton />
-                    
-                    ) : (
-                        <button className="btn btn-primary" onClick={start}>
+                        
+                        ) : (
+                            <button className="btn btn-primary" onClick={start}>
                         Brew
                     </button>
                     )}
@@ -129,7 +130,7 @@ export default props => {
                     </button>
                     <button className="btn btn-primary" 
                             onClick={reset}
-                        >
+                            >
                     Reset
                     </button>
                     <button className="btn btn-primary" 
@@ -175,7 +176,7 @@ export default props => {
                             proptype="varchar"
                             placeholder="seconds..."
                             Value={ editMode ? moment.utc(brew.brewTime * 1000).format('m:ss') :
-                                brewTime < 0 ? '0:00' : moment.utc(brewTime * 1000).format('m:ss')}
+                            brewTime < 0 ? '0:00' : moment.utc(brewTime * 1000).format('m:ss')}
                             onChange={handleControlledInputChange}
                             /> 
                     </div>
@@ -231,6 +232,7 @@ export default props => {
             </button>
            
         </form>
+    </div>
     )
 }
 

@@ -51,12 +51,12 @@ export default (props) => {
 
                 <div className="detail--buttons">
 
-                    <div className="btn delete--btn"
+                    <div className="gradient delete--btn"
                         onClick={ () => { deleteConfirm() } }>
                         <img className="icon" src={require ('../../icons/trash.svg')}/>
                     </div>
 
-                    <div className="btn edit--btn detail--btn"
+                    <div className="gradient edit--btn detail--btn"
                         onClick={ () => { props.history.push(`/brews/edit/${brew.id}`) } }>
                         <img className="icon" src={require ('../../icons/edit.svg')}/>
                     </div>

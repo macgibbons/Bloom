@@ -70,7 +70,7 @@ export default props => {
 
     const deleteButton = (
         <>
-            <div className="btn delete--btn"
+            <div className="btn"
             onClick={() => {
                 deleteBrew(brew.id)
                     .then(() => {
@@ -152,7 +152,7 @@ export default props => {
 
         <form className="form container">
             <h2 className="formTitle">{editMode ? "Update brew" : "New brew"}</h2>
-            <div className="btn delete--btn">{editMode ? deleteButton : ""} </div>
+            <div >{editMode ? deleteButton : ""} </div>
             <div className= {error === "" ? "hidden" : "error"}>{error}</div>
             <div className="timer">{editMode ?  "" :
             <>

@@ -6,6 +6,7 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import { getUser } from "./API/userManager";
 import "./App.css";
+import "./Nav.css";
 
 function App() {
   return (

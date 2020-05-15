@@ -34,15 +34,7 @@
     text-align: center;
 }
 
-.btn {
-    background-color: white;
-    border: none;
-    font-family: Archivo;
-}
 
-.btn:hover {
-    cursor: pointer !important;
-    text-decoration: underline; }
 
 fieldset {
     border: none;
@@ -56,7 +48,7 @@ fieldset {
 
 input {
     border: none;
-    font-family: Archivo;
+    
     color: black !important;
     border-radius: 8px;
     padding: .4em;

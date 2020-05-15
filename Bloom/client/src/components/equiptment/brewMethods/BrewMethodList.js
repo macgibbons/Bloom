@@ -11,16 +11,19 @@ export default (props) => {
    
     return (
         <div className="coffee--view">
-            <div className="container--title">What are you brewing today?</div>
-          
-            <div className="method--container">
-            {
-                brewMethods.map(brewMethod => {
-
-                    return <BrewMethod key={brewMethod.id} brewMethod={brewMethod} {...props}  />
-                })                
-            }
+            <div className="method--card">
+                <div className="container--title">What are you brewing today?</div>
             
+                <div className="method--container">
+                {
+                    brewMethods.map(brewMethod => {
+
+                        return <BrewMethod key={brewMethod.id} brewMethod={brewMethod} {...props}  />
+                    })                
+                }
+                
+                </div>
+
             </div>
         </div>
     )

@@ -26,16 +26,18 @@
     margin-left: .5em;
     margin-right: .5em; 
     border-radius: 20px;
-    background-color: rgb(226, 217, 205);
+    border-bottom-left-radius: 0px;
+    background: rgb(77,124,245,.1);
     padding: .5em;
     display: flex;
     align-items: center;
     margin-bottom: .5em;
-
+    padding: .7em 1em;
 }
 
 .comment--user {
     font-family: Archivo;
+    color: #333;
     margin-right: .5em;
 }
 .comment--date {
@@ -52,7 +54,9 @@
 
 .comment--input {
     background-color: rgba(240, 240, 240, 0.664);
-    border: none;
+    border: none !important;
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
     padding: .25em;
@@ -77,4 +81,13 @@
 .comment--control:hover {
     text-decoration: underline;
     cursor: pointer;
+}
+
+.archivo {
+    font-family: Archivo;
+}
+
+.comment--container{
+
+    padding: .5em .25em;
 }
