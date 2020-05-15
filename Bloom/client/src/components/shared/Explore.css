@@ -128,6 +128,7 @@ select.filter{
    width: 8vw;
    border: none;
    background-color: #F6F5F3;
+   height: 100%;
 }
 
 .EC--sortDD:hover {
