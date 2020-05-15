@@ -56,9 +56,9 @@ export default (props) => {
                     <>
                         <div className="coffee--card add--grinder">
                             <div className="center">
-
+                            
                                 <Route render= {props => <GrinderForm isFormShowing={setForm} {...props} />} /> 
-                                <button className="btn" onClick={ ()=> { setForm(false) } }>Hide</button>
+                                <div className="card--control" onClick={ ()=> { setForm(false) } }>Hide</div>
                             </div>
                         </div>
                     </> 

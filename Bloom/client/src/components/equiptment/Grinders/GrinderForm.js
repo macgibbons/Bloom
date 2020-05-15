@@ -100,9 +100,9 @@ export default props => {
     }
 
     return (
-        <form className="form container">
+        <form className="grinder--form container">
             <h2 className="formTitle  detail--header">{editMode ? "Update Grinder" : "New Grinder"}</h2>
-            <div className="btn delete--btn">{editMode ? deleteButton : ""} </div>
+            {/* <div className="btn delete--btn">{editMode ? deleteButton : ""} </div> */}
             <div className="wrapper">
             <div className= {error === "" ? "hidden" : "error"}>{error}</div>
                 <fieldset>

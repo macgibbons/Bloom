@@ -15,7 +15,7 @@ function Header({ history }) {
       <ul className="nav-items">
         {user ? (
           <>
-          <div className="nav--icon">
+          <div >
             <Link to="/">
               <img src={require ('../icons/circle-logo.svg')} />
             </Link>
@@ -24,26 +24,27 @@ function Header({ history }) {
           <div className="nav--links">
 
           <li className="nav--filter">
-            <img src={require ('../icons/Home.svg')} />
-              <NavLink   to="/" activeClassName="active">Dashboard</NavLink>
+            <img className="nav--icon"src={require ('../icons/Home.svg')} />
+              <NavLink   to="/" >Dashboard</NavLink>
             </li>
+
             <li  className="nav--filter">
-              <img src={require ('../icons/Explore.svg')} />
+              <img className="nav--icon" src={require ('../icons/Explore.svg')} />
               <Link to="/Explore">Explore</Link>
             </li>
 
-            <li className="nav--filter">
-              <img src={require ('../icons/Brew.svg')} />
-              <NavLink   to="/brews" activeClassName="active">My Brews</NavLink>
+            <li className="nav--filter" >
+              <img  className="nav--icon" src={require ('../icons/Brew.svg')} />
+              <NavLink   to="/brews" >My Brews</NavLink>
             </li>
 
             <li  className="nav--filter">
-              <img src={require ('../icons/Coffee.svg')} />
+              <img className="nav--icon" src={require ('../icons/Coffee.svg')} />
               <Link to="/Coffee">Coffees</Link>
             </li>
 
             <li  className="nav--filter">
-              <img src={require ('../icons/Grinder.svg')} />
+              <img className="nav--icon" src={require ('../icons/Grinder.svg')} />
               <Link to="/Equiptment">Equipment</Link>
             </li>
           </div>
@@ -51,18 +52,18 @@ function Header({ history }) {
           <div>
 
             <li className="nav--filter">
-              <img src={require ('../icons/Home.svg')} />
+              <img className="nav--icon" src={require ('../icons/Home.svg')} />
               <Link to={`/profile/${user.id}`}>My Profile</Link>
             </li>
 
             <li className="nav--filter">
-              <img src={require ('../icons/Explore.svg')} />
+              <img className="nav--icon" src={require ('../icons/Explore.svg')} />
               <div  onClick={logout}>Log out</div>
             </li>
 
           </div>
             
-            <img src={require ('../icons/bloom.svg')} />
+            <img className="nav--icon" src={require ('../icons/bloom.svg')} />
           </>
         ) : (
           <>

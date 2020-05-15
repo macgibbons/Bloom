@@ -24,31 +24,37 @@ export default ({ grinder}) => {
 
         <div className="coffee--card">
 
-              <div>
+              <div className="grinder--card">
                 { form ? 
 
                 <>
                 <div className="center">
                   <Route render= {props => <GrinderForm  isFormShowing={setForm} grinderId={grinder.id} {...props} />} /> 
-                  <button className="btn" onClick={ ()=> { setForm(false) } }>Hide</button>
+                  <div className="card--control " onClick={ ()=> { setForm(false) } }>Hide</div>
                 </div>
                 </> : 
                 <div>
-                  
-            <div className="">{grinder.brand}</div>
-            <div>{grinder.model}</div>
-            <div className="card--controls">
+                  <div className="flex--row">
+                    <div>
+                      <div className="">{grinder.brand}</div>
+                      <div>{grinder.model}</div>
+                    </div>
+                    <img src={require ('../../../icons/Grinder.svg')} />
+                  </div>
 
-              <div className="card--control"
-                  onClick={() => {
-                    deleteConfirm()
-                  }}>delete
-              </div>
-              <div className="card--control"
-                  onClick={ () => { setForm(true) } }>edit
-              </div>
-              
-            </div>
+                  <div className="flex--row fit card--controls">
+
+                    <div className="card--control"
+                        onClick={() => {
+                          deleteConfirm()
+                        }}>delete
+                    </div>
+
+                    <div className="card--control"
+                        onClick={ () => { setForm(true) } }>edit
+                    </div>
+                    
+                  </div>
                 </div> 
                 }
           

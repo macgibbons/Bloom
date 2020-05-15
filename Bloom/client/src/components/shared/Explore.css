@@ -127,7 +127,7 @@ select.filter{
  .EC--sortDD {
    width: 8vw;
    border: none;
-   background-color: #F6F5F3;
+   /* background-color: #F6F5F3; */
    height: 100%;
 }
 
@@ -138,4 +138,9 @@ select.filter{
 .comment--pair {
     display: flex;
     align-items: center;
+}
+
+.profile--username {
+    padding: .5em;
+    font-size: x-large;
 }

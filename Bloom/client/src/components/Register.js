@@ -28,7 +28,9 @@ function Register({ history }) {
   };
 
   return (
-    <form onSubmit={submit}>
+    <div className="coffee--view">
+
+    <form className="login--container" onSubmit={submit}>
       <h1>Register</h1>
       <ul>
         {errors && errors.map((message, i) => <li key={i}>{message}</li>)}
@@ -96,11 +98,12 @@ function Register({ history }) {
           onChange={(e) => setConfirmPassword(e.target.value)}
         />
       </div>
-      <button type="submit">Register</button>
+      <button className="btn"type="submit btn">Register</button>
       <p>
         Already registered? <Link to="/login">Log in</Link>
       </p>
     </form>
+    </div>
   );
 }
 

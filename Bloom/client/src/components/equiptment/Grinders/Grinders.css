@@ -13,3 +13,13 @@
     background-color: white;
     transition-duration: .5s;
 }
+
+.grinder--form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.grinder--card {
+    padding: 1em .5em;
+}
