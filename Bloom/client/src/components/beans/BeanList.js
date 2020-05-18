@@ -3,17 +3,41 @@ import "./Beans.css"
 import { BeanContext } from "./BeanProvider";
 import Bean from "./Bean";
 import { getUser } from "../../API/userManager";
-
+import { RegionContext } from "../regions/RegionProvider"
 
 export default (props) => {
     // ***** CONTEXT *****
     const { beans } = useContext(BeanContext)
- 
+    const { regions } = useContext(RegionContext)
 
     // ***** USER *****
    const user = getUser()
     const currentUserBeans = beans.filter(b => b.userId === user.id)
     
+
+    let userRoasters = []
+
+    currentUserBeans.forEach(b => {
+       if( userRoasters.find(r => b.roaster === r)){
+
+       }else {
+
+           userRoasters.push(b.roaster)
+       }
+        
+    }); 
+
+    let userProcess = []
+
+    currentUserBeans.forEach(b => {
+       if( userProcess.find(r => b.process.toLowerCase() === r.toLowerCase())){
+
+       } else {
+
+           userProcess.push(b.process)
+       }
+        
+    }); 
 
     if(user !== null) {
         document.body.classList.add("user--loggedIn")
@@ -44,11 +68,26 @@ export default (props) => {
             </div>
             <div className="header--filters">
                     <div>Roaster</div>
-                    <select className="rounded"></select>
-                    <div >Country</div>
-                    <select className="rounded"></select>
+                    <select className="rounded">
+                        <option value={0}>All</option>
+                            {
+                                userRoasters.map( b => <option value={b} > {b}</option>)
+                            }
+                    </select>
+                    <div >Region</div>
+                    <select className="rounded">
+                    <option value={0}>All</option>
+                            {
+                                regions.map( r => <option value={r.id} > {r.regionName}</option>)
+                            }
+                    </select>
                     <div>Process</div>
-                    <select className="rounded"></select>
+                    <select className="rounded">
+                        <option value={0}>All</option>
+                            {
+                                userProcess.map( b => <option value={b} > {b}</option>)
+                            }
+                    </select>
                     <div>Keywords</div>
                     <input className="rounded" ></input>
             </div>

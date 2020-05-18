@@ -5,13 +5,14 @@ import Brew from "./Brew";
 import { getUser } from "../../API/userManager";
 import { BrewMethodContext } from "../equiptment/brewMethods/BrewMethodProvider";
 import EmptyState from "../EmptyState";
-
+import { GrinderContext } from "../equiptment/Grinders/GrinderProvider"
 
 
 export default (props) => {
     // ***** CONTEXT *****
     const { brews } = useContext(BrewContext)
     const { brewMethods } = useContext(BrewMethodContext)
+    const { grinders } = useContext(GrinderContext)
  
     // ***** STATE *****
     const [option, setOption] = useState("0")
@@ -20,7 +21,19 @@ export default (props) => {
     const user = getUser()
     const currentUserBrews = brews.filter(b => b.userId === user.id)
     const filteredBrews = currentUserBrews.filter(b => b.brewMethodId === parseInt(option))
+    const userGrinders = grinders.filter(g => g.userId === user.id)
 
+    let userRoasters = []
+
+    currentUserBrews.forEach(b => {
+       if( userRoasters.find(r => b.bean.roaster === r)){
+
+       }else {
+
+           userRoasters.push(b.bean.roaster)
+       }
+        
+    });
   
     
     if(user !== null) {
@@ -71,10 +84,16 @@ export default (props) => {
                     <div >Roaster</div>
                     <select className="rounded">
                         <option value={0}>All</option>
+                        {
+                            userRoasters.map( b => <option value={b} > {b}</option>)
+                        }
                     </select>
                     <div>Grinder</div>
                     <select className="rounded">
                         <option value={0}>All</option>
+                        {
+                            userGrinders.map( g => <option value={g.id} > {g.brand} {g.model}</option>)
+                        }
                     </select>
                     <div>Keywords</div>
                     <input className="rounded" ></input>
