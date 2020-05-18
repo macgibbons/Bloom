@@ -48,17 +48,39 @@ export default (props) => {
         <div className="coffee--view">
             
        
-
+            <div className="page--header">
                 <div className="title--pair">
                     <div className="page--title">My Brews</div>
                     
-                    <select className="EC--sortDD" onChange={handleSelectChange} value={option}>
-                        <option value={0}>brew method...</option>
+               
+            
+                <div  onClick={() => {logInCheck()}} className="add--btn"><img className="add" src={require ('../../icons/addWhite.svg')}/>Add brew</div>
+           
+
+                    
+                </div>
+
+            <div className="header--filters">
+                    <div >Method</div>
+                    <select className="rounded" onChange={handleSelectChange} value={option}>
+                        <option value={0}>All</option>
                         {
                             brewMethods.map( b => <option value={b.id} > {b.method}</option>)
                         }
                     </select>
-                </div>
+                    <div >Roaster</div>
+                    <select className="rounded">
+                        <option value={0}>All</option>
+                    </select>
+                    <div>Grinder</div>
+                    <select className="rounded">
+                        <option value={0}>All</option>
+                    </select>
+                    <div>Keywords</div>
+                    <input className="rounded" ></input>
+            </div>
+
+            </div>
             
                 <div className="coffee--container">
                     

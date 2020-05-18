@@ -36,12 +36,23 @@ export default (props) => {
     return (
         <div className="coffee--view">
 
+<div className="page--header">
             <div className="title--pair">
                 <div className="page--title">Coffee</div>
             
-                
+                <div  onClick={() => {logInCheck()}} className="add--btn"><img className="add" src={require ('../../icons/addWhite.svg')}/>Add coffee</div>
             </div>
-
+            <div className="header--filters">
+                    <div>Roaster</div>
+                    <select className="rounded"></select>
+                    <div >Country</div>
+                    <select className="rounded"></select>
+                    <div>Process</div>
+                    <select className="rounded"></select>
+                    <div>Keywords</div>
+                    <input className="rounded" ></input>
+            </div>
+</div>
             <div className="coffee--container">
 
             {

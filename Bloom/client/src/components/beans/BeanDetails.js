@@ -51,42 +51,46 @@ export default (props) => {
 
     // ****************** COMPONENT **********************
 return (
-    <section className="detail--container">
+    <section className="coffee--view">
+        <div className="detail--container center">
+
 
         <div className="detail--header">
 
-            <div className="detail--buttons">
-
-                <div className="btn delete--btn"
-                    onClick={ () => { deleteConfirm() } }>
-                    <img className="icon" src={require ('../../icons/trash.svg')}/>
-                </div>
-
-                <div className="btn edit--btn detail--btn"
-                    onClick={ () => { props.history.push(`/coffee/edit/${bean.id}`) } }>
-                    <img className="icon" src={require ('../../icons/edit.svg')}/>
-                </div>
-                    
-            </div>
 
         </div>
 
         <div className="detail--content">
 
             <StarRatingDisplay displayRating={bean.rating} />
-            <div>{bean.beanName}</div>
-            <div>{bean.roaster}</div>
-            <div>{bean.origin}</div>
-            <div>{bean.quantity}g</div>
-            <div>{bean.roastLevel} roast</div>
-            <div>Roast Date: {moment(bean.roastDate).format('MM | DD | YY')}</div>
-            <div>{bean.masl} MASL</div>
-            <div>process: {bean.process}</div>
-            <div>{bean.tastingNotes}</div>
+            <div className="detail--title">{bean.beanName}</div>
+            <div className="detail--pairs">
 
+            <div className="form--pair">
+                <div><span className="bold">Roaster:</span>{bean.roaster}</div>
+                <div><span className="bold">Origin:</span>{bean.origin}</div>
+
+            </div>
+            <div className="form--pair">
+                <div><span className="bold">Quantity:</span>{bean.quantity}g</div>
+                <div><span className="bold">Roast Level:</span>{bean.roastLevel} roast</div>
+
+            </div>
+            <div className="form--pair">
+
+                <div><span className="bold">Roast Date:</span>{moment(bean.roastDate).format('MM | DD | YY')}</div>
+                <div><span className="bold">Altitude:</span>{bean.masl} MASL</div>
+            </div>
+            <div><span className="bold">Process:</span> {bean.process}</div>
+            </div>
+            <div className="detail--pairs">
+
+            <div><span className="bold">Tasting Notes:</span>{bean.tastingNotes}</div>
+
+            </div>
             <div className="card--detailPair">
 
-                <div className="card--subTitle">Notes: {bean.notes}</div>
+                <div ><span className="bold">Notes:</span>{bean.notes}</div>
             
             </div>
 
@@ -110,7 +114,22 @@ return (
                     }
             </div>
         </div>
-        
+            <div className="card--controls flex--row">
+
+                <div className="card--control"
+                    onClick={ () => { deleteConfirm() } }>
+                        delete
+                    {/* <img className="icon" src={require ('../../icons/trash.svg')}/> */}
+                </div>
+
+                <div className="card--control"
+                    onClick={ () => { props.history.push(`/coffee/edit/${bean.id}`) } }>
+                        edit
+                    {/* <img className="icon" src={require ('../../icons/edit.svg')}/> */}
+                </div>
+                    
+            </div>
+        </div>
     </section>
     )
 

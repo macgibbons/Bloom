@@ -157,24 +157,27 @@ return (
 
             <div className="EC--content">
                     <div className="EC--notes">{brew.notes}</div>
-                <div>
-                    <Link  className="card--link" to={`/brews/${brew.id}`}>
-                        { brew.brewMethod.method }
-                    </Link>
-                </div>
+                    <div className="EC--recipie">
 
-                <div>
-                    <div>{ brew.bean.beanName }</div>
-                    <div>{ brew.bean.roaster }</div>
-                
-                </div>
+                        <div className="detail--pairs">
+
+                            <div className="detail--title">{ brew.bean.beanName }</div>
+                            <div className="">{ brew.bean.roaster }</div>
+                        
+                        </div>
+                        <div>
+                            <Link  className="card--link" to={`/brews/${brew.id}`}>
+                                { brew.brewMethod.method }
+                            </Link>
+                        </div>
 
 
-                <div>
-                    <div>{ brew.coffeeDose }g</div>
-                    <div>{ brew.waterDose }g</div>
-                    <div>{ moment.utc(brew.brewTime * 1000).format('m:ss') }</div>
-                </div>
+                        <div className="detail--pairs">
+                            <div>{ brew.coffeeDose }g</div>
+                            <div>{ brew.waterDose }g</div>
+                            <div>{ moment.utc(brew.brewTime * 1000).format('m:ss') }</div>
+                        </div>
+                    </div>
             </div>
 
             <section className="comment--section">

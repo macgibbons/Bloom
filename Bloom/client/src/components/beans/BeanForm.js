@@ -129,7 +129,7 @@ export default props => {
         <form className="form container">
         <div className="center">{editMode ? "Update Coffee" : "New Coffee"}</div>
             <div className= {error === "" ? "hidden" : "error"}>{error}</div>
-            <div className="btn delete--btn">{editMode ? deleteButton : ""} </div>
+            <div className="">{editMode ? deleteButton : ""} </div>
             <div className="wrapper">
         
 

@@ -48,7 +48,7 @@ export default (props) => {
                 </button>
 
                 <div className=" profile--username">
-                    {user.firstName} {user.lastName} <span>{ user.lastName === "Coffee"  ? <MdVerifiedUser className="gradient" size={20} /> : "" }</span>
+                    {user.firstName} {user.lastName} <span>{ user.lastName === "Coffee"  ? <MdVerifiedUser className="gradient"size={20} /> : "" }</span>
                 </div>
                 
                 <FaRegUserCircle className="gradient" size={100}/>

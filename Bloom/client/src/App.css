@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700&display=swap');
 .App {
   /* text-align: center; */
   color: 2C2C2C;
@@ -210,6 +210,10 @@ background: linear-gradient(180deg, rgba(77, 125, 245, 0.219) 0%, rgba(122,49,21
   justify-content: space-between;
   
 }
+.flex--row-no{
+  display: flex;
+  
+}
 
 .fit{
   margin-top: 1em;
@@ -218,4 +222,37 @@ background: linear-gradient(180deg, rgba(77, 125, 245, 0.219) 0%, rgba(122,49,21
 
 label, input[type="date" i] {
   font-family: 'Work-Sans', sans-serif;
+}
+
+.bold{
+  font-weight: 600;
+  margin-right: 1em;;
+  
+}
+
+.add--btn {
+  background-color: #5E51E1;
+  height: fit-content;
+  padding: .5em 1em;
+  color: white;
+  font-size: small;
+  font-weight: 300;
+  align-items: center;
+  display: flex;
+  border-radius: 30px;
+  justify-content: space-between;
+  transition-duration: .5s;
+}
+
+ .add--btn img{
+margin: auto .3em auto auto;
+max-width: 1.1em;
+}
+
+.add--btn:hover{
+  background-color: #5E51E1;
+  background: rgb(77,124,245);
+  /* background: linear-gradient(180deg, rgba(77, 125, 245, 0.219) 0%, rgba(122,49,216,.2191) 100%); */
+  transition-duration: .5s;
+  cursor: pointer;
 }
