@@ -96,7 +96,7 @@ export default (props) => {
                         }
                     </select>
                     <div>Keywords</div>
-                    <input className="rounded" ></input>
+                    <input className="rounded" placeholder="juicy, floral, etc.."></input>
             </div>
 
             </div>

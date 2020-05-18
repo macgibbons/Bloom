@@ -4,8 +4,8 @@
 
 .add--grinder{
     margin: auto;
-    min-width: 53vw;
-    min-height: 0vh;
+    min-width: 72vw;
+    min-height: 100%;
     background-color: whtie;
     transition-duration: .5s;
 }

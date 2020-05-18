@@ -251,7 +251,7 @@ max-width: 1.1em;
 
 .add--btn:hover{
   background-color: #5E51E1;
-  background: rgb(77,124,245);
+  
   /* background: linear-gradient(180deg, rgba(77, 125, 245, 0.219) 0%, rgba(122,49,216,.2191) 100%); */
   transition-duration: .5s;
   cursor: pointer;

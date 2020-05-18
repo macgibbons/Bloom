@@ -16,8 +16,8 @@ height: 90vh;
 bottom: 1em;
 position: sticky;
 top: 1em;
-border-radius: 8px;
-padding: 1em 20px;
+border-radius: 10px;
+padding: 1em 0px;
 margin: 1em;
 align-items: center;
 text-align: center;
@@ -29,7 +29,7 @@ list-style: none;
 display: flex;
 flex-direction: column;
 height: 100%;
-justify-content: space-evenly;
+justify-content: space-around;
 align-content: flex-start;
 text-align: center;
 margin-block-start: 0 !important;
@@ -41,7 +41,7 @@ margin-block-start: 0 !important;
 }
 
 .nav--filter {
-padding: 0 2em;
+padding: 0 0em;
 cursor: pointer;
 display: flex;
 align-items: flex-end;
@@ -71,7 +71,7 @@ border: none;
 width: 10vw;
 font-weight: 400;
 margin: 1em;
-padding: 1em 3em ;
+padding: .25em 3em ;
 border-radius: 8px;
 transition-duration: .5s;
 text-decoration: none;
@@ -109,4 +109,24 @@ text-decoration: none;
 
 .nav--icon{
     margin-right: 1.5em;
+}
+
+@media(max-width: 1000px){
+    .header{
+        height: 30vh;
+        padding: none;
+        flex-direction: row;
+    }
+
+    .nav-items{
+        flex-direction: row;
+    }
+    .nav--filter{
+        padding: none;
+        margin: none;
+    }
+
+    .hr{
+        display: none;
+    }
 }

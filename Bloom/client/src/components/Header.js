@@ -48,7 +48,7 @@ function Header({ history }) {
               <Link to="/Equiptment">Equipment</Link>
             </li>
           </div>
-          <hr width={198}/>
+          <hr className="hr" width={198}/>
           <div>
 
             <li className="nav--filter">

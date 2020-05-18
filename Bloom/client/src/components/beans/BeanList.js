@@ -1,9 +1,10 @@
-import React, { useContext } from "react"
+import React, { useContext, useState, useEffect } from "react"
 import "./Beans.css"
 import { BeanContext } from "./BeanProvider";
 import Bean from "./Bean";
 import { getUser } from "../../API/userManager";
 import { RegionContext } from "../regions/RegionProvider"
+import EmptyState from "../EmptyState";
 
 export default (props) => {
     // ***** CONTEXT *****
@@ -14,6 +15,16 @@ export default (props) => {
    const user = getUser()
     const currentUserBeans = beans.filter(b => b.userId === user.id)
     
+    // ***** STATE *****
+    const [roaster, setRoaster] = useState("")
+    const [region, setRegion] = useState(0)
+    const [process, setProcess] = useState("")
+
+    const beansByRegion = currentUserBeans.filter(b => b.regionId === parseInt(region))
+
+
+
+    // ***** ROASTER *****
 
     let userRoasters = []
 
@@ -27,6 +38,12 @@ export default (props) => {
         
     }); 
 
+    const beansByRoaster = currentUserBeans.filter(b => b.roaster.toLowerCase() === roaster.toLowerCase())
+
+
+
+    // ***** PROCESS *****
+
     let userProcess = []
 
     currentUserBeans.forEach(b => {
@@ -38,6 +55,8 @@ export default (props) => {
        }
         
     }); 
+
+    const beansByProcess = currentUserBeans.filter(b => b.process.toLowerCase() === process.toLowerCase())
 
     if(user !== null) {
         document.body.classList.add("user--loggedIn")
@@ -57,6 +76,9 @@ export default (props) => {
         props.history.push("/coffee/create")
     }
    
+    useEffect(()=>{
+        console.log(parseInt(region))
+    })
     return (
         <div className="coffee--view">
 
@@ -68,37 +90,62 @@ export default (props) => {
             </div>
             <div className="header--filters">
                     <div>Roaster</div>
-                    <select className="rounded">
-                        <option value={0}>All</option>
+                    <select onChange={(evt)=>{setRoaster(evt.target.value)}} className="rounded">
+                        <option value={""}>All</option>
                             {
                                 userRoasters.map( b => <option value={b} > {b}</option>)
                             }
                     </select>
+
                     <div >Region</div>
-                    <select className="rounded">
+                    <select onChange={(evt)=>{setRegion(evt.target.value)}} className="rounded">
                     <option value={0}>All</option>
                             {
                                 regions.map( r => <option value={r.id} > {r.regionName}</option>)
                             }
                     </select>
+
                     <div>Process</div>
-                    <select className="rounded">
+                    <select onChange={(evt)=>{setProcess(evt.target.value)}} className="rounded">
                         <option value={0}>All</option>
                             {
                                 userProcess.map( b => <option value={b} > {b}</option>)
                             }
                     </select>
                     <div>Keywords</div>
-                    <input className="rounded" ></input>
+                    <input placeHolder="juicy, floral, etc" className="rounded" ></input>
             </div>
 </div>
             <div className="coffee--container">
 
-            {
-                currentUserBeans.map(bean => {
+            {   process === "" ?
 
-                    return <Bean key={bean.id} bean={bean} {...props} />
-                })                
+                    region != 0 ? 
+                 
+                        beansByRegion.length === 0 ? 
+                        
+                        <EmptyState /> 
+                        :
+                        beansByRegion.map(bean => {
+                            return <Bean key={bean.id} bean={bean} {...props} />}) 
+                        : 
+
+                    roaster === "" ? 
+
+                        currentUserBeans.map(bean => {
+                            return <Bean key={bean.id} bean={bean} {...props} />}) 
+                        : 
+                        beansByRoaster.map(bean => {
+                            return <Bean key={bean.id} bean={bean} {...props} />}) 
+                        :
+
+                    beansByProcess.length > 0 ?
+
+                        beansByProcess.map(bean => {
+                            return <Bean key={bean.id} bean={bean} {...props} />}) 
+                        :   
+                        currentUserBeans.map(bean => {
+                            return <Bean key={bean.id} bean={bean} {...props} />})           
             }
             
             <a  className="coffee--card add--bean"

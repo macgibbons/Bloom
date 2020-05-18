@@ -6,7 +6,7 @@
     box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
     background-color: white;
     border-radius: 10px;
-    width: 32.9vw;
+    width: 33.99vw;
     /* flex-basis:  37%; */
     margin:.5em .5em;
     padding:  1em;
@@ -89,6 +89,14 @@
 .header--filters select input {
     width: 10vw;
 }
+
+.header--filters input {
+    padding: .65em;
+    background: url("../../icons/search.svg") right  content-box no-repeat ;
+    background-size: 1.5em;
+    font-size: small;
+}
+
 
 .rounded {
     border-radius: 30px !important;
