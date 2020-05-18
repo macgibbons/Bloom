@@ -12,16 +12,29 @@ export default (props) => {
     const { regions } = useContext(RegionContext)
 
     // ***** USER *****
-   const user = getUser()
+    const user = getUser()
     const currentUserBeans = beans.filter(b => b.userId === user.id)
     
     // ***** STATE *****
     const [roaster, setRoaster] = useState("")
     const [region, setRegion] = useState(0)
     const [process, setProcess] = useState("")
+    const [search, setSearch] = useState("")
 
     const beansByRegion = currentUserBeans.filter(b => b.regionId === parseInt(region))
 
+    const searchedBeans = currentUserBeans.filter( (b) => 
+    
+    
+    b.beanName.toLowerCase().includes(search.toLocaleLowerCase()) ||
+    b.origin.toLowerCase().includes( search.toLocaleLowerCase()) ||
+    b.notes.toLowerCase().includes( search.toLocaleLowerCase()) ||
+    b.roastLevel.toLowerCase().includes( search.toLocaleLowerCase()) ||
+    b.tastingNotes.toLowerCase().includes( search.toLocaleLowerCase()) ||
+    b.variety.toLowerCase().includes( search.toLocaleLowerCase()) ||
+    b.roaster.toLowerCase().includes( search.toLocaleLowerCase())
+    
+    )
 
 
     // ***** ROASTER *****
@@ -30,17 +43,12 @@ export default (props) => {
 
     currentUserBeans.forEach(b => {
        if( userRoasters.find(r => b.roaster === r)){
-
-       }else {
-
+        } else {
            userRoasters.push(b.roaster)
        }
-        
     }); 
 
     const beansByRoaster = currentUserBeans.filter(b => b.roaster.toLowerCase() === roaster.toLowerCase())
-
-
 
     // ***** PROCESS *****
 
@@ -113,39 +121,46 @@ export default (props) => {
                             }
                     </select>
                     <div>Keywords</div>
-                    <input placeHolder="juicy, floral, etc" className="rounded" ></input>
+                    <input className="rounded" type='text' placeHolder="juicy, floral, etc" onChange={evt => setSearch(evt.target.value)}/>
             </div>
 </div>
             <div className="coffee--container">
 
-            {   process === "" ?
-
+            {  
+            search === "" ?
+                 process === "" ?
                     region != 0 ? 
                  
                         beansByRegion.length === 0 ? 
                         
-                        <EmptyState /> 
+                            <EmptyState /> 
                         :
-                        beansByRegion.map(bean => {
-                            return <Bean key={bean.id} bean={bean} {...props} />}) 
-                        : 
+                            beansByRegion.map(bean => {
+                                return <Bean key={bean.id} bean={bean} {...props} />}) 
+                    : 
 
-                    roaster === "" ? 
+                        roaster === "" ? 
 
-                        currentUserBeans.map(bean => {
-                            return <Bean key={bean.id} bean={bean} {...props} />}) 
+                            currentUserBeans.map(bean => {
+                                return <Bean key={bean.id} bean={bean} {...props} />}) 
                         : 
-                        beansByRoaster.map(bean => {
-                            return <Bean key={bean.id} bean={bean} {...props} />}) 
-                        :
+                            beansByRoaster.map(bean => {
+                                return <Bean key={bean.id} bean={bean} {...props} />}) 
+                :
 
                     beansByProcess.length > 0 ?
 
                         beansByProcess.map(bean => {
                             return <Bean key={bean.id} bean={bean} {...props} />}) 
-                        :   
+                    :   
                         currentUserBeans.map(bean => {
-                            return <Bean key={bean.id} bean={bean} {...props} />})           
+                          return <Bean key={bean.id} bean={bean} {...props} />})
+            : 
+                searchedBeans.length > 0 ?
+                    searchedBeans.map(bean => {
+                        return <Bean key={bean.id} bean={bean} {...props} />})
+                :
+                    <EmptyState />
             }
             
             <a  className="coffee--card add--bean"
