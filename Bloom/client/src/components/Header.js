@@ -25,27 +25,27 @@ function Header({ history }) {
 
           <li className="nav--filter">
             <img className="nav--icon"src={require ('../icons/Home.svg')} />
-              <NavLink   to="/" >Dashboard</NavLink>
+              <NavLink activeClassName="active"  exact to="/" >Dashboard</NavLink>
             </li>
 
             <li  className="nav--filter">
               <img className="nav--icon" src={require ('../icons/Explore.svg')} />
-              <Link to="/Explore">Explore</Link>
+              <NavLink activeClassName="active" to="/Explore">Explore</NavLink>
             </li>
 
             <li className="nav--filter" >
               <img  className="nav--icon" src={require ('../icons/Brew.svg')} />
-              <NavLink   to="/brews" >My Brews</NavLink>
+              <NavLink activeClassName="active" to="/brews" >My Brews</NavLink>
             </li>
 
             <li  className="nav--filter">
               <img className="nav--icon" src={require ('../icons/Coffee.svg')} />
-              <Link to="/Coffee">Coffees</Link>
+              <NavLink activeClassName="active" to="/Coffee">Coffees</NavLink>
             </li>
 
             <li  className="nav--filter">
               <img className="nav--icon" src={require ('../icons/Grinder.svg')} />
-              <Link to="/Equiptment">Equipment</Link>
+              <NavLink activeClassName="active" to="/Equiptment">Equipment</NavLink >
             </li>
           </div>
           <hr className="hr" width={198}/>
@@ -53,7 +53,7 @@ function Header({ history }) {
 
             <li className="nav--filter">
               <img className="nav--icon" src={require ('../icons/Home.svg')} />
-              <Link to={`/profile/${user.id}`}>My Profile</Link>
+              <NavLink activeClassName="active" to={`/profile/${user.id}`}>My Profile</NavLink>
             </li>
 
             <li className="nav--filter">

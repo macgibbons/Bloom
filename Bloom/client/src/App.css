@@ -256,3 +256,9 @@ max-width: 1.1em;
   transition-duration: .5s;
   cursor: pointer;
 }
+
+.active {
+  font-weight: bolder !important;
+  color: #5E51E1 !important;
+  
+  }

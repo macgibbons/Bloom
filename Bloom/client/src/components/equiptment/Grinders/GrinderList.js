@@ -40,16 +40,33 @@ export default (props) => {
     return (
         <div className="coffee--view">
 
-            <div className="title--pair">
-                <div className="page--title">My Gear</div>
+<div className="page--header">
+                <div className="title--pair">
+                    <div className="page--title">My Gear</div>
+                    
+               
+            
+                <div  onClick={() => {logInCheck()}} className="add--btn"><img className="add" src={require ('../../../icons/addWhite.svg')}/>Add grinder</div>
+           
+
+                    
+                </div>
+
+            <div className="header--filters">
+                    <div>All equipment</div>
+                    <div>Brew methods</div>
+                    <div>Brew methods</div>
+                    <div>Grinders</div>
+                    <div>Kettles</div>
+                    <div>Scales</div>
+                   
             </div>
             
-            <div className="coffee--container">
-             {
-                currentUserGrinders.map(grinder => {
-                    return <Grinder key={grinder.id} grinder={grinder}  />})                
-             }
+            
+            </div>
 
+           
+            
                 <div>
                     { form ? 
 
@@ -65,13 +82,19 @@ export default (props) => {
                     : 
                     <div>
 
-                        <a  className="coffee--card add--grinder"
+                        {/* <a  className="coffee--card add--grinder"
                                     onClick={() => {logInCheck()}}>
                             <img className="add--icon" src={require ("../../../icons/add.svg")}/>
-                        </a>
+                        </a> */}
                     </div> 
                     }
                 </div>
+            <div className="coffee--container">
+             {
+                currentUserGrinders.map(grinder => {
+                    return <Grinder key={grinder.id} grinder={grinder}  />})                
+             }
+
 
             </div>
         </div>
