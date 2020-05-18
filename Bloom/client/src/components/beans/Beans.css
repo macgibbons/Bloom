@@ -5,10 +5,10 @@
     flex-direction: column;
     box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
     background-color: white;
-    border-radius: 8px;
-    flex-basis: 15%;
-    margin:.25em .25em;
-    width: 25vw;
+    border-radius: 10px;
+    width: 33.99vw;
+    /* flex-basis:  37%; */
+    margin:.5em .5em;
     padding:  1em;
     transition-duration: .5s;
    
@@ -28,11 +28,14 @@
 .coffee--container{
     display: flex;
     flex-wrap: wrap;
+    /* justify-content: space-between; */
 }
 
 .coffee--view {
-    padding: 2em 4em;
+    padding: 2em 3em 2em 0em;
     /* margin: 0 5vw */
+  
+  transition-duration: 2s;
     
 }
 
@@ -59,4 +62,65 @@
     
     justify-content: space-evenly;
     border: 1px solid black;
+}
+
+.detail--title {
+    font-size: x-large;
+    
+}
+
+.page--header{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.header--filters{
+    display: flex;
+    background-color: white;
+    width: initial;
+    padding: 1em;
+    border-radius: 10px;
+    font-size: small;
+    align-items: center;
+    margin: -1em 0 1em 0;
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+}
+
+.header--filters select input {
+    width: 10vw;
+}
+
+.header--filters input {
+    padding: .65em;
+    background: url("../../icons/search.svg") right  content-box no-repeat ;
+    background-size: 1.5em;
+    font-size: small;
+}
+
+
+.rounded {
+    border-radius: 30px !important;
+}
+
+.header--filters div {
+    margin: 0 1em 0 1.5em;
+}
+
+@media(max-width: 1432px){
+    .coffee--card{
+        width: 30vw;
+    }
+
+    .coffee--container{
+        justify-content: space-between;
+    }
+}
+
+@media(max-width: 1200px){
+    .coffee--card{
+        width: 61.5vw;
+    }
+    .coffee--container{
+        flex-direction: column;
+    }
 }

@@ -43,46 +43,58 @@ export default (props) => {
           }}
     // ****************** COMPONENT **********************
     return (
-        <section className="detail--container">
+        <section className="coffee--view">
 
-            <div className="detail--header">
+            <div className="brewDetail--container center">
 
-                <div  className="detail--title">{brewMethod.method}</div>
-
-                <div className="detail--buttons">
-
-                    <div className="gradient delete--btn"
-                        onClick={ () => { deleteConfirm() } }>
-                        <img className="icon" src={require ('../../icons/trash.svg')}/>
-                    </div>
-
-                    <div className="gradient edit--btn detail--btn"
-                        onClick={ () => { props.history.push(`/brews/edit/${brew.id}`) } }>
-                        <img className="icon" src={require ('../../icons/edit.svg')}/>
-                    </div>
-                    
-                </div>
-
-            </div>
+         
 
             <div className="detail--content">
 
+                <div  className="detail--title">{brewMethod.method}</div>
                 <StarRatingDisplay displayRating={brew.rating} />
-                <div>{bean.beanName}</div>
-                <div>{bean.roaster}</div>
-                <div>{bean.origin}</div>
-                <div>{moment(brew.brewDate).format('MM | DD | YY')}</div>
-                <div>Bloom Length: {brew.bloom}s</div>
-                <div>Brew Time: { moment.utc(brew.brewTime * 1000).format('m:ss')}</div>
-                <div>Grinder: {grinder.brand} {grinder.model}</div>
-                <div>Grinder setting: {brew.grindSetting}</div>
-                <div>Dose: {brew.coffeeDose}g</div>
-                <div>Water Dose: {brew.waterDose}g</div>
-                <div> Brew Ratio: 1 : {brewRatio % 1 === 0 ? brewRatio : brewRatio.toFixed(1)}</div> 
+                <div className="card--control"><span className="bold">posted on:</span>{moment(brew.brewDate).format('MM | DD | YY')}</div>
+                <div className="detail--pairs">
+
+                    <div className="form--pair">
+                        <div><span className="bold">Coffee: </span>{bean.beanName}</div>
+                        <div><span className="bold">Roaster: </span>{bean.roaster}</div>
+                    </div>
+                    <div className="form--pair">
+
+                        <div><span className="bold">Origin: </span>{bean.origin}</div>
+                        <div><span className="bold">Boom: </span>{brew.bloom}s</div>
+                    </div>
+
+                        <div className="form--pair">
+                            <div><span className="bold">Brew Time: </span>{ moment.utc(brew.brewTime * 1000).format('m:ss')}</div>
+                            <div><span className="bold">Grinder: </span>{grinder.brand} {grinder.model}</div>
+                        </div>
+                    <div><span className="bold">Grind Setting: </span>{brew.grindSetting}</div>
+                    <div><span className="bold">Dose: </span>{brew.coffeeDose}g</div>
+                    <div><span className="bold">Water: </span>{brew.waterDose}g</div>
+                    <div> <span className="bold">Brew Ratio: </span>1 : {brewRatio % 1 === 0 ? brewRatio : brewRatio.toFixed(1)}</div> 
+
+                </div>
       
-                <div className="card--detailPair">
-                    <div className="card--subTitle">Notes: {brew.notes}</div>
-                    <p></p>
+                
+                    <div className=""><span className="bold">Notes:</span> {brew.notes}</div>
+                  
+            </div>
+                <div className="card--controls flex--row">
+
+                    <div className="card--control"
+                        onClick={ () => { deleteConfirm() } }>
+                            delete
+                        {/* <img className="icon" src={require ('../../icons/trash.svg')}/> */}
+                    </div>
+
+                    <div className="card--control"
+                        onClick={ () => { props.history.push(`/brews/edit/${brew.id}`) } }>
+                            edit
+                        {/* <img className="icon" src={require ('../../icons/edit.svg')}/> */}
+                    </div>
+                    
                 </div>
             </div>
 

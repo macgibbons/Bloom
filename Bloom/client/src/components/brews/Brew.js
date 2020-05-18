@@ -80,7 +80,7 @@ return (
                 <div>{ brew.waterDose }g</div>
                 <div>{ moment.utc(brew.brewTime * 1000).format('m:ss') }</div>
             </div>
-            <div className="EC--controls">
+            <div className="EC--controls ">
                 { 
                     brew.shared ? 
                     <div className="card--control"
