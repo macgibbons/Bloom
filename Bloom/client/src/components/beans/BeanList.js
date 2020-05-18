@@ -162,11 +162,12 @@ export default (props) => {
                 :
                     <EmptyState />
             }
-            
-            <a  className="coffee--card add--bean"
+        
+            {/* this is a false  card  to add a new coffee*/}
+            {/* <a  className="coffee--card add--bean"
                         onClick={() => {logInCheck()}}>
                 <img className="add--icon" src={require ("../../icons/add.svg")}/>
-                </a>
+            </a> */}
             </div>
         </div>
     )

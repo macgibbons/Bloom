@@ -177,11 +177,11 @@ export default (props) => {
                         })
                                     
                     } */}
-                    <a  className="coffee--card add--bean"
+                    {/* <a  className="coffee--card add--bean"
                         onClick={() => {logInCheck()}}>
 
                         <img className="add--icon" src={require ("../../icons/add.svg")}/>
-                    </a>
+                    </a> */}
                 </div>
            
         </div>

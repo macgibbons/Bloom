@@ -90,22 +90,7 @@ cursor: pointer;
 color: rgb(77,124,245);
 background: linear-gradient(180deg, rgba(77, 125, 245,) 0%, rgba(122,49,216,) 100%);
 }
-/* .active {
-background-color: rgb(181, 231, 247);
-background: rgb(77,124,245);
-background: linear-gradient(180deg, rgba(77, 125, 245, 0.219) 0%, rgba(122,49,216,.2191) 100%);
-transition-duration: .5s;
-text-align: center;
-border: none;
-width: 10vw;
-font-weight: 400;
-margin: 1em;
-padding: 1em 3em ;
-border-radius: 8px;
-transition-duration: .5s;
-color:black;
-text-decoration: none;
-} */
+
 
 .nav--icon{
     margin-right: 1.5em;
