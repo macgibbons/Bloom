@@ -3,7 +3,7 @@
     flex-direction: row-reverse;
     justify-content: flex-end;
     padding: 2em .5em;
-    width: 100%;
+    width: 100vw;
     /* margin: 0 5vw; */
 }
 .explore--filters{
@@ -34,9 +34,9 @@ select.filter{
     justify-content: center;
     flex-direction: column;
     margin-right: 2vw;
-    flex-basis: 55%;
+    flex-basis: 75%;
     /* padding: .5em; */
-    width: 85vw;
+    width: 100vw;
 }
 
 .explore--card {
@@ -88,6 +88,10 @@ select.filter{
     padding: 1em;
 }
 
+.small--dd{
+    width: 10em;
+}
+
 .comment--section {
     padding: 1.5%
 }
@@ -129,6 +133,8 @@ select.filter{
  .EC--sortDD {
    width: 8vw;
    border: none;
+   box-shadow: none !important;
+   background-color:  #EBEBEB;
    /* background-color: #F6F5F3; */
    height: 100%;
 }

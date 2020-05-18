@@ -59,33 +59,56 @@ export default (props) => {
         }
     }
     return (
-        <div className="explore--view">
-
-            <div className="explore--filters">
-
-               
-
-                    <select className="filter" onChange={handleSelectChange} value={option}>
-                        <option value={0}>please select a filter</option>
-                        {
-                            brewMethods.map( b => <option value={b.id} > {b.method}</option>)
-                        }
-                    </select>
-
-                    <input className="filter" type='text' placeholder="Search..." onChange={evt => setSearch(evt.target.value)}/>
-            
-            </div>
+        <section className="explore--view">
          
 
             <div className="explore--container">
-                        <div className="page--title">explore</div> 
-                        <div className="EC--sort">
-                            <div> {reverse ? "Newest" : "Oldest"}</div>
-                            <select className="EC--sortDD" onChange={handleSortChange}  >
-                                <option value="1">newest</option>
-                                <option value="2">oldest</option>
+                <div className="page--header">
+
+                <div className="page--title">explore</div> 
+                <div className="header--filters">
+                    <div className="title--pair no-pad">
+                        <div className="row no-pad">
+
+                            <div className="">Brew methods</div>
+                            <select className="rounded small--dd" onChange={handleSelectChange} value={option}>
+                                <option value={0}>All</option>
+                                {
+                                    brewMethods.map( b => <option value={b.id} > {b.method}</option>)
+                                }
+                            </select>
+                            <div>Region</div>
+                            <select className="rounded small--dd" onChange={handleSelectChange} value={option}>
+                                <option value={0}>All</option>
+                                {
+                                    brewMethods.map( b => <option value={b.id} > {b.method}</option>)
+                                }
                             </select>
                         </div>
+                        
+                        <div className="row">
+                            <div>Keywords</div>
+                            <input className="rounded" type='text' placeholder="Search..." onChange={evt => setSearch(evt.target.value)}/>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+            <div className="title--pair">
+
+               
+
+
+            
+                    <div> {reverse ? "Newest" : "Oldest"}</div>
+                    <div>
+                         
+                        <select className="EC--sortDD rounded" onChange={handleSortChange}  >
+                            <option value="1">newest</option>
+                            <option value="2">oldest</option>
+                        </select>
+                    </div>
+            </div>
             { 
                   option === '0' ? search === ''  ?  
                         sharedBrews.map(brew => {
@@ -112,7 +135,7 @@ export default (props) => {
             }
             
             </div>
-        </div>
+        </section>
     )
 }
 

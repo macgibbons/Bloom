@@ -262,3 +262,12 @@ max-width: 1.1em;
   color: #5E51E1 !important;
   
   }
+
+  .row{
+    display: flex;
+    align-items: center;
+  }
+
+  .no-pad {
+    margin-left: 0 !important;
+  }
