@@ -4,7 +4,7 @@
 Bloom is a full-stack web application built in C# and React. **Bloom** is a social media platform for specialty coffee enthusiasts. It allows users to build and share pour over coffee recipies and notes as well as discover new recipies from your favorite roasters and baristas. 
 
 
-#### Problem 👨‍🔬👨‍🔬
+#### 👨‍🔬 Problem 👨‍🔬
 Dialling in a coffee recipie can be very tricky and requires constant tasting and tinerking. Recipies can change with the age of the coffee or the humidity of where it is being brewed.
 It can also be overwhelming to keep up with trends in the coffee world: what new coffees are coming out, what equipment everyone is loving, and what recipies people are brewing.
 #
@@ -20,7 +20,7 @@ The backend for bloom is an API built in C# ASP.NET Core.
 - Using your NuGet Packagame Manager Console, run `Update-Database` to run the migraton, create a database, and seed it with some data
 - Run your server from Visual Studio
 
-# FrontEnd
+# Frontend
 The frontend of Bloom is a React App bootstrapped from `create-react-app` with a few depencencies:
 - Moment.js
 - React-icons 
