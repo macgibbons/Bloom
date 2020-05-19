@@ -1,5 +1,4 @@
-import React, { useContext, useState, useEffect } from "react"
-import { Link, Route } from "react-router-dom"
+import React, { useContext, useState} from "react"
 import { CommentContext } from "./CommentProvider"
 import './Comments.css'
 import { FaRegUserCircle } from "react-icons/fa"

@@ -5,9 +5,8 @@
     padding: 2em .5em;
     max-width: 1150px;
     width: 100vw;
-
-    /* margin: 0 5vw; */
 }
+
 .explore--filters{
     display:flex;
     flex-direction: column-reverse;
@@ -23,7 +22,6 @@
 .filter{
     width: 100% !important;
     margin: 1em;
-
 }
 
 select.filter{
@@ -31,13 +29,13 @@ select.filter{
     border: none;
     border-radius: 8px;
 }
+
 .explore--container {
     display: flex;
     justify-content: center;
     flex-direction: column;
     margin-right: 2vw;
     flex-basis: 75%;
-    /* padding: .5em; */
     width: 100vw;
 }
 
@@ -52,8 +50,7 @@ select.filter{
     display: flex;
     padding: 1.5%;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-    justify-content: space-between;
-  
+    justify-content: space-between; 
 }
 
 .EC--User {
@@ -129,7 +126,6 @@ select.filter{
 .EC--sort {
     display: flex;
     justify-content: space-between;
-    /* width: 25%; */
 }
 
  .EC--sortDD {
@@ -137,7 +133,6 @@ select.filter{
    border: none;
    box-shadow: none !important;
    background-color:  #EBEBEB;
-   /* background-color: #F6F5F3; */
    height: 100%;
 }
 

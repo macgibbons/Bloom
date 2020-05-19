@@ -2,7 +2,6 @@ import React, { useContext, useState, useEffect } from "react"
 import { BeanContext } from "./BeanProvider";
 import { getUser } from "../../API/userManager";
 import { RegionContext } from "../regions/RegionProvider";
-import DateTime from "react-datetime";
 import moment from "moment";
 import StarRating from "../StarRating";
 export default props => {
@@ -13,7 +12,6 @@ export default props => {
     const [selectedDate, setSelectedDate] = useState()
     const [rating, setRating] = useState(0)
     const [error, setError] = useState("")
-    const [date, setDate ] = useState(bean.roastDate)
     
     const editMode = props.match.params.hasOwnProperty("beanId")
     const user = getUser();
@@ -72,9 +70,7 @@ export default props => {
             setError("Please specify a region")
         } else  if (bean.roaster === undefined) {
             setError("Please specify a roaster")
-        }  //else if (selectedDate || date === undefined) {
-           // setError("Please specify a roast date")
-      //  } 
+        }  
         else {
 
             if (editMode) {
@@ -125,44 +121,41 @@ export default props => {
     }
 
     return (
-        <div className="coffee--view">
-        <form className="form container">
-        <div className="center form--title">{editMode ? "Update Coffee" : "New Coffee"}</div>
-            <div className= {error === "" ? "hidden" : "error"}>{error}</div>
-            <div className="">{editMode ? deleteButton : ""} </div>
-            <div className="wrapper">
-        
+<div className="coffee--view">
 
-                <fieldset className="center">
-                    <div className="center ">
-                        {/* <label htmlFor="beanName">Name</label> */}
-                        <input type="text" name="beanName" required autoFocus className="form-control"
-                            proptype="varchar"
-                            placeholder="Name.."
-                            defaultValue={bean.beanName}
-                            onChange={handleControlledInputChange}
-                            />
-                    </div>
-                    </fieldset>
+    <form className="form container">
+
+        <div className="center form--title">{editMode ? "Update Coffee" : "New Coffee"}</div>
+        <div className= {error === "" ? "hidden" : "error"}>{error}</div>
+        <div className="">{editMode ? deleteButton : ""} </div>
+
+        <div className="wrapper">
+
+            <fieldset className="center">
+                <div className="center ">
+                    <input type="text" name="beanName" required autoFocus className="form-control"
+                        proptype="varchar"
+                        placeholder="Name.."
+                        defaultValue={bean.beanName}
+                        onChange={handleControlledInputChange}
+                        />
+                </div>
+            </fieldset>
+
             <StarRating className="rating--form center" {...props} 
                     selectedRating={setRating} 
                     editMode={editMode ? true : false }
                     editRating={ editMode ? bean.rating : null } />
         
 
-<div className="form--pair">
-<fieldset>
+            <div className="form--pair">
 
-                    <div className="center  ">
+                <fieldset>
+                    <div className="center">
                         <label className="form--label" htmlFor="roastDate">Roast Date</label>
                         <input type="date" onChange={(evt)=>setSelectedDate(moment(evt.target.value).format())} />
-                        {/* <DateTime  className="date--picker" selected={selectedDate} defaultValue={date}
-                                  onChange={date => setSelectedDate(date) }
-                        />
-                        */}
-
                     </div>
-</fieldset>
+                </fieldset>
 
                 <fieldset>
                     <div className="column">
@@ -175,8 +168,10 @@ export default props => {
                             />
                     </div>
                 </fieldset>
-</div>
-<div className="form--pair">
+
+            </div>
+
+            <div className="form--pair">
 
                 <fieldset>
                     <div className="column">
@@ -201,8 +196,10 @@ export default props => {
                             />
                     </div>
                 </fieldset>
-</div>
-<div className="form--pair">
+
+            </div>
+
+            <div className="form--pair">
 
                 <fieldset>
                     <div className="column">
@@ -227,7 +224,8 @@ export default props => {
                             />
                     </div>
                 </fieldset>
-</div>
+
+            </div>
 
             <div className="form--pair">
 
@@ -255,45 +253,48 @@ export default props => {
                     </div>
                 </fieldset>
 
-                 </div>
-                 <div className="form--pair">
+            </div>
 
-                    <fieldset>
-                            <div className="column">
-                                <label className="form--label" htmlFor="Quantity">Quantity(g)</label>
-                        <div className="row align-baseline">
-                                <input type="int" name="quantity" placeholder="Quantity..." className="form-control-type1"
-                                    proptype="int"
-                                    
-                                    value={bean.quantity}
-                                    onChange={handleControlledInputChange}/>
-                                <div className="">g</div>
-                                    
-                            </div>
-                        </div>
-                    </fieldset>
-                
-                    <fieldset>
-                        <div className="form-group column">
-                            <label className="form--label" htmlFor="regionId">Region</label>
-                            <select name="regionId" className="form-control-type1"
-                                proptype="int"
-                                value={bean.regionId}
-                                onChange={handleControlledInputChange}>
-
-                                <option value="0" >Region</option>
-                                {regions.map(r => (
-                                    <option key={r.id} value={r.id}>
-                                        {r.regionName}
-                                    </option>
-                                ))}
-                            
-                            </select>
-                        </div>
-                    </fieldset>
-                 </div>
+            <div className="form--pair">
 
                 <fieldset>
+                    <div className="column">
+                        <label className="form--label" htmlFor="Quantity">Quantity(g)</label>
+                        <div className="row align-baseline">
+
+                            <input type="int" name="quantity" placeholder="Quantity..." className="form-control-type1"
+                                proptype="int"
+                                
+                                value={bean.quantity}
+                                onChange={handleControlledInputChange}/>
+                            <div className="">g</div>
+                                
+                        </div>
+                    </div>
+                </fieldset>
+        
+                <fieldset>
+                    <div className="form-group column">
+                        <label className="form--label" htmlFor="regionId">Region</label>
+                        <select name="regionId" className="form-control-type1"
+                            proptype="int"
+                            value={bean.regionId}
+                            onChange={handleControlledInputChange}>
+
+                            <option value="0" >Region</option>
+                            {regions.map(r => (
+                                <option key={r.id} value={r.id}>
+                                    {r.regionName}
+                                </option>
+                            ))}
+                        
+                        </select>
+                    </div>
+                </fieldset>
+
+            </div>
+
+            <fieldset>
                 <div className="column form-group">
                     <label className="form--label" htmlFor="notes">Notes: </label>
                     <textarea rows="5" cols="50" type="text" name="notes" className="form-control-type1"
@@ -305,18 +306,18 @@ export default props => {
                 </div>
             </fieldset>
 
-            </div>
-            <button type="submit"
-                onClick={evt => {
-                    evt.preventDefault()
-                    constructNewBean()
-                }}
-                className="btn center  add--btn ">
-                {editMode ? <div className="center">Save Updates</div>: <div className="center">Add Coffee</div>}
-            </button>
-           
-        </form>
         </div>
+        <button type="submit"
+            onClick={evt => {
+                evt.preventDefault()
+                constructNewBean()
+            }}
+            className="btn center  add--btn ">
+            {editMode ? <div className="center">Save Updates</div>: <div className="center">Add Coffee</div>}
+        </button>
+            
+    </form>
+</div>
     )
 }
 

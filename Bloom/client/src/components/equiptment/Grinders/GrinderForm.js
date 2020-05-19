@@ -70,7 +70,6 @@ export default props => {
     )
     
     const constructNewGrinder = () => {
-        debugger
         if (grinder.brand === undefined ){
             setError("Please define a grinder brand")
         } else if (grinder.model === undefined){

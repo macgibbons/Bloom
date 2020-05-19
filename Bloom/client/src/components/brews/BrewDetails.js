@@ -86,13 +86,11 @@ export default (props) => {
                     <div className="card--control"
                         onClick={ () => { deleteConfirm() } }>
                             delete
-                        {/* <img className="icon" src={require ('../../icons/trash.svg')}/> */}
                     </div>
 
                     <div className="card--control"
                         onClick={ () => { props.history.push(`/brews/edit/${brew.id}`) } }>
                             edit
-                        {/* <img className="icon" src={require ('../../icons/edit.svg')}/> */}
                     </div>
                     
                 </div>

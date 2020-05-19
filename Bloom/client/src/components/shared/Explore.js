@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react"
+import React, { useContext, useState } from "react"
 import { BrewContext } from "../brews/BrewProvider";
 import { getUser } from "../../API/userManager";
 import { BrewMethodContext } from "../equiptment/brewMethods/BrewMethodProvider";
@@ -51,7 +51,6 @@ export default (props) => {
     }
    
     const handleSortChange = (e) => {
-        console.log(e.target.value)
         if (e.target.value === "0" || e.target.value === "1"){
             setReverse(true)
         } else {

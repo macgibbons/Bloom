@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react"
+import React, { useContext, useState} from "react"
 import { Link } from "react-router-dom"
 import moment from 'moment';
 import { BrewContext } from "./BrewProvider";
@@ -62,7 +62,6 @@ return (
         <div className="coffee--card">
             
             <div>
-                {/* <h1>{ brew.brewMethod.method }</h1> */}
                 <Link  className="card--link" to={`/brews/${brew.id}`}>
                     { brew.brewMethod.method }
                 </Link>

@@ -15,7 +15,9 @@ export default ({bean, history }) => {
 
      //*****API*******//
     const deleteConfirm = () => {
+
         if(window.confirm(`Are you sure you want to delete this coffee and it's brews? This action cannot be undone`))
+       
         // check if selected coffee has any related brews. if so delete coffee and related brews else just delete the coffee
         
         { 
@@ -36,9 +38,6 @@ return(
             <div className="coffee--title" >
                 <Link  className="card--link" className={bean.regionId === 1 ? "africa" : bean.regionId === 2 ? "central" : bean.regionId === 3 ? "south" : "asia"}to={`/Coffee/${bean.id}`}>
                     { bean.beanName }
-                {/* <div>
-                    { bean.origin}
-                </div> */}
                 </Link>
                 <div className="roaster">
                     { bean.roaster }

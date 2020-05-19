@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react"
+import React, { useContext, useState} from "react"
 import "./Beans.css"
 import { BeanContext } from "./BeanProvider";
 import Bean from "./Bean";
@@ -7,6 +7,7 @@ import { RegionContext } from "../regions/RegionProvider"
 import EmptyState from "../EmptyState";
 
 export default (props) => {
+
     // ***** CONTEXT *****
     const { beans } = useContext(BeanContext)
     const { regions } = useContext(RegionContext)
@@ -84,47 +85,52 @@ export default (props) => {
         props.history.push("/coffee/create")
     }
    
-    useEffect(()=>{
-        console.log(parseInt(region))
-    })
-    return (
-        <div className="coffee--view">
+   
+return (
+    <div className="coffee--view">
 
-<div className="page--header">
+        <div className="page--header">
+
             <div className="title--pair">
+
                 <div className="page--title">Coffee</div>
-            
                 <div  onClick={() => {logInCheck()}} className="add--btn"><img className="add" src={require ('../../icons/addWhite.svg')}/>Add coffee</div>
+            
             </div>
+
             <div className="header--filters">
-                    <div>Roaster</div>
-                    <select onChange={(evt)=>{setRoaster(evt.target.value)}} className="rounded">
-                        <option value={""}>All</option>
-                            {
-                                userRoasters.map( b => <option value={b} > {b}</option>)
-                            }
-                    </select>
 
-                    <div >Region</div>
-                    <select onChange={(evt)=>{setRegion(evt.target.value)}} className="rounded">
+                <div>Roaster</div>
+                <select onChange={(evt)=>{setRoaster(evt.target.value)}} className="rounded">
+                    <option value={""}>All</option>
+                        {
+                            userRoasters.map( b => <option key={b.id} value={b} > {b}</option>)
+                        }
+                </select>
+
+                <div >Region</div>
+                <select onChange={(evt)=>{setRegion(evt.target.value)}} className="rounded">
+                <option value={0}>All</option>
+                        {
+                            regions.map( r => <option key={r.id} value={r.id} > {r.regionName}</option>)
+                        }
+                </select>
+
+                <div>Process</div>
+                <select onChange={(evt)=>{setProcess(evt.target.value)}} className="rounded">
                     <option value={0}>All</option>
-                            {
-                                regions.map( r => <option value={r.id} > {r.regionName}</option>)
-                            }
-                    </select>
-
-                    <div>Process</div>
-                    <select onChange={(evt)=>{setProcess(evt.target.value)}} className="rounded">
-                        <option value={0}>All</option>
-                            {
-                                userProcess.map( b => <option value={b} > {b}</option>)
-                            }
-                    </select>
-                    <div>Keywords</div>
-                    <input className="rounded" type='text' placeHolder="juicy, floral, etc" onChange={evt => setSearch(evt.target.value)}/>
+                        {
+                            userProcess.map( b => <option value={b} > {b}</option>)
+                        }
+                </select>
+                <div>Keywords</div>
+                <input className="rounded" type='text' placeHolder="juicy, floral, etc" onChange={evt => setSearch(evt.target.value)}/>
+           
             </div>
-</div>
-            <div className="coffee--container">
+
+        </div>
+
+        <div className="coffee--container">
 
             {  
             search === "" ?
@@ -168,7 +174,9 @@ export default (props) => {
                         onClick={() => {logInCheck()}}>
                 <img className="add--icon" src={require ("../../icons/add.svg")}/>
             </a> */}
-            </div>
-        </div>
+            
+     </div>
+
+</div>
     )
 }

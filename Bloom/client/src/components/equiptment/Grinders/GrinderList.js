@@ -27,11 +27,7 @@ export default (props) => {
         if(user === ""){
             window.alert("please log in")
         } else {
-            console.log("user is logged in");
-            
             setForm(true)
-            
-        
         }
     }
     const updateApplicationView = () => {

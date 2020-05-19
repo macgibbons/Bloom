@@ -16,7 +16,6 @@ export const BrewProvider = (props) => {
     }
 
     const addBrew = brew => { 
-        debugger
         return fetch("https://localhost:5001/api/brews", {
             method: "POST",
             headers: {
@@ -28,7 +27,6 @@ export const BrewProvider = (props) => {
     }
 
     const updateBrew = brew => {
-        debugger
         return fetch(`https://localhost:5001/api/brews/${brew.id}`, {
             method: "PUT",
             headers: {

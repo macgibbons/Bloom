@@ -1,10 +1,8 @@
 import React, { useContext } from "react"
 import "./Beans.css"
 import { getUser } from "../../API/userManager";
-import { BrewMethodContext } from "../equiptment/brewMethods/BrewMethodProvider";
 import { BeanContext } from "../beans/BeanProvider";
 import StarRatingDisplay from "../StarRatingDisplay";
-import { GrinderContext } from "../equiptment/Grinders/GrinderProvider";
 import { BrewContext } from "../brews/BrewProvider";
 
 
@@ -12,9 +10,7 @@ export default (props) => {
 
     // ****************** CONTEXT **********************
     const { brews, deleteBrew } = useContext(BrewContext)
-    const { brewMethods } = useContext(BrewMethodContext)
     const { beans, deleteBean } = useContext(BeanContext)
-    const { grinders } = useContext(GrinderContext)
     
     // ****************** USER **********************
     const user = getUser()
@@ -103,7 +99,7 @@ return (
                         <ul>
                             {
                                 Beansbrews.map(
-                                    b => <li>{b.coffeeDose}g {b.waterDose}g {b.brewMethod.method} { moment.utc(b.brewTime * 1000).format('m:ss')}</li>
+                                    b => <li key={b.id}>{b.coffeeDose}g {b.waterDose}g {b.brewMethod.method} { moment.utc(b.brewTime * 1000).format('m:ss')}</li>
                                     
                                 )
                             }

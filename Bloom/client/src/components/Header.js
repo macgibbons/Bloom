@@ -17,34 +17,34 @@ function Header({ history }) {
           <>
           <div >
             <Link to="/">
-              <img src={require ('../icons/circle-logo.svg')} />
+              <img  alt="nav icon" src={require ('../icons/circle-logo.svg')} />
             </Link>
           </div>
 
           <div className="nav--links">
 
           <li className="nav--filter">
-            <img className="nav--icon"src={require ('../icons/Home.svg')} />
+            <img  alt="nav icon" className="nav--icon"src={require ('../icons/Home.svg')} />
               <NavLink activeClassName="active"  exact to="/" >Dashboard</NavLink>
             </li>
 
             <li  className="nav--filter">
-              <img className="nav--icon" src={require ('../icons/Explore.svg')} />
+              <img  alt="nav icon" className="nav--icon" src={require ('../icons/Explore.svg')} />
               <NavLink activeClassName="active" to="/Explore">Explore</NavLink>
             </li>
 
             <li className="nav--filter" >
-              <img  className="nav--icon" src={require ('../icons/Brew.svg')} />
+              <img  alt="nav icon"  className="nav--icon" src={require ('../icons/Brew.svg')} />
               <NavLink activeClassName="active" to="/brews" >My Brews</NavLink>
             </li>
 
             <li  className="nav--filter">
-              <img className="nav--icon" src={require ('../icons/Coffee.svg')} />
+              <img  alt="nav icon" className="nav--icon" src={require ('../icons/Coffee.svg')} />
               <NavLink activeClassName="active" to="/Coffee">Coffees</NavLink>
             </li>
 
             <li  className="nav--filter">
-              <img className="nav--icon" src={require ('../icons/Grinder.svg')} />
+              <img  alt="nav icon" className="nav--icon" src={require ('../icons/Grinder.svg')} />
               <NavLink activeClassName="active" to="/Equiptment">Equipment</NavLink >
             </li>
           </div>
@@ -52,18 +52,18 @@ function Header({ history }) {
           <div>
 
             <li className="nav--filter">
-              <img className="nav--icon" src={require ('../icons/Home.svg')} />
+              <img  alt="nav icon" className="nav--icon" src={require ('../icons/Home.svg')} />
               <NavLink activeClassName="active" to={`/profile/${user.id}`}>My Profile</NavLink>
             </li>
 
             <li className="nav--filter">
-              <img className="nav--icon" src={require ('../icons/Explore.svg')} />
+              <img  alt="nav icon" className="nav--icon" src={require ('../icons/Explore.svg')} />
               <div  onClick={logout}>Log out</div>
             </li>
 
           </div>
             
-            <img className="nav--icon" src={require ('../icons/bloom.svg')} />
+            <img  alt="nav icon" className="nav--icon" src={require ('../icons/bloom.svg')} />
           </>
         ) : (
           <>
