@@ -231,6 +231,8 @@ label, input[type="date" i] {
 }
 
 .add--btn {
+  background: rgb(77,124,245);
+  background: linear-gradient(180deg, rgba(77, 125, 245, 0.219) 0%, rgba(122,49,216,.2191) 100%);
   background-color: #5E51E1;
   height: fit-content;
   padding: .5em 1em;
@@ -244,17 +246,44 @@ label, input[type="date" i] {
   transition-duration: .5s;
 }
 
+.timer--btn {
+  background: rgb(77,124,245);
+  background: linear-gradient(180deg, rgba(77, 125, 245, 0.219) 0%, rgba(122,49,216,.2191) 100%);
+  background-color: #5E51E1;
+  height: fit-content;
+  padding: .5em 1em;
+  color: white;
+  font-size: small;
+  font-weight: 300;
+  align-items: center;
+  text-align: center;
+
+  display: flex;
+  border-radius: 0px;
+  justify-content: center;
+  transition-duration: .5s;
+}
+.timer--btn:hover{
+  background-color: rgb(63, 54, 161);
+  text-decoration: none !important;
+  /* background: linear-gradient(180deg, rgba(77, 125, 245, 0.219) 0%, rgba(122,49,216,.2191) 100%); */
+  transition-duration: .5s;
+  cursor: pointer;
+  
+}
+
  .add--btn img{
 margin: auto .3em auto auto;
 max-width: 1.1em;
 }
 
 .add--btn:hover{
-  background-color: #5E51E1;
-  
+  background-color: rgb(63, 54, 161);
+  text-decoration: none !important;
   /* background: linear-gradient(180deg, rgba(77, 125, 245, 0.219) 0%, rgba(122,49,216,.2191) 100%); */
   transition-duration: .5s;
   cursor: pointer;
+  
 }
 
 .active {
@@ -266,6 +295,16 @@ max-width: 1.1em;
   .row{
     display: flex;
     align-items: center;
+  }
+
+  .align-baseline{
+    align-items: baseline !important;
+  }
+
+  .column{
+    display: flex;
+    flex-direction: column;
+   
   }
 
   .no-pad {

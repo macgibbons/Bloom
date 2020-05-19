@@ -134,8 +134,8 @@ export default props => {
                     constructNewGrinder()
                    
                 }}
-                className="btn btn-primary roomBtn">
-                {editMode ? "Save Updates" : "Add Grinder"}
+                className="btn add--btn">
+                {editMode ? <div className="center">Save Updates</div> : <div className="center">Add Grinder</div>}
             </button>
            
         </form>

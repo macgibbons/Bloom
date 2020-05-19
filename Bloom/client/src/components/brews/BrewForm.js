@@ -25,7 +25,7 @@ export default props => {
     const userBeans =  beans.filter(bean => bean.userId == user.id)
 
     // ----- Other -----
-    const { time, start, pause, reset, isRunning } = useTimer({initialTime: -3});
+    const { time, start, pause, reset, isRunning } = useTimer({initialTime:0});
     const [rating, setRating] = useState("");
 
     // ----- State -----
@@ -159,26 +159,26 @@ export default props => {
                 <div className="timer-time">
                     <h1> {time < 0 ? time : moment.utc(time * 1000).format('m:ss')}</h1>
                 </div>
-                <div className="card-body">
+                <div className="card-body row">
                     {isRunning ? (
                         <RunningButton />
                     
                     ) : (
-                        <button className="btn btn-primary" onClick={start}>
+                        <button className="btn timer--btn" onClick={start}>
                         Brew
                     </button>
                     )}
-                    <button className="btn btn-primary" 
+                    <button className="btn timer--btn" 
                             onClick={pause}
                             >
                     Stop
                     </button>
-                    <button className="btn btn-primary" 
+                    <button className="btn timer--btn" 
                             onClick={reset}
                         >
                     Reset
                     </button>
-                    <button className="btn btn-primary" 
+                    <button className="btn timer--btn" 
                             onClick={evt => {
                                 evt.preventDefault()
                                 updateBrewTime()
@@ -197,26 +197,31 @@ export default props => {
 
                <div className="form--pair">
                 <fieldset>
-                    <div className="room-form-group">
-                        <label htmlFor="coffeeDose">Coffee Dose</label>
-                        <input type="number" step="0.1" name="coffeeDose" required autoFocus className="form-control"
-                            proptype="varchar"
-                            placeholder="Dose..."
-                            defaultValue={brew.coffeeDose}
-                            onChange={handleControlledInputChange}
-                            /> g
+                    <div className="column">
+                        <label className="form--label" htmlFor="coffeeDose">Coffee Dose</label>
+                        <div className="row">
+                            <input type="number" step="0.1" name="coffeeDose" required autoFocus className="form-control"
+                                proptype="varchar"
+                                placeholder="e.g. 25g"
+                                defaultValue={brew.coffeeDose}
+                                onChange={handleControlledInputChange}
+                                /> g
+                        </div>
                     </div>
                 </fieldset>
 
                 <fieldset>
-                    <div className="room-form-group">
-                        <label htmlFor="waterDose">Water Dose: </label>
+                    <div className="column">
+                        <label className="form--label" htmlFor="waterDose">Water Dose(g)</label>
+                        <div className="row">
+
                         <input type="number"  name="waterDose" required autoFocus className="form-control"
                             proptype="varchar"
-                            placeholder="Water..."
+                            placeholder="e.g. 400g"
                             defaultValue={brew.waterDose}
                             onChange={handleControlledInputChange}
-                            /> g
+                            /> <div>g</div>
+                            </div>
                     </div>
                 </fieldset>
                 </div>     
@@ -224,8 +229,8 @@ export default props => {
              <div className="form--pair">
 
                 <fieldset>
-                    <div className="room-form-group">
-                        <label htmlFor="brewTime">Brew Time:</label>
+                    <div className="column">
+                        <label className="form--label" htmlFor="brewTime">Brew Time</label>
                         <input type="text"  name="brewTime" required autoFocus className="form-control"
                             proptype="varchar"
                             placeholder="seconds..."
@@ -237,22 +242,27 @@ export default props => {
                 </fieldset>
 
                 <fieldset>
-                    <div className="room-form-group">
-                        <label htmlFor="waterTemp">Water Temp: </label>
+                    <div className="column">
+
+                        <label htmlFor="waterTemp">Water Temp </label>
+                        <div className="row">
                         <input type="number"  name="waterTemp" required autoFocus className="form-control"
                             proptype="varchar"
-                            placeholder="Temp.."
+                            placeholder="e.g. 210°"
                             defaultValue={brew.waterTemp}
                             onChange={handleControlledInputChange}
                             /> 
                            °F
+                            </div>
                     </div>
                 </fieldset>
              </div>
 
             <div className="form--pair">
                 <fieldset>
-                    <div className="form-group">
+                    <div className="column">
+                    <label className="form--label" htmlFor="grinderId">Grinder</label>
+
                         <select name="grinderId" className="form-control-type1"
                             proptype="int"
                             value={brew.grinderId}
@@ -271,10 +281,11 @@ export default props => {
                 </fieldset>
 
                 <fieldset>
-                    <div className="room-form-group">
+                    <div className="column">
+                        <label className="form--label" htmlFor="grindSetting">Grind Setting</label>
                         <input type="number"  name="grindSetting" required autoFocus className="form-control"
                             proptype="varchar"
-                            placeholder="Grind setting..."
+                            placeholder="e.g. 12"
                             value={brew.grindSetting}
                             onChange={handleControlledInputChange}
                             /> 
@@ -286,13 +297,15 @@ export default props => {
                          
             <div className="form--pair">
                 <fieldset>
-                    <div className="form-group">
+                    <div className="column">
+                        <label className="form--label" htmlFor="brewMethodId">Brew Method</label>
+
                         <select name="brewMethodId" className="form-control-type1"
                             proptype="int"
                             value={brew.brewMethodId}
                             onChange={handleControlledInputChange}>
 
-                            <option value="0" disabled>Select a Brew Method:</option>
+                            <option value="0" >Brew Method:</option>
 
                             {brewMethods.map(g => (
                                 <option key={g.id} value={g.id}>
@@ -304,7 +317,8 @@ export default props => {
                     </div>
                 </fieldset>
                 <fieldset>
-                    <div className="form-group">
+                    <div className="column">
+                        <label className="form--label" htmlFor="beanId">Coffee</label>
                         <select name="beanId" className="form-control-type1"
                             proptype="int"
                             value={brew.beanId}
@@ -343,8 +357,11 @@ export default props => {
                     evt.preventDefault()
                     constructNewBrew()
                 }}
-                className="btn btn-primary roomBtn">
-                {editMode ? "Save Updates" : "Add Brew"}
+                className="btn add--btn">
+                    
+                <div className="center">
+                    {editMode ? "Save Updates" : "Add Brew"}
+                </div>
             </button>
            
         </form>

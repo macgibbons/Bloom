@@ -50,14 +50,14 @@ export default props => {
 
     const deleteButton = (
         <>
-            <div className="btn delete--btn"
+            <div className="btn add--btn "
             onClick={() => {
                 deleteBean(bean.id)
                     .then(() => {
                         props.history.push("/coffee")
                     })
                 }}>
-                <div>delete</div>
+                <div className="center">delete</div>
             </div>
         </>
     )
@@ -127,14 +127,14 @@ export default props => {
     return (
         <div className="coffee--view">
         <form className="form container">
-        <div className="center">{editMode ? "Update Coffee" : "New Coffee"}</div>
+        <div className="center form--title">{editMode ? "Update Coffee" : "New Coffee"}</div>
             <div className= {error === "" ? "hidden" : "error"}>{error}</div>
             <div className="">{editMode ? deleteButton : ""} </div>
             <div className="wrapper">
         
 
                 <fieldset className="center">
-                    <div className="center room-form-group">
+                    <div className="center ">
                         {/* <label htmlFor="beanName">Name</label> */}
                         <input type="text" name="beanName" required autoFocus className="form-control"
                             proptype="varchar"
@@ -153,8 +153,8 @@ export default props => {
 <div className="form--pair">
 <fieldset>
 
-                    <div className="center  room-form-group">
-                        <label htmlFor="roastDate">Roast Date</label>
+                    <div className="center  ">
+                        <label className="form--label" htmlFor="roastDate">Roast Date</label>
                         <input type="date" onChange={(evt)=>setSelectedDate(moment(evt.target.value).format())} />
                         {/* <DateTime  className="date--picker" selected={selectedDate} defaultValue={date}
                                   onChange={date => setSelectedDate(date) }
@@ -165,8 +165,8 @@ export default props => {
 </fieldset>
 
                 <fieldset>
-                    <div className="room-form-group">
-                        {/* <label htmlFor="origin">Origin</label> */}
+                    <div className="column">
+                        <label  className="form--label" htmlFor="origin">Origin</label>
                         <input type="text" name="origin" required autoFocus className="form-control"
                             proptype="varchar"
                             placeholder="Origin.."
@@ -179,11 +179,11 @@ export default props => {
 <div className="form--pair">
 
                 <fieldset>
-                    <div className="room-form-group">
-                        {/* <label htmlFor="roaster">roaster</label> */}
+                    <div className="column">
+                        <label className="form--label" htmlFor="roaster">Roaster</label>
                         <input type="text" name="roaster" required autoFocus className="form-control"
                             proptype="varchar"
-                            placeholder="roaster.."
+                            placeholder="Onyx, Sump, Verve..."
                             defaultValue={bean.roaster}
                             onChange={handleControlledInputChange}
                             />
@@ -191,11 +191,11 @@ export default props => {
                 </fieldset>
 
                 <fieldset>
-                    <div className="room-form-group">
-                        {/* <label htmlFor="tastingNotes">Tasting Notes</label> */}
+                    <div className="column">
+                        <label className="form--label" htmlFor="tastingNotes">Tasting Notes</label>
                         <input type="text" name="tastingNotes" required autoFocus className="form-control"
                             proptype="varchar"
-                            placeholder="Tasting Notes.."
+                            placeholder="Floral, juicy, bright..."
                             defaultValue={bean.tastingNotes}
                             onChange={handleControlledInputChange}
                             />
@@ -205,11 +205,11 @@ export default props => {
 <div className="form--pair">
 
                 <fieldset>
-                    <div className="room-form-group">
-                        {/* <label htmlFor="variety">variety</label> */}
+                    <div className="column">
+                        <label className="form--label" htmlFor="variety">Varietal</label>
                         <input type="text" name="variety" required autoFocus className="form-control"
                             proptype="varchar"
-                            placeholder="variety.."
+                            placeholder="Typica, caturra, SL-88..."
                             defaultValue={bean.variety}
                             onChange={handleControlledInputChange}
                             />
@@ -217,11 +217,11 @@ export default props => {
                 </fieldset>
 
                 <fieldset>
-                    <div className="room-form-group">
-                        {/* <label htmlFor="process">process</label> */}
+                    <div className="column">
+                        <label className="form--label" htmlFor="process">Process</label>
                         <input type="text" name="process" required autoFocus className="form-control"
                             proptype="varchar"
-                            placeholder="process.."
+                            placeholder="Washed, natural, honey..."
                             defaultValue={bean.process}
                             onChange={handleControlledInputChange}
                             />
@@ -232,11 +232,11 @@ export default props => {
             <div className="form--pair">
 
                 <fieldset>
-                    <div className="room-form-group">
-                        {/* <label htmlFor="masl">MASL</label> */}
+                    <div className="column">
+                        <label className="form--label" htmlFor="masl">Altitude</label>
                         <input type="text" name="masl" required autoFocus className="form-control"
                             proptype="varchar"
-                            placeholder="masl.."
+                            placeholder="1200m.."
                             defaultValue={bean.masl}
                             onChange={handleControlledInputChange}
                             />
@@ -244,11 +244,11 @@ export default props => {
                 </fieldset>
 
                 <fieldset>
-                    <div className="room-form-group">
-                        {/* <label htmlFor="roastLevel">Roast</label> */}
+                    <div className="column">
+                        <label className="form--label" htmlFor="roastLevel">Roast</label>
                         <input type="text" name="roastLevel" required autoFocus className="form-control"
                             proptype="varchar"
-                            placeholder="roast Level.."
+                            placeholder="Light, medium, dark..."
                             defaultValue={bean.roastLevel}
                             onChange={handleControlledInputChange}
                             />
@@ -259,29 +259,29 @@ export default props => {
                  <div className="form--pair">
 
                     <fieldset>
-                        <div className="plant-water-pair">
-                            <div className="form-group water">
-                                {/* <label htmlFor="Quantity">Quantity</label> */}
+                            <div className="column">
+                                <label className="form--label" htmlFor="Quantity">Quantity(g)</label>
+                        <div className="row align-baseline">
                                 <input type="int" name="quantity" placeholder="Quantity..." className="form-control-type1"
                                     proptype="int"
                                     
                                     value={bean.quantity}
                                     onChange={handleControlledInputChange}/>
+                                <div className="">g</div>
                                     
                             </div>
-                            <div className="cups">g</div>
                         </div>
                     </fieldset>
                 
                     <fieldset>
-                        <div className="form-group">
-                            {/* <label htmlFor="roomId">room: </label> */}
+                        <div className="form-group column">
+                            <label className="form--label" htmlFor="regionId">Region</label>
                             <select name="regionId" className="form-control-type1"
                                 proptype="int"
                                 value={bean.regionId}
                                 onChange={handleControlledInputChange}>
 
-                                <option value="0" >region</option>
+                                <option value="0" >Region</option>
                                 {regions.map(r => (
                                     <option key={r.id} value={r.id}>
                                         {r.regionName}
@@ -294,11 +294,11 @@ export default props => {
                  </div>
 
                 <fieldset>
-                <div className="form-group">
-                    {/* <label htmlFor="notes">Notes: </label> */}
+                <div className="column form-group">
+                    <label className="form--label" htmlFor="notes">Notes: </label>
                     <textarea rows="5" cols="50" type="text" name="notes" className="form-control-type1"
                         proptype="varchar"
-                        placeholder="notes..."
+                        placeholder="Notes..."
                         value={bean.notes}
                         onChange={handleControlledInputChange}>
                     </textarea>
@@ -311,8 +311,8 @@ export default props => {
                     evt.preventDefault()
                     constructNewBean()
                 }}
-                className="btn btn-primary roomBtn">
-                {editMode ? "Save Updates" : "Add Coffee"}
+                className="btn center  add--btn ">
+                {editMode ? <div className="center">Save Updates</div>: <div className="center">Add Coffee</div>}
             </button>
            
         </form>

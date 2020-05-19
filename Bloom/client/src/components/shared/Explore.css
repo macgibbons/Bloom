@@ -3,7 +3,9 @@
     flex-direction: row-reverse;
     justify-content: flex-end;
     padding: 2em .5em;
+    max-width: 1150px;
     width: 100vw;
+
     /* margin: 0 5vw; */
 }
 .explore--filters{
@@ -155,4 +157,10 @@ select.filter{
 
 .EC--recipie{
     Padding: 1em;
+}
+
+@media(max-width: 100px){
+    .explore--card{
+        width: 40vw;
+    }
 }
