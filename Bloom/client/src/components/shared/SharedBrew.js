@@ -1,10 +1,8 @@
 import React, { useContext, useState, useEffect } from "react"
 import { Link } from "react-router-dom"
-import moment from 'moment';
 import { BrewContext } from "../brews/BrewProvider";
 import { getUser } from "../../API/userManager";
 import { CommentContext } from "../comments/CommentProvider";
-import { BeanContext } from "../beans/BeanProvider";
 import Comment from "../comments/Comment";
 import { FaRegUserCircle } from "react-icons/fa";
 import StarRating from "../StarRating";
@@ -12,7 +10,8 @@ import StarRatingDisplay from "../StarRatingDisplay";
 import { RatingContext } from "../UserRating/RatingProvider";
 import { MdVerifiedUser } from "react-icons/md";
 
-export default ({ brew, history, props}) => {
+export default ({ brew,  props}) => {
+
     // ***** USER *****
     const user = getUser()
 
@@ -29,11 +28,11 @@ export default ({ brew, history, props}) => {
 
      // ***** DATA *****
     const brewComments = comments.filter(comment => comment.brewId === brew.id)
-      var moment = require('moment')
-      var timestamp = moment(brew.brewDate)
-      var timePassed = timestamp.from(moment())
+    var moment = require('moment')
+    var timestamp = moment(brew.brewDate)
+    var timePassed = timestamp.from(moment())
+    const userRatings = ratings.filter(r => r.userId === user.id && r.brewId === brew.id)
 
-      const userRatings = ratings.filter(r => r.userId === user.id && r.brewId === brew.id)
      // ***** API *****
     const deleteConfirm = () => {
 
@@ -59,7 +58,6 @@ export default ({ brew, history, props}) => {
 
     
     const constructNewRating = () => {
-        debugger
          
             addRating({
                

@@ -19,8 +19,8 @@ export default props => {
 
 
     // ----- User Data -----
-    const userGrinders =  grinders.filter(grinder => grinder.userId == user.id)
-    const userBeans =  beans.filter(bean => bean.userId == user.id)
+    const userGrinders =  grinders.filter(grinder => grinder.userId === user.id)
+    const userBeans =  beans.filter(bean => bean.userId === user.id)
 
     // ----- Other -----
     const { time, start, pause, reset, isRunning } = useTimer({initialTime: 0});

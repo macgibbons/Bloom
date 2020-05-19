@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react"
+import React, { useContext, useState} from "react"
 import "./Brews.css"
 import { BrewContext } from "./BrewProvider";
 import Brew from "./Brew";
@@ -68,7 +68,6 @@ export default (props) => {
         if(user === ""){
             window.alert("please log in")
         } else {
-            console.log("user is logged in");
             updateApplicationView()
         }
     }
@@ -81,9 +80,7 @@ export default (props) => {
         setOption(e.target.value)
     }
    
-    useEffect(()=>{
-        console.log(parseInt(method))
-    })
+
     return (
         <div className="coffee--view">
             
@@ -133,7 +130,7 @@ export default (props) => {
                 {  
             search === "" ?
                  parseInt(method) === 0 ?
-                    grinder != 0 ? 
+                    grinder !== 0 ? 
                  
                         brewsByGrinder.length === 0 ? 
                         

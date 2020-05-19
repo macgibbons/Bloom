@@ -18,7 +18,6 @@ export default (props) => {
    const user = getUser()
 
     const currentBrewComments = comments.filter(comment => comment.brewId === brew.id)
-    console.log(user.id);
     
 
     if(user !== null) {
@@ -29,7 +28,6 @@ export default (props) => {
         if(user === ""){
             window.alert("please log in")
         } else {
-            console.log("user is logged in");
             
             updateApplicationView()
         

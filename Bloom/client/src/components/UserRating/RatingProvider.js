@@ -15,7 +15,6 @@ export const RatingProvider = (props) => {
             .then(setRatings)
     }
     const addRating = rating => { 
-        debugger
         return fetch("https://localhost:5001/api/UserRatings", {
             method: "POST",
             headers: {

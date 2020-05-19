@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700&display=swap');
 .App {
-  /* text-align: center; */
   color: 2C2C2C;
   font-family: 'Work Sans', sans-serif;
   display: flex;
@@ -17,8 +16,6 @@
 }
 body {
   background-color: #EBEBEB;
-  /* display: flex; */
-
 }
 
 .btn {
@@ -107,8 +104,6 @@ background: linear-gradient(180deg, rgba(77, 125, 245) 0%, rgba(122,49,216) 100%
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
   padding: .5em 1em;
-  /* font-weight: 600; */
-  /* letter-spacing: .1em; */
   margin: 1em 0;
   transition-duration: .5s;
 
@@ -160,8 +155,6 @@ background: linear-gradient(180deg, rgba(77, 125, 245, 0.219) 0%, rgba(122,49,21
 }
 
 .roaster{
-  /* color: white; */
-  /* -webkit-text-stroke: 1px black; */
   letter-spacing: .2em; 
 }
 
@@ -266,7 +259,6 @@ label, input[type="date" i] {
 .timer--btn:hover{
   background-color: rgb(63, 54, 161);
   text-decoration: none !important;
-  /* background: linear-gradient(180deg, rgba(77, 125, 245, 0.219) 0%, rgba(122,49,216,.2191) 100%); */
   transition-duration: .5s;
   cursor: pointer;
   
@@ -280,7 +272,6 @@ max-width: 1.1em;
 .add--btn:hover{
   background-color: rgb(63, 54, 161);
   text-decoration: none !important;
-  /* background: linear-gradient(180deg, rgba(77, 125, 245, 0.219) 0%, rgba(122,49,216,.2191) 100%); */
   transition-duration: .5s;
   cursor: pointer;
   

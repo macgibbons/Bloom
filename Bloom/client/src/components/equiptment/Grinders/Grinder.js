@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react"
-import { Link, Route } from "react-router-dom"
+import { Route } from "react-router-dom"
 import { GrinderContext } from "./GrinderProvider"
 import GrinderForm from "./GrinderForm"
 
@@ -15,8 +15,6 @@ export default ({ grinder}) => {
   
      useEffect(() => {
 
-      console.log(form) 
-      console.log(setForm)     
     }, [form]);
 
      return(

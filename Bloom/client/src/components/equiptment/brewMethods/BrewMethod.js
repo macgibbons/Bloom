@@ -1,5 +1,4 @@
 import React from "react"
-import { Link } from "react-router-dom"
 import "./BrewMethods.css"
 
 
@@ -17,7 +16,7 @@ export default ({brewMethod, history}) => {
             updateApplicationView()
         }} brewMethod={brewMethod.id}>
             {
-                brewMethod.imagePath ? <img src={require (`../../../images/${brewMethod.imagePath}`)} className="method-image"/> :
+                brewMethod.imagePath ? <img alt="brew method icon" src={require (`../../../images/${brewMethod.imagePath}`)} className="method-image"/> :
                  <>
                  <div className="other--method">
                     <div className="other">{brewMethod.method}</div>

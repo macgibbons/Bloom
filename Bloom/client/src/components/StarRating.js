@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Component } from "react";
+import React, { useState, useEffect} from "react";
 import { FaStar } from "react-icons/fa";
 
 const StarRating = (props) => {
@@ -29,7 +29,7 @@ const StarRating = (props) => {
 
         functionHandler(rating)
 
-        const editfunctionHandler = (rating) => {
+    const editfunctionHandler = (rating) => {
 
             props.editRating(rating);
             

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 const RunningButton = () => <button className="btn btn-primary" disabled style={{ cursor: 'default'}}>Brewing...</button>;
 

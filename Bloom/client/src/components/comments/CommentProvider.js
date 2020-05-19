@@ -28,7 +28,6 @@ export const CommentProvider = (props) => {
     }
 
     const updateComment = comment => {
-        debugger
         return fetch(`https://localhost:5001/api/comments/${comment.id}`, {
             method: "PUT",
             headers: {

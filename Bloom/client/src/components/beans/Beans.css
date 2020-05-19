@@ -7,7 +7,6 @@
     background-color: white;
     border-radius: 10px;
     width: 21.5vw;
-    /* flex-basis:  37%; */
     margin:.5em .5em;
     padding:  1em;
     transition-duration: .5s;
@@ -28,21 +27,16 @@
 .coffee--container{
     display: flex;
     flex-wrap: wrap;
-    /* justify-content: center; */
 }
 
 .coffee--view {
     padding: 2em 3em 2em 0em;
-    /* margin: 0 5vw */
-  
-  transition-duration: 2s;
-    
+    transition-duration: 2s;
 }
 
 .info--pair{
     display:flex;
     justify-content: space-between;
-    
     width: 100%;
 }
 
@@ -53,20 +47,17 @@
 .form--pair{
     display: flex;
     justify-content: space-between;
-    /* margin: auto; */
 }
 
 .date--picker{
     display:flex;
     flex-direction: column;
-    
     justify-content: space-evenly;
     border: 1px solid black;
 }
 
 .detail--title {
     font-size: x-large;
-    
 }
 
 .page--header{
@@ -74,6 +65,7 @@
     flex-direction: column;
     width: 100%;
 }
+
 .header--filters{
     display: flex;
     background-color: white;

@@ -24,19 +24,7 @@ export default (props) => {
                 </div>
 
             </div>
-            {/* <div className="flex--row">
-
-                <a  className="coffee--card add--bean"
-                       >
-                        
-                        <img className="add--icon" src={require ("../../../icons/add.svg")}/>
-                    </a>
-                <a  className="coffee--card add--bean"
-                       >
-
-                        <img className="add--icon" src={require ("../../../icons/add.svg")}/>
-                    </a>
-            </div> */}
+            
         </div>
     )
 }

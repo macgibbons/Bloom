@@ -35,7 +35,6 @@ export default props => {
     
     const editMode = props.match.params.hasOwnProperty("brewId")
     const quickMode = props.match.params.hasOwnProperty("brewMethodId")
-    console.log(props)
 
     if(user !== null) {
         document.body.classList.add("user--loggedIn")
@@ -83,7 +82,6 @@ export default props => {
     )
 
     if(quickMode === true){
-        console.log("you are in quick mode")
     }
    
     const constructNewBrew = () => {
@@ -101,7 +99,6 @@ export default props => {
             } else if (brew.beanId === undefined){
                 setError("Please specify a coffee")
             } else {
-                debugger
                 const brewTime = moment.duration(brew.brewTime, 'm:ss').asSeconds() / 60
 
                 if (editMode) {
@@ -124,7 +121,6 @@ export default props => {
                     })
                         .then(() => props.history.push("/brews"))
                 } else {
-                debugger
                     addBrew({
                         id: brew.id,
                         coffeeDose: parseInt(brew.coffeeDose),
