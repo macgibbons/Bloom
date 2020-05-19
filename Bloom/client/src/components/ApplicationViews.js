@@ -21,6 +21,7 @@ import { CommentProvider } from "./comments/CommentProvider";
 import { RatingProvider } from "./UserRating/RatingProvider";
 import { UserProvider} from "../API/UserProvider";
 import UserProfile from "./shared/UserProfile";
+import { FollowProvider } from "./shared/follow/FollowProvider";
 
 export default function ApplicationViews(props) {
   return (
@@ -33,6 +34,8 @@ export default function ApplicationViews(props) {
               <RegionProvider>
                 <RatingProvider>
                   <UserProvider>
+                    <FollowProvider>
+
 
                   <Route exact path="/" render={ props => <BrewMethodList {...props} />} />
                   <Route exact path="/Coffee" render={(props) => <BeanList {...props} />} />
@@ -40,34 +43,35 @@ export default function ApplicationViews(props) {
                   <Route exact path="/Equiptment" render ={() => <GrinderList />} />
                   <Route exact path="/Explore" render ={() => <Explore />} />
                   <Route exact path="/Grinders/create" render = {
-                                    props => <GrinderForm {...props} />
+                    props => <GrinderForm {...props} />
                                 } />
                   <Route exact path="/coffee/create" render = {
                                     props => <BeanForm {...props} />
-                                } />
+                                  } />
                   <Route path="/brews/:brewId(\d+)" render={
-                                props => <BrewDetails {...props} />
+                    props => <BrewDetails {...props} />
                             } />
                   <Route exact path="/brews/create" render = {
                                     props => <BrewForm {...props} />
-                                } />
+                                  } />
                   <Route exact path="/brews/quick/:brewMethodId(\d+)" render = {
-                                    props => <BrewQuickForm {...props} />
+                    props => <BrewQuickForm {...props} />
                                 } />
                   <Route path="/brews/edit/:brewId(\d+)" render={
-                                props => <BrewForm {...props} />
-                            } />
+                    props => <BrewForm {...props} />
+                  } />
                   <Route path="/coffee/edit/:beanId(\d+)" render={
-                                props => <BeanForm {...props} />
-                            } />
+                    props => <BeanForm {...props} />
+                  } />
 
                   <Route path ="/coffee/:beanId(\d+)" render= {
-                                props => <BeanDetails {...props} />
+                    props => <BeanDetails {...props} />
                   } />
 
                   <Route path ="/profile/:userId" render= {
-                                props => <UserProfile {...props} />
+                    props => <UserProfile {...props} />
                   } />
+                  </FollowProvider>
                   </UserProvider>
                 </RatingProvider>
               </RegionProvider>

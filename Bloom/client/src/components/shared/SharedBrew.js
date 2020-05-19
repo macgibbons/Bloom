@@ -9,6 +9,7 @@ import StarRating from "../StarRating";
 import StarRatingDisplay from "../StarRatingDisplay";
 import { RatingContext } from "../UserRating/RatingProvider";
 import { MdVerifiedUser } from "react-icons/md";
+import { FollowContext } from "./follow/FollowProvider";
 
 export default ({ brew,  props}) => {
 
@@ -19,12 +20,15 @@ export default ({ brew,  props}) => {
     const { comments, addComment } = useContext(CommentContext)
     const { deleteBrew, brews } = useContext(BrewContext)
     const { ratings, addRating } = useContext(RatingContext)
-  
+    const { follows, addFollow, deleteFollow } = useContext(FollowContext)
+
      // ***** STATE *****
     const [comment, setComment] = useState(null)
     const [ rating, setRating ] = useState(0)
     const [ averageRating, setAverageRating ] = useState(null)
     const [ ratingAmount, setRatingAmount ] = useState(0)
+    const [ follow, setFollow ] = useState(false)
+
 
      // ***** DATA *****
     const brewComments = comments.filter(comment => comment.brewId === brew.id)
@@ -32,7 +36,16 @@ export default ({ brew,  props}) => {
     var timestamp = moment(brew.brewDate)
     var timePassed = timestamp.from(moment())
     const userRatings = ratings.filter(r => r.userId === user.id && r.brewId === brew.id)
-
+    const userFollows = follows.filter(f => f.userId === user.id)
+    const checkFollow = userFollows.find(f => f.folllowId === brew.userId)
+    console.log(checkFollow)
+    
+    useEffect(()=> {
+        if(checkFollow !== undefined){
+            setFollow(true)
+        }
+    })
+    
      // ***** API *****
     const deleteConfirm = () => {
 
@@ -69,6 +82,37 @@ export default ({ brew,  props}) => {
         
     }
 
+    const followButton = (
+        <>
+            <div className="follow--btn"
+            onClick={() => {
+                if(window.confirm(`Are you sure you want to follow this user?`)){
+
+                    addFollow({
+                        folllowId: brew.userId, 
+                        userId: user.id
+                    }).then(()=>{setFollow(true)})
+                }
+                
+                }}>
+                follow
+            </div>
+        </>
+    ) 
+
+    const unFollowButton = (
+        <>
+            <div className="unfollow--btn"
+            onClick={() => {
+                if(window.confirm(`Are you sure you want to unfollow this user?`)){
+                deleteFollow(checkFollow.id).then(()=>{setFollow(false)})
+                }
+                }}>
+                <div className="center">following</div>
+                <img size={1}src={require ('../../icons/down.svg')} alt="down icon"/>
+            </div>
+        </>
+    ) 
     const brewRatings = ratings.filter(r => r.brewId === brew.id)
     
     const findAverage = () =>
@@ -100,7 +144,7 @@ return (
                         {brew.user.firstName} {brew.user.lastName}<span>{brew.user.lastName.toLowerCase() === "coffee" ? <MdVerifiedUser size={15} /> : "" }</span>
                     </Link>
                     </div>
-                    <div className="EC--subheader">{ timePassed }</div>
+                    <div className="card--control">{follow ? unFollowButton : followButton }</div>
                 <div className="EC--controls">
                     {
                         user.id === brew.userId ?
@@ -108,7 +152,7 @@ return (
                         {/* <div className="card--control"
                         onClick={() => {
                             push(`/brews/edit/${brew.id}`)
-                            }} >edit</div> · */}
+                        }} >edit</div> · */}
                     <div className="card--control"
                         onClick={()=>{ deleteConfirm() }
                     }>delete</div>
@@ -137,8 +181,8 @@ return (
                             
         
                             <img    className="EC--arrow" src={require ("../../icons/right.svg")} onClick={evt => {
-                                    evt.preventDefault()
-                                    constructNewRating()}} />
+                                evt.preventDefault()
+                                constructNewRating()}} />
                         </div>
                         </div>
                         </> : 
@@ -176,6 +220,7 @@ return (
                             <div>{ moment.utc(brew.brewTime * 1000).format('m:ss') }</div>
                         </div>
                     </div>
+                    <div className="EC--subheader">{ timePassed }</div>
             </div>
 
             <section className="comment--section">
