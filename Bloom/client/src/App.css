@@ -62,13 +62,12 @@ input.filter {
 
 
 .card--link{
-  color: black;
-  transition-duration: .25s;
+  color: #5E51E1;
   text-decoration: none;
 }
 
 .card--link:hover{
-  color: rgb(77,124,245);
+  color: rgb(63, 54, 161);
   text-decoration: underline;
   transition-duration: .25s;
 }
@@ -98,7 +97,8 @@ input.filter {
   border: none;
   color: white;
   background: rgb(77,124,245);
-background: linear-gradient(180deg, rgba(77, 125, 245) 0%, rgba(122,49,216) 100%);
+  background: linear-gradient(180deg, rgba(77, 125, 245, 0.219) 0%, rgba(122,49,216,.2191) 100%);
+  background-color: #5E51E1;
   font-size: x-small;
   font-family: archivo;
   border-top-right-radius: 8px;
@@ -110,9 +110,8 @@ background: linear-gradient(180deg, rgba(77, 125, 245) 0%, rgba(122,49,216) 100%
 }
 
 .submit--btn:hover{
-  color: black;
-  background: rgb(77,124,245);
-background: linear-gradient(180deg, rgba(77, 125, 245, 0.219) 0%, rgba(122,49,216,.2191) 100%);
+  background-color: rgb(63, 54, 161);
+  text-decoration: none !important;
   cursor: pointer;
   transition-duration: .5s;
 }

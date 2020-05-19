@@ -38,7 +38,6 @@ export default ({ brew,  props}) => {
     const userRatings = ratings.filter(r => r.userId === user.id && r.brewId === brew.id)
     const userFollows = follows.filter(f => f.userId === user.id)
     const checkFollow = userFollows.find(f => f.folllowId === brew.userId)
-    console.log(checkFollow)
     
     useEffect(()=> {
         if(checkFollow !== undefined){
@@ -108,8 +107,9 @@ export default ({ brew,  props}) => {
                 deleteFollow(checkFollow.id).then(()=>{setFollow(false)})
                 }
                 }}>
+                
                 <div className="center">following</div>
-                <img size={1}src={require ('../../icons/down.svg')} alt="down icon"/>
+                <img className="carrot" size={1}src={require ('../../icons/down.svg')} alt="down icon"/>
             </div>
         </>
     ) 
@@ -137,38 +137,29 @@ return (
         <div className="">
             <div className="EC--header">
             <div className="EC--UserHeader">
-                <FaRegUserCircle className="gradient" size={50}/>
+                {/* <FaRegUserCircle className="gradient" size={20}/> */}
                 <div className="EC--User">
                 <div> 
                      <Link  className="archivo card--link" to={`/profile/${brew.userId}`}>
                         {brew.user.firstName} {brew.user.lastName}<span>{brew.user.lastName.toLowerCase() === "coffee" ? <MdVerifiedUser size={15} /> : "" }</span>
                     </Link>
                     </div>
-                    <div className="card--control">{follow ? unFollowButton : followButton }</div>
-                <div className="EC--controls">
-                    {
-                        user.id === brew.userId ?
-                        <>
-                        {/* <div className="card--control"
-                        onClick={() => {
-                            push(`/brews/edit/${brew.id}`)
-                        }} >edit</div> · */}
-                    <div className="card--control"
-                        onClick={()=>{ deleteConfirm() }
-                    }>delete</div>
-                    </>:
-                    <>
-                    <div></div>
-                    </>
-                    }
-                    
-                </div>
+                    <div className="card--control">{brew.userId === user.id ? "" : follow ? unFollowButton : followButton }</div>
+        
                
 
                 </div>
                 </div>
                 <div className="EC--rating">
-                    {
+                    {   
+                        brew.userId === user.id ? 
+                        <>
+                        <div className="EC--ratingDisplay">
+                            <div>{averageRating}  ({ratingAmount})</div>
+                            <StarRatingDisplay displayRating={averageRating} />
+                        </div>
+                        </>
+                        :
                         userRatings.length === 0 ?
                         <>
                         <div className="EC--ratingDisplay">
@@ -220,7 +211,28 @@ return (
                             <div>{ moment.utc(brew.brewTime * 1000).format('m:ss') }</div>
                         </div>
                     </div>
-                    <div className="EC--subheader">{ timePassed }</div>
+                    <div className="row">
+
+                        <div className="EC--subheader">{ timePassed }</div>
+                        <div className="EC--controls">
+                        {
+                            user.id === brew.userId ?
+                            <>
+                            {/* <div className="card--control"
+                            onClick={() => {
+                                push(`/brews/edit/${brew.id}`)
+                            }} >edit</div> · */}
+                        <div className="card--control"
+                            onClick={()=>{ deleteConfirm() }
+                        }>delete post</div>
+                        </>:
+                        <>
+                        <div></div>
+                        </>
+                        }
+                        
+                    </div>
+                    </div>
             </div>
 
             <section className="comment--section">

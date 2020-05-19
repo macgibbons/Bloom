@@ -22,7 +22,7 @@ const StarRatingDisplay = (props) => {
                         value={displayRating} 
                         />
 
-                    <FaStar className="star--display" size={25} color={ ratingValue <= (rating) ? "#5E51E1" : "#e4e5e9"}/>
+                    <FaStar className="star--display" size={20} color={ ratingValue <= (rating) ? "#5E51E1" : "#e4e5e9"}/>
 
                 </label> )
                     })}

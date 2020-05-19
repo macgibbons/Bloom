@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react"
+import React, { useContext, useState, useEffect } from "react"
 import { BrewContext } from "../../brews/BrewProvider";
 import { getUser } from "../../../API/userManager";
 import { BrewMethodContext } from "../../equiptment/brewMethods/BrewMethodProvider";
@@ -28,24 +28,32 @@ export default (props) => {
     }
 
 
-
+    var moment = require('moment')
     // ***** Filters *****
-    const sharedBrews = reverse ? brews.filter(b => b.shared === true).reverse() : brews.filter(b => b.shared === true)
+    
+    const userFollows = follows.filter(f => f.userId === user.id)
+    const sharedBrews = brews.filter(b => b.shared === true)
+    let followedBrews = []
+    userFollows.map(f => 
+        sharedBrews.filter(
+            (b) =>{ if(b.userId === f.folllowId) followedBrews.push(b)})
+            )
+
+    const sortedBrews = reverse ? followedBrews.sort((a, b) => moment(b.brewDate) - moment(a.brewDate)) : followedBrews.sort((a, b) => moment(b.brewDate) - moment(a.brewDate)).reverse()
     const filteredBrews = sharedBrews.filter(b => b.brewMethodId === parseInt(option) )
     const searchedBrews = sharedBrews.filter( (b) => 
+    
+    b.user.firstName.toLowerCase().includes(search.toLocaleLowerCase()) ||
+    b.brewMethod.method.toLowerCase().includes( search.toLocaleLowerCase()) ||
+    b.notes.toLowerCase().includes( search.toLocaleLowerCase()) ||
+    b.bean.beanName.toLowerCase().includes( search.toLocaleLowerCase()) ||
+    b.bean.origin.toLowerCase().includes( search.toLocaleLowerCase()) ||
+    b.user.lastName.toLowerCase().includes( search.toLocaleLowerCase())
+            
+            )
+            
+            
 
-        b.user.firstName.toLowerCase().includes(search.toLocaleLowerCase()) ||
-        b.brewMethod.method.toLowerCase().includes( search.toLocaleLowerCase()) ||
-        b.notes.toLowerCase().includes( search.toLocaleLowerCase()) ||
-        b.bean.beanName.toLowerCase().includes( search.toLocaleLowerCase()) ||
-        b.bean.origin.toLowerCase().includes( search.toLocaleLowerCase()) ||
-        b.user.lastName.toLowerCase().includes( search.toLocaleLowerCase())
-        
-        )
-    
-        
-    
-  
 
     const handleSelectChange = (e) => {
         setOption(e.target.value)
@@ -65,8 +73,8 @@ export default (props) => {
             <div className="explore--container">
                 <div className="page--header">
 
-                <div className="page--title">explore</div> 
-                <div className="header--filters">
+                <div className="page--title">whats new...</div> 
+                {/* <div className="header--filters">
                     <div className="title--pair no-pad">
                         <div className="row no-pad">
 
@@ -91,7 +99,7 @@ export default (props) => {
                             <input className="rounded" type='text' placeholder="Search..." onChange={evt => setSearch(evt.target.value)}/>
                         </div>
                     </div>
-                    </div>
+                    </div> */}
                 </div>
 
             <div className="title--pair">
@@ -111,7 +119,7 @@ export default (props) => {
             </div>
             { 
                   option === '0' ? search === ''  ?  
-                        sharedBrews.map(brew => {
+                        sortedBrews.map(brew => {
                             return <SharedBrew key={brew.id} brew={brew} {...props} />
                             }) 
                         :  
