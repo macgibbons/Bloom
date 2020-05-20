@@ -53,7 +53,7 @@ const StarRating = (props) => {
                         value={ratingValue} 
                         onClick={ () => setRating(ratingValue) }/>
 
-                    <FaStar className="star" size={25} color={ ratingValue <= (hover || rating  ) ? "#5E51E1" : "#e4e5e9"} 
+                    <FaStar className="star" size={20} color={ ratingValue <= (hover || rating  ) ? "#5E51E1" : "#e4e5e9"} 
                         onMouseEnter={() => setHover(ratingValue)}
                         onMouseLeave={() => setHover(null)}
                         />

@@ -21,7 +21,7 @@ namespace Capstone.Data
         public DbSet<BrewMethod> BrewMethod { get; set; }
         public DbSet<Brew> Brew { get; set; }
         public DbSet<Comment> Comment { get; set; }
-
+        public DbSet<Follow> Follow { get; set; }
 
         public DbSet<RefreshToken> RefreshToken { get; set; }
 
@@ -102,6 +102,14 @@ namespace Capstone.Data
              UserId = "00000000-ffff-ffff-ffff-ffffffffffff"
          });
 
+            modelBuilder.Entity<Follow>().HasData(
+           new Follow()
+           {
+               Id = 1,
+               UserId = "00000000-ffff-ffff-ffff-ffffffffffff",
+               FolllowId = "95ef9434-a97b-4e76-a712-74166f685965"
+
+           });
             modelBuilder.Entity<Region>().HasData(
             new Region()
             {

@@ -2,6 +2,7 @@ import React, { useContext } from "react"
 import "./BrewMethods.css"
 import BrewMethod from "./BrewMethod";
 import { BrewMethodContext } from "./BrewMethodProvider";
+import FollowerList from "../../shared/follow/FollowerList";
 
 
 export default (props) => {
@@ -24,7 +25,7 @@ export default (props) => {
                 </div>
 
             </div>
-            
+            <FollowerList />
         </div>
     )
 }

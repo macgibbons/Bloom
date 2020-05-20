@@ -49,12 +49,12 @@ export default (props) => {
                 </div>
 
             <div className="header--filters">
-                    <div>All equipment</div>
-                    <div>Brew methods</div>
-                    <div>Brew methods</div>
-                    <div>Grinders</div>
-                    <div>Kettles</div>
-                    <div>Scales</div>
+                    <div className="enabled" >All equipment</div>
+                    <div className="disabled">Brew methods</div>
+                    <div className="disabled" >Brew methods</div>
+                    <div className="disabled">Grinders</div>
+                    <div className="disabled">Kettles</div>
+                    <div className="disabled">Scales</div>
                    
             </div>
             

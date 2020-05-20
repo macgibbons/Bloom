@@ -23,3 +23,12 @@
 .grinder--card {
     padding: 1em .5em;
 }
+
+.disabled{
+    color: gray;
+    font-style: italic;
+}
+
+.enabled{
+    color:  #5E51E1;
+}

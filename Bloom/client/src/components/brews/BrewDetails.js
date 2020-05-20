@@ -81,8 +81,10 @@ export default (props) => {
                     <div className=""><span className="bold">Notes:</span> {brew.notes}</div>
                   
             </div>
-                <div className="card--controls flex--row">
 
+                <div className="card--controls flex--row">
+                    {brew.userId === user.id ? 
+                    <>
                     <div className="card--control"
                         onClick={ () => { deleteConfirm() } }>
                             delete
@@ -92,6 +94,10 @@ export default (props) => {
                         onClick={ () => { props.history.push(`/brews/edit/${brew.id}`) } }>
                             edit
                     </div>
+                    </>
+                    :
+                    <div></div>
+                    }
                     
                 </div>
             </div>
