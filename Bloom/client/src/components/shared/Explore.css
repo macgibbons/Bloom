@@ -147,7 +147,7 @@ select.filter{
 }
 
 .profile--username {
-    padding: .5em;
+    padding: .5em 0;
     font-size: x-large;
 }
 
@@ -224,3 +224,16 @@ select.filter{
     cursor: pointer;
     
   }
+
+  .user--posts{
+      font-size: small;
+      text-align: center;
+  }
+
+  .user--post{
+      margin-right: .5em;
+  }
+
+.profile--sidebar{
+    align-items: initial;
+}
