@@ -175,17 +175,18 @@ input.filter {
   border-bottom-right-radius: 0px !important;
   padding: 1em .5em ;
   border-radius: 8px;
-  margin: .5em .5em;
+  margin: .5em 0;
   text-align: left;
   transition-duration: .5s;
 
 }
 
 .profile--filter:hover{
-  color: black;
-  background-color: rgb(181, 231, 247);
+  text-decoration: underline;
+  color: rgb(63, 54, 161);
+  /* background-color: rgb(181, 231, 247);
   background: rgb(77,124,245);
-  background: linear-gradient(180deg, rgba(77, 125, 245, 0.219) 0%, rgba(122,49,216,.2191) 100%);
+  background: linear-gradient(180deg, rgba(77, 125, 245, 0.219) 0%, rgba(122,49,216,.2191) 100%); */
   transition-duration: .5s;
   cursor: pointer;
 }
