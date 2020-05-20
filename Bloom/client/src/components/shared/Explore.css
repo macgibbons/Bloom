@@ -44,6 +44,7 @@ select.filter{
     background-color: white;
     border-radius: 10px;
     margin: 1em 0;
+    width: 90%;
 }
 
 .EC--header {
@@ -236,4 +237,8 @@ select.filter{
 
 .profile--sidebar{
     align-items: initial;
+    min-width: 20vw;
+    margin-left: -5em;
+    margin-top: 2% !important;
+    line-height: 1.5;
 }

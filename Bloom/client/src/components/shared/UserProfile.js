@@ -7,6 +7,8 @@ import SharedBrew from "./SharedBrew";
 import Bean from "../beans/Bean";
 import { FaRegUserCircle } from "react-icons/fa";
 import { MdVerifiedUser } from "react-icons/md";
+import { BsPeopleCircle } from "react-icons/bs";
+import { AiOutlineUser } from "react-icons/ai";
 import { FollowContext } from "./follow/FollowProvider";
 
 
@@ -86,6 +88,8 @@ export default (props) => {
                 <button className="profile--filter" onClick={()=>setView("coffee")}>
                     coffee
                 </button>
+               
+                    <div>{currentUser.id === user.id ? "" : follow ? unFollowButton : followButton }</div>
                 <div className="row user--posts">
                     <div className="user--post">
                         <div>{userSharedBrews.length}</div>
@@ -100,12 +104,14 @@ export default (props) => {
                         <div>following</div>
                     </div>
                 </div>
+                <div className="row align-baseline">
+                <div className="">
+
+                {/* <BsPeopleCircle  color='#5E51E1' className="gradient" size={30}/> */}
+                </div>
                 <div className=" profile--username">
                     {user.firstName} {user.lastName} <span>{ user.lastName === "Coffee"  ? <MdVerifiedUser className="gradient"size={20} /> : "" }</span>
                 </div>
-                <div className="">
-                    <FaRegUserCircle color='#5E51E1' className="gradient" size={100}/>
-                    <div>{currentUser.id === user.id ? "" : follow ? unFollowButton : followButton }</div>
                 </div>
                 
             </div>
