@@ -10,8 +10,6 @@ It can also be overwhelming to keep up with trends in the coffee world: what new
 #
 Bloom packages all of this into one easy to use web application. Bloom could be used by coffee shops to keep their staff up to date on what the current coffee is dialed in to or it can be used by home brewers who want to follow their favorite shops or just log their brews!
 
-# 
-When a user logs in, they will be taken to a dashboard that shows them the current day and which plants are to be watered on this day. They can then mark them as watered, which will automatically update a `completed` boolean to true in the `JSON` database, and take them off of the list of plants to be watered. Said boolean will be reverted back to false when it is time for them to be watered again.  
 
 
 # Backend
