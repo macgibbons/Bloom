@@ -21,8 +21,8 @@ export default props => {
 
 
     // ----- User Data -----
-    const userGrinders =  grinders.filter(grinder => grinder.userId == user.id)
-    const userBeans =  beans.filter(bean => bean.userId == user.id)
+    const userGrinders =  grinders.filter(grinder => grinder.userId === user.id)
+    const userBeans =  beans.filter(bean => bean.userId === user.id)
 
     // ----- Other -----
     const { time, start, pause, reset, isRunning } = useTimer({initialTime:0});
@@ -41,10 +41,6 @@ export default props => {
     }
 
     const handleControlledInputChange = (event) => {
-        /*
-            When changing a state object or array, always create a new one
-            and change state instead of modifying current one
-        */
         const newBrew = Object.assign({}, brew)
         newBrew[event.target.name] = event.target.value
         setBrew(newBrew)
